@@ -8,8 +8,10 @@ namespace Assets.Scripts.Content.PlayerLogic
     {
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private Transform _playerTransform;
+        [SerializeField] private Flags _flags;
 
         public float Speed => _playerConfig.Speed;
         public Transform PlayerTransform => _playerTransform;
+        public Flags Flags => _flags;
     }
 }
