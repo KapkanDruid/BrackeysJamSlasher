@@ -1,9 +1,12 @@
-using UnityEngine;
 using Zenject;
 
-public class MainServicesSceneInstaller : MonoInstaller
+namespace Assets.Scripts.Architecture
 {
-    public override void InstallBindings()
+    public class MainServicesSceneInstaller : MonoInstaller
     {
+        public override void InstallBindings()
+        {
+            Container.Bind<InputSystemActions>().AsSingle();
+        }
     }
 }
