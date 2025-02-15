@@ -4,15 +4,10 @@ using Zenject;
 
 namespace Assets.Scripts.Content.PlayerLogic
 {
-    public class PLayerController : MonoBehaviour
+    public sealed class PlayerController : MonoBehaviour
     {
-        private InputSystemActions _inputSystemActions;
+        [SerializeField] private PlayerData _playerData;
 
-        [Inject]
-        private void Construct(InputSystemActions inputActions)
-        {
-            _inputSystemActions = inputActions;
-            Debug.Log("sdsdsd");
-        }
+        public PlayerData PlayerData => _playerData;
     }
 }
