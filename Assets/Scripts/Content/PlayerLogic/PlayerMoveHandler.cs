@@ -43,4 +43,9 @@ namespace Assets.Scripts.Content.PlayerLogic
             _inputActions.Player.Move.canceled -= OnInputVectorChanged;
         }
     }
+
+    public class PLayerAttackHandler
+    {
+
+    }
 }

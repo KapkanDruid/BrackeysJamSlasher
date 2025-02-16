@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.07666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8bc249e7779a43a4a916217b1387b268, type: 2}
   m_BuildHeightMesh: 0
@@ -1662,7 +1662,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1748016423}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.18
   m_Speed: 30
   m_Acceleration: 8
   avoidancePriority: 50

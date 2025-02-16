@@ -11,6 +11,8 @@ namespace Assets.Scripts.Content.PlayerLogic
         [SerializeField] private Flags _flags;
 
         public float Speed => _playerConfig.Speed;
+        public float MaxHealth => _playerConfig.MaxHealth;
+
         public Transform PlayerTransform => _playerTransform;
         public Flags Flags => _flags;
     }
