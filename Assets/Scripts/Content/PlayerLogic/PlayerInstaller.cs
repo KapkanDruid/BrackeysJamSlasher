@@ -1,4 +1,4 @@
-using UnityEngine.AI;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Content.PlayerLogic
@@ -10,7 +10,9 @@ namespace Assets.Scripts.Content.PlayerLogic
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
-            Container.Bind<NavMeshAgent>().FromComponentOnRoot().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerJumpHandler>().AsSingle().NonLazy();
+
+            Container.Bind<Rigidbody2D>().FromComponentOnRoot().AsSingle();
             Container.Bind<PlayerData>().FromInstance(playerController.PlayerData).AsSingle();
         }
     }
