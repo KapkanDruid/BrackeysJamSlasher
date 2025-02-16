@@ -6,19 +6,19 @@ using Zenject;
 
 namespace Assets.Scripts.Content.PlayerLogic
 {
-    public sealed class PlayerMoveHandler : ITickable, IDisposable
+    public sealed class PlayerMoveHandler : IFixedTickable, IDisposable
     {
-        private readonly Transform _playerTransform;
+        private readonly Rigidbody2D _rigidbody;
         private readonly InputSystemActions _inputActions;
         private readonly PlayerData _playerData;
 
         private Vector3 _movementVelocity;
 
-        public PlayerMoveHandler(InputSystemActions inputActions, PlayerData playerData)
+        public PlayerMoveHandler(InputSystemActions inputActions, PlayerData playerData, Rigidbody2D rigidbody)
         {
             _inputActions = inputActions;
             _playerData = playerData;
-            _playerTransform = _playerData.PlayerTransform;
+            _rigidbody = rigidbody;
 
             _inputActions.Player.Move.performed += OnInputVectorChanged;
             _inputActions.Player.Move.canceled += OnInputVectorChanged;
@@ -29,12 +29,12 @@ namespace Assets.Scripts.Content.PlayerLogic
             var moveVector = context.ReadValue<Vector2>();
 
             _movementVelocity.x = moveVector.x;
-            _movementVelocity.z = moveVector.y;
+            _movementVelocity.y = moveVector.y;
         }
 
-        public void Tick()
+        public void FixedTick()
         {
-            _playerTransform.position += _movementVelocity * _playerData.Speed * Time.deltaTime;
+            _rigidbody.linearVelocity = _movementVelocity * _playerData.Speed;
         }
 
         public void Dispose()
