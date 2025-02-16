@@ -1,4 +1,7 @@
-public interface IDamageable
+namespace Assets.Scripts.Architecture
 {
-    public void TakeDamage(float damage);
+    public interface IDamageable
+    {
+        public void TakeDamage(float damage);
+    }
 }
