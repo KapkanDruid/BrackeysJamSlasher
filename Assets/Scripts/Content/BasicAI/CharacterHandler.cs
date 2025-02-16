@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Assets.Scripts.Content.BasicAI
 {
-    public class CharacterHandler : MonoBehaviour, IEntity
+    public class CharacterHandler : MonoBehaviour, IEntity, IDamageable
     {
         [SerializeField] private CharacterData _characterData;
 
@@ -22,12 +22,6 @@ namespace Assets.Scripts.Content.BasicAI
             transform.position = Vector3.MoveTowards(transform.position, target, _characterData.Speed * Time.deltaTime);
         }
 
-        public void Attack()
-        {
-            Debug.Log($"{gameObject.name} атакует!");
-        }
-
-
         public T ProvideComponent<T>() where T : class
         {
             if (_characterData.Flags is T flags)
@@ -39,6 +33,8 @@ namespace Assets.Scripts.Content.BasicAI
         public void TakeDamage(float damage)
         {
             _healthHandler.TakeDamage(damage);
+
+            Debug.Log($"Песонаж: {gameObject.name} получил {damage} урона. Здоровья осталось: {_healthHandler.Health}!");
         }
     }
 }

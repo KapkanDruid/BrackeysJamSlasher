@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Content.BasicAI
+﻿using UnityEngine;
+
+namespace Assets.Scripts.Content.BasicAI
 {
     public class CharacterHealthHandler : IDamageable
     {

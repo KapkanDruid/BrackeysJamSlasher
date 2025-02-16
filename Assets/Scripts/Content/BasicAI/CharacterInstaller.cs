@@ -8,9 +8,10 @@ namespace Assets.Scripts.Content.BasicAI
         public override void InstallBindings()
         {
             Container.Bind<CharacterHandler>().FromComponentOnRoot().AsSingle();
-            Container.Bind<CharacterHealthHandler>().AsSingle();
-            Container.Bind<CharacterAI>().FromComponentOnRoot().AsSingle();
             Container.Bind<CharacterData>().FromMethod(ctx => ctx.Container.Resolve<CharacterHandler>().CharacterData).AsSingle();
+            Container.Bind<CharacterHealthHandler>().AsSingle();
+            Container.Bind<CharacterStateMachine>().FromComponentOnRoot().AsSingle();
+            Container.Bind<HitCollider>().FromComponentInChildren().AsSingle();
         }
     }
 }

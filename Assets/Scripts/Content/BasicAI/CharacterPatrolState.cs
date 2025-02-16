@@ -5,28 +5,35 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterPatrolState : ICharacterState
     {
         private readonly CharacterHandler _character;
-        private readonly Transform[] _patrolPoints;
+        private readonly CharacterStateMachine _stateMachine;
+        private readonly Vector2[] _patrolPoints;
         private int _currentPointIndex;
 
-        public CharacterPatrolState(CharacterHandler character, Transform[] patrolPoints)
+        public CharacterPatrolState(CharacterHandler character, CharacterStateMachine stateMachine, Vector2[] patrolPoints)
         {
             _character = character;
+            _stateMachine = stateMachine;
             _patrolPoints = patrolPoints;
         }
 
         public void EnterState()
         {
-            Debug.Log($"{_character.name} вошел в режим патрулирования.");
+
         }
 
         public void UpdateState()
         {
+            if (_stateMachine.CurrentTarget != null)
+            {
+                _stateMachine.SetState<CharacterChaseState>();
+            }
+            
             if (_patrolPoints.Length == 0) return;
 
-            Transform targetPoint = _patrolPoints[_currentPointIndex];
-            _character.MoveTo(targetPoint.position);
+            Vector2 targetPoint = _patrolPoints[_currentPointIndex];
+            _character.MoveTo(targetPoint);
 
-            if (Vector3.Distance(_character.transform.position, targetPoint.position) < 1f)
+            if (Vector2.Distance(_character.transform.position, targetPoint) < 1f)
             {
                 _currentPointIndex = (_currentPointIndex + 1) % _patrolPoints.Length;
             }
@@ -34,7 +41,7 @@ namespace Assets.Scripts.Content.BasicAI
 
         public void ExitState()
         {
-            Debug.Log($"{_character.name} покидает режим патрулирования.");
+
         }
     }
 }
