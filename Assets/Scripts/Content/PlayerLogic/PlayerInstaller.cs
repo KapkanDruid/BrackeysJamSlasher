@@ -10,10 +10,10 @@ namespace Assets.Scripts.Content.PlayerLogic
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<PlayerMoveHandler>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<PlayerJumpHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CharacterJumpHandler>().AsSingle().NonLazy();
 
             Container.Bind<Rigidbody2D>().FromComponentOnRoot().AsSingle();
-            Container.Bind<PlayerData>().FromInstance(playerController.PlayerData).AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerData>().FromInstance(playerController.PlayerData).AsSingle();
         }
     }
 }

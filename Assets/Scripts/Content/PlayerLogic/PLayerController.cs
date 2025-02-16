@@ -1,4 +1,7 @@
+using Assets.Scripts.Architecture;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Assets.Scripts.Content.PlayerLogic
 {
@@ -6,7 +9,24 @@ namespace Assets.Scripts.Content.PlayerLogic
     {
         [SerializeField] private PlayerData _playerData;
 
+        private CharacterJumpHandler _jumpHandler;
+        private InputSystemActions _inputActions;
+
         public PlayerData PlayerData => _playerData;
+
+        [Inject]
+        private void Construct(CharacterJumpHandler jumpHandler, InputSystemActions inputActions)
+        {
+            _jumpHandler = jumpHandler;
+            _inputActions = inputActions;
+
+            _inputActions.Player.Jump.performed += OnInputJump;
+        }
+
+        private void OnInputJump(InputAction.CallbackContext context)
+        {
+            _jumpHandler.Jump();
+        }
 
         public T ProvideComponent<T>() where T : class
         {
@@ -14,6 +34,11 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return flags;
 
             return null;
+        }
+
+        private void OnDestroy()
+        {
+            _inputActions.Player.Jump.performed -= OnInputJump;
         }
     }
 }
