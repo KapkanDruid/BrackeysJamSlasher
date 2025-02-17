@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Assets.Scripts.Content.BasicAI
 {
-    public class CharacterHandler : MonoBehaviour, IEntity, IDamageable
+    public class CharacterHandler : MonoBehaviour, IEntity
     {
         [SerializeField] private CharacterData _characterData;
 
@@ -15,6 +15,7 @@ namespace Assets.Scripts.Content.BasicAI
         public void Construct(CharacterHealthHandler healthHandler)
         {
             _healthHandler = healthHandler;
+            _characterData.ThisEntity = this;
         }
 
         public void MoveTo(Vector3 target)
@@ -27,14 +28,23 @@ namespace Assets.Scripts.Content.BasicAI
             if (_characterData.Flags is T flags)
                 return flags;
 
+            if (_healthHandler is T healthHandler)
+                return healthHandler;
+
             return null;
         }
 
-        public void TakeDamage(float damage)
-        {
-            _healthHandler.TakeDamage(damage);
 
-            Debug.Log($"Песонаж: {gameObject.name} получил {damage} урона. Здоровья осталось: {_healthHandler.Health}!");
+        private void OnDrawGizmos()
+        {
+            if (_characterData == null)
+                return;
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _characterData.SensorRadius);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube((Vector2)transform.position + _characterData.HitColliderOffset, _characterData.HitColliderSize);
         }
     }
 }

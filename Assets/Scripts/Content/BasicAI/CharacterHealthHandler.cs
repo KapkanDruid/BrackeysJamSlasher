@@ -11,6 +11,8 @@ namespace Assets.Scripts.Content.BasicAI
         public void TakeDamage(float damage)
         {
             _health -= damage;
+
+            Debug.Log($"_health: {_health} AAA!");
         }
     }
 }

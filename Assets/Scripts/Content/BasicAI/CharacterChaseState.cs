@@ -6,25 +6,26 @@ namespace Assets.Scripts.Content.BasicAI
     {
         private readonly CharacterHandler _character;
         private readonly CharacterStateMachine _stateMachine;
+        private readonly CharacterSensor _sensor;
         private Transform _target;
         private float _distanceToChase = 0.7f;
 
-        public CharacterChaseState(CharacterHandler character, CharacterStateMachine stateMachine)
+        public CharacterChaseState(CharacterHandler character, CharacterStateMachine stateMachine, CharacterSensor sensor)
         {
             _character = character;
             _stateMachine = stateMachine;
+            _sensor = sensor;
         }
 
         public void EnterState()
         {
-            _target = _stateMachine.CurrentTarget;
+            _target = _sensor.TargetTransform; 
         }
 
         public void UpdateState()
         {
             if (_stateMachine.CurrentTarget == null)
             {
-                Debug.Log("Цель для преследования отсутствует");
                 _stateMachine.SetState<CharacterPatrolState>();
             }
 
@@ -35,7 +36,6 @@ namespace Assets.Scripts.Content.BasicAI
             }
             else if (Vector2.Distance(_character.transform.position, _target.position) <= _distanceToChase)
             {
-                Debug.Log("переход в состояние атаки");
                 _stateMachine.SetState<CharacterAttackState>();
             }
         }

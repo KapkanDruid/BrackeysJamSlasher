@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Content.BasicAI
 {
@@ -6,43 +7,74 @@ namespace Assets.Scripts.Content.BasicAI
     {
         private readonly CharacterHandler _character;
         private readonly CharacterStateMachine _stateMachine;
-        private readonly HitCollider _hitCollider;
+        private readonly CharacterData _data;
         private GameObject _target;
         private float _nextAttackTime;
         private float _attackCooldown;
+        private bool _canAttack;
 
-        public CharacterAttackState(CharacterHandler character, CharacterStateMachine stateMachine, HitCollider hitCollider)
+        public CharacterAttackState(CharacterHandler character, CharacterStateMachine stateMachine)
         {
             _character = character;
             _attackCooldown = _character.CharacterData.AttackCooldown;
+            _data = _character.CharacterData;
             _stateMachine = stateMachine;
-            _hitCollider = hitCollider;
         }
 
         public void EnterState()
         {
+            _canAttack = true;
         }
 
         public void UpdateState()
         {
-            if (Time.time >= _nextAttackTime)
+            HitTarget();
+        }
+
+        private async UniTask AttackTimer()
+        {
+            await UniTask.WaitForSeconds(_character.CharacterData.AttackCooldown);
+
+            _canAttack = true;
+        }
+
+        private void HitTarget()
+        {
+            if (!_canAttack)
+                return;
+
+            Vector2 origin = (Vector2)_data.CharacterTransform.position + _data.HitColliderOffset;
+            Vector2 direction = Vector2.down;
+            Vector2 size = _data.HitColliderSize;
+
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(origin, size, 0, direction);
+
+            int count = hits.Length;
+            for (int i = 0; i < count; i++)
             {
-                _target = _hitCollider.CurrentTarget;
+                if (!hits[i].collider.TryGetComponent(out IEntity entity))
+                    continue;
 
-                _hitCollider.EnableHitCollider();
-                Debug.Log("Колайдер хита включился");
+                if (entity == _data.ThisEntity)
+                    continue;
 
-                if (_target == null)
-                {
-                    Debug.Log("Цели нет");
-                    _stateMachine.SetState<CharacterChaseState>();
-                    return;
-                }
+                Flags flags = entity.ProvideComponent<Flags>();
 
-                _nextAttackTime = Time.time + _attackCooldown;
-                _hitCollider.DisableHitCollider();
-                Debug.Log("Колайдер хита выключился");
+                if (flags == null)
+                    continue;
 
+                if (!flags.Contain(_data.EnemyFlag))
+                    continue;
+
+                IDamageable damageable = entity.ProvideComponent<IDamageable>();
+
+                if (damageable == null)
+                    continue;
+
+                damageable.TakeDamage(_data.Damage);
+
+                _canAttack = false;
+                AttackTimer().Forget();
             }
         }
 

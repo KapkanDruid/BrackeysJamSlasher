@@ -11,7 +11,7 @@ namespace Assets.Scripts.Content.BasicAI
             Container.Bind<CharacterData>().FromMethod(ctx => ctx.Container.Resolve<CharacterHandler>().CharacterData).AsSingle();
             Container.Bind<CharacterHealthHandler>().AsSingle();
             Container.Bind<CharacterStateMachine>().FromComponentOnRoot().AsSingle();
-            Container.Bind<HitCollider>().FromComponentInChildren().AsSingle();
+            Container.BindInterfacesAndSelfTo<CharacterSensor>().AsSingle().NonLazy();
         }
     }
 }

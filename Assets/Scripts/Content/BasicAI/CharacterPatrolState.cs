@@ -6,28 +6,25 @@ namespace Assets.Scripts.Content.BasicAI
     {
         private readonly CharacterHandler _character;
         private readonly CharacterStateMachine _stateMachine;
+        private readonly CharacterSensor _sensor;
         private readonly Vector2[] _patrolPoints;
         private int _currentPointIndex;
 
-        public CharacterPatrolState(CharacterHandler character, CharacterStateMachine stateMachine, Vector2[] patrolPoints)
+        public CharacterPatrolState(CharacterHandler character, CharacterStateMachine stateMachine, Vector2[] patrolPoints, CharacterSensor sensor)
         {
             _character = character;
             _stateMachine = stateMachine;
             _patrolPoints = patrolPoints;
+            _sensor = sensor;
         }
 
         public void EnterState()
         {
-
+            _sensor.TargetDetected += OnTargetDetected;
         }
 
         public void UpdateState()
         {
-            if (_stateMachine.CurrentTarget != null)
-            {
-                _stateMachine.SetState<CharacterChaseState>();
-            }
-            
             if (_patrolPoints.Length == 0) return;
 
             Vector2 targetPoint = _patrolPoints[_currentPointIndex];
@@ -39,9 +36,14 @@ namespace Assets.Scripts.Content.BasicAI
             }
         }
 
+        private void OnTargetDetected()
+        {
+            _stateMachine.SetState<CharacterChaseState>();
+        }
+
         public void ExitState()
         {
-
+            _sensor.TargetDetected -= OnTargetDetected;
         }
     }
 }
