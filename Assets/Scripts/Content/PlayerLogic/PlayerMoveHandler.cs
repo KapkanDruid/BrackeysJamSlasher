@@ -12,20 +12,27 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly InputSystemActions _inputActions;
         private readonly Rigidbody2D _rigidbody;
         private readonly PlayerData _playerData;
+        private readonly Animator _animator;
 
         private Vector2 _movementVelocity;
         private Vector2 _inputVector;
+
+        private bool _isLanding;
+
+        public bool IsLanding { get => _isLanding; set => _isLanding = value; }
 
         public PlayerMoveHandler
             (InputSystemActions inputActions,
             GroundDirectionFinder groundDirectionFinder,
             PlayerData playerData,
-            Rigidbody2D rigidbody)
+            Rigidbody2D rigidbody,
+            Animator animator)
         {
             _groundDirectionFinder = groundDirectionFinder;
             _inputActions = inputActions;
             _playerData = playerData;
             _rigidbody = rigidbody;
+            _animator = animator;
 
             _inputActions.Player.Move.performed += OnInputVectorChanged;
             _inputActions.Player.Move.canceled += OnInputVectorChanged;
@@ -34,9 +41,33 @@ namespace Assets.Scripts.Content.PlayerLogic
         private void OnInputVectorChanged(InputAction.CallbackContext context)
         {
             _inputVector = context.ReadValue<Vector2>();
+
+            if (_inputVector != Vector2.zero)
+                _animator.SetBool(AnimatorHashes.IsMoving, true);
+            else
+                _animator.SetBool(AnimatorHashes.IsMoving, false);
         }
 
         public void FixedTick()
+        {
+            if (IsMovementAllowed())
+                PlayerMovement();
+            else 
+                _rigidbody.linearVelocity = Vector2.zero;
+        }
+
+        private bool IsMovementAllowed()
+        {
+            if (_animator.GetBool(AnimatorHashes.IsLanding))
+                return false;
+
+            if (_animator.GetBool(AnimatorHashes.IsAttacking))
+                return false;
+
+            return true;
+        }
+
+        private void PlayerMovement()
         {
             var additionalVelocity = _groundDirectionFinder.GetVectorByPosition(_playerData.PlayerTransform.position);
 
@@ -49,7 +80,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             else
                 _rigidbody.linearVelocity = Vector2.zero;
         }
-            
+
         public void Dispose()
         {
             _inputActions.Player.Move.performed -= OnInputVectorChanged;
@@ -64,10 +95,5 @@ namespace Assets.Scripts.Content.PlayerLogic
             Gizmos.color = Color.yellow;
             Gizmos.DrawRay(_rigidbody.transform.position, _movementVelocity);
         }
-    }
-
-    public class PLayerAttackHandler
-    {
-
     }
 }
