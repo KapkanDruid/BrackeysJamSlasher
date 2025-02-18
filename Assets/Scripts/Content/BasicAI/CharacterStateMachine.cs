@@ -8,6 +8,7 @@ namespace Assets.Scripts.Content.BasicAI
     {
         [SerializeField] private Transform[] _patrolPoints;
 
+        private Animator _animator;
         private ICharacterState _currentState;
         private List<ICharacterState> _states = new();
         private Transform _currentTarget;
@@ -15,13 +16,15 @@ namespace Assets.Scripts.Content.BasicAI
         public Transform CurrentTarget => _currentTarget;
 
         [Inject]
-        public void Construct(CharacterHandler characterHandler, CharacterSensor sensor)
+        public void Construct(CharacterHandler characterHandler, CharacterSensor sensor, Animator animator)
         {
+            _animator = animator;
+
             Vector2[] patrolPoints2D = ConvertTransformToVector2();
 
-            _states.Add(new CharacterAttackState(characterHandler));
+            _states.Add(new CharacterAttackState(characterHandler, _animator));
             _states.Add(new CharacterPatrolState(characterHandler, this, patrolPoints2D, sensor));
-            _states.Add(new CharacterChaseState(characterHandler, this, sensor));
+            _states.Add(new CharacterChaseState(characterHandler, this, sensor, _animator));
 
 
             SetState<CharacterPatrolState>();

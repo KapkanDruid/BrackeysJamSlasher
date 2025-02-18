@@ -6,6 +6,7 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterInstaller : MonoInstaller
     {
         [SerializeField] private CharacterHandler _characterHandler;
+        [SerializeField] private Animator _animator;
 
         public override void InstallBindings()
         {
@@ -14,6 +15,7 @@ namespace Assets.Scripts.Content.BasicAI
             Container.Bind<CharacterHealthHandler>().AsSingle();
             Container.Bind<CharacterStateMachine>().FromComponentOnRoot().AsSingle();
             Container.BindInterfacesAndSelfTo<CharacterSensor>().AsSingle().NonLazy();
+            Container.Bind<Animator>().FromInstance(_animator).AsSingle();
         }
     }
 }

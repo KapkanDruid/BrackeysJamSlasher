@@ -6,12 +6,14 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterAttackState : ICharacterState
     {
         private readonly CharacterHandler _character;
+        private readonly Animator _animator;
         private readonly CharacterData _data;
         private bool _canAttack;
 
-        public CharacterAttackState(CharacterHandler character)
+        public CharacterAttackState(CharacterHandler character, Animator animator)
         {
             _character = character;
+            _animator = animator;
             _data = _character.CharacterDatas;
         }
 
@@ -26,9 +28,9 @@ namespace Assets.Scripts.Content.BasicAI
         }
 
         private async UniTask AttackTimer()
-        {
+        {            
             await UniTask.WaitForSeconds(_character.CharacterDatas.AttackCooldown);
-
+            
             _canAttack = true;
         }
 
@@ -36,7 +38,7 @@ namespace Assets.Scripts.Content.BasicAI
         {
             if (!_canAttack)
                 return;
-
+            _animator.SetTrigger(AnimatorHashes.SpikeAttackTrigger);
             Vector2 origin = (Vector2)_data.CharacterTransform.position + _data.HitColliderOffset;
             Vector2 direction = Vector2.down;
             Vector2 size = _data.HitColliderSize;
@@ -65,6 +67,7 @@ namespace Assets.Scripts.Content.BasicAI
                 if (damageable == null)
                     continue;
 
+                _animator.SetBool(AnimatorHashes.IsAttacking, true);
                 damageable.TakeDamage(_data.Damage);
 
                 _canAttack = false;
