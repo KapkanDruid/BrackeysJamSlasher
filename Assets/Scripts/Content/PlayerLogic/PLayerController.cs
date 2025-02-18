@@ -19,7 +19,8 @@ namespace Assets.Scripts.Content.PlayerLogic
         private void Construct(
             CharacterJumpHandler jumpHandler, 
             InputSystemActions inputActions, 
-            Animator animator)
+            Animator animator,
+            PopupTextController popupTextController)
         {
             _inputActions = inputActions;
             _jumpHandler = jumpHandler;
@@ -28,6 +29,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             _playerData.ThisEntity = this;
 
             _inputActions.Player.Jump.performed += OnInputJump;
+
+            _inputActions.Player.Attack.performed += context => popupTextController.ShowDamage(_playerData.JumpObjectTransform.position, 10);
         }
 
         private void OnInputJump(InputAction.CallbackContext context)
