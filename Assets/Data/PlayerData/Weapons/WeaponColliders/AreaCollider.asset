@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf826d130b312b4bb9698bce3cb104a, type: 3}
-  m_Name: DefaultPlayerConfig
+  m_Script: {fileID: 11500000, guid: a22ad44e7750328499a1fca17a984452, type: 3}
+  m_Name: AreaCollider
   m_EditorClassIdentifier: 
-  _speed: 10
-  _maxHealth: 5
-  _jumpHeight: 2
-  _jumpDuration: 0.5
+  _colliderSize: {x: 0.93, y: 0.69}
+  _colliderOffset: {x: 1, y: -0.1}

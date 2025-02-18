@@ -1,16 +1,12 @@
-﻿using Assets.Scripts.Architecture;
-using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Content.PlayerLogic
+namespace Assets.Scripts.Content
 {
-    public class PlayerJumpHandler : ITickable, IDisposable
+    public class CharacterJumpHandler : ITickable
     {
-        private readonly PlayerData _playerData;
+        private readonly IJumpData _jumpData;
         private readonly Transform _viewObjectTransform;
-        private readonly InputSystemActions _inputActions;
 
         private float _jumpHeight;
         private float _jumpDuration;
@@ -20,22 +16,21 @@ namespace Assets.Scripts.Content.PlayerLogic
         private bool _isGrounded;
 
         private Vector3 _jumpStartPosition;
+        private Vector3 _shadowSize;
 
         public bool IsGrounded => _isGrounded;
+        public bool IsJumping => _isJumping;
 
-        public PlayerJumpHandler(PlayerData playerData, InputSystemActions inputActions)
+        public CharacterJumpHandler(IJumpData playerData)
         {
-            _playerData = playerData;
-            _inputActions = inputActions;
+            _jumpData = playerData;
 
-            _viewObjectTransform = _playerData.ViewObjectTransform;
+            _viewObjectTransform = _jumpData.JumpObjectTransform;
 
             _isGrounded = true;
-
-            _inputActions.Player.Jump.performed += OnInputJump;
         }
 
-        private void OnInputJump(InputAction.CallbackContext context)
+        public void Jump()
         {
             if (!_isGrounded)
                 return;
@@ -45,10 +40,11 @@ namespace Assets.Scripts.Content.PlayerLogic
             _isJumping = true;
             _jumpTimer = 0;
 
-            _jumpHeight = _playerData.JumpHeight;
-            _jumpDuration = _playerData.JumpDuration;
+            _jumpHeight = _jumpData.JumpHeight;
+            _jumpDuration = _jumpData.JumpDuration;
 
             _jumpStartPosition = _viewObjectTransform.localPosition;
+            _shadowSize = _jumpData.ShadowTransform.localScale;
         }
 
         public void Tick()
@@ -63,6 +59,8 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             _viewObjectTransform.localPosition = new Vector3(_jumpStartPosition.x, _jumpStartPosition.y + heightOffset, _jumpStartPosition.z);
 
+            _jumpData.ShadowTransform.localScale = ParabolicLerp(_shadowSize, _shadowSize / 1.3f, t);
+
             if (_jumpTimer >= _jumpDuration)
             {
                 _isJumping = false;
@@ -72,9 +70,10 @@ namespace Assets.Scripts.Content.PlayerLogic
             }
         }
 
-        public void Dispose()
+        private Vector2 ParabolicLerp(Vector2 A, Vector2 B, float t)
         {
-            _inputActions.Player.Jump.performed -= OnInputJump;
+            float factor = 4 * t * (1 - t);
+            return Vector2.Lerp(A, B, factor);
         }
     }
 }
