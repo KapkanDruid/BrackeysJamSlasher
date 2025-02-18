@@ -12,7 +12,7 @@ namespace Assets.Scripts.Architecture
 
         public override void InstallBindings()
         {
-            Container.Bind<InputSystemActions>().AsSingle();
+            Container.Bind<InputSystemActions>().AsSingle().NonLazy();
             Container.Bind<PlayerController>().FromInstance(_player).AsSingle();
             Container.Bind<GroundDirectionPointsHandler>().FromInstance(_directionPointsHandler).AsSingle();
             Container.BindInterfacesAndSelfTo<GroundDirectionFinder>().AsSingle().NonLazy();

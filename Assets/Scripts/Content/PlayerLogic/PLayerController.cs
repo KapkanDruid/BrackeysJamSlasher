@@ -11,14 +11,21 @@ namespace Assets.Scripts.Content.PlayerLogic
 
         private CharacterJumpHandler _jumpHandler;
         private InputSystemActions _inputActions;
+        private Animator _animator;
 
         public PlayerData PlayerData => _playerData;
 
         [Inject]
-        private void Construct(CharacterJumpHandler jumpHandler, InputSystemActions inputActions)
+        private void Construct(
+            CharacterJumpHandler jumpHandler, 
+            InputSystemActions inputActions, 
+            Animator animator)
         {
-            _jumpHandler = jumpHandler;
             _inputActions = inputActions;
+            _jumpHandler = jumpHandler;
+            _animator = animator;
+
+            _playerData.ThisEntity = this;
 
             _inputActions.Player.Jump.performed += OnInputJump;
         }
@@ -26,6 +33,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private void OnInputJump(InputAction.CallbackContext context)
         {
             _jumpHandler.Jump();
+            _animator.SetTrigger(AnimatorHashes.JumpTrigger);
         }
 
         public T ProvideComponent<T>() where T : class
@@ -34,6 +42,14 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return flags;
 
             return null;
+        }
+
+        private void Update()
+        {
+            if (_animator != null) 
+            {
+                _animator.SetBool(AnimatorHashes.IsGrounded, _jumpHandler.IsGrounded);
+            }
         }
 
         private void OnDestroy()

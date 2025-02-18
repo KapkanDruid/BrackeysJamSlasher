@@ -19,12 +19,13 @@ namespace Assets.Scripts.Content
         private Vector3 _shadowSize;
 
         public bool IsGrounded => _isGrounded;
+        public bool IsJumping => _isJumping;
 
         public CharacterJumpHandler(IJumpData playerData)
         {
             _jumpData = playerData;
 
-            _viewObjectTransform = _jumpData.ViewObjectTransform;
+            _viewObjectTransform = _jumpData.JumpObjectTransform;
 
             _isGrounded = true;
         }

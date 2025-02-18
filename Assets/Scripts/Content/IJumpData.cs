@@ -6,7 +6,7 @@ namespace Assets.Scripts.Content
     {
         public float JumpHeight { get; }
         public float JumpDuration { get; }
-        public Transform ViewObjectTransform { get; }
+        public Transform JumpObjectTransform { get; }
         public Transform ShadowTransform { get; }
     }
 }
