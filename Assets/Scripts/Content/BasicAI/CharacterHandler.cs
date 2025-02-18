@@ -9,7 +9,7 @@ namespace Assets.Scripts.Content.BasicAI
 
         private CharacterHealthHandler _healthHandler;
 
-        public CharacterData CharacterData => _characterData;
+        public CharacterData CharacterDatas => _characterData;
 
         [Inject]
         public void Construct(CharacterHealthHandler healthHandler)

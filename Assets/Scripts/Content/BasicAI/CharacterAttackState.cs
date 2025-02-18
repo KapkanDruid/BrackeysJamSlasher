@@ -6,19 +6,13 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterAttackState : ICharacterState
     {
         private readonly CharacterHandler _character;
-        private readonly CharacterStateMachine _stateMachine;
         private readonly CharacterData _data;
-        private GameObject _target;
-        private float _nextAttackTime;
-        private float _attackCooldown;
         private bool _canAttack;
 
-        public CharacterAttackState(CharacterHandler character, CharacterStateMachine stateMachine)
+        public CharacterAttackState(CharacterHandler character)
         {
             _character = character;
-            _attackCooldown = _character.CharacterData.AttackCooldown;
-            _data = _character.CharacterData;
-            _stateMachine = stateMachine;
+            _data = _character.CharacterDatas;
         }
 
         public void EnterState()
@@ -33,7 +27,7 @@ namespace Assets.Scripts.Content.BasicAI
 
         private async UniTask AttackTimer()
         {
-            await UniTask.WaitForSeconds(_character.CharacterData.AttackCooldown);
+            await UniTask.WaitForSeconds(_character.CharacterDatas.AttackCooldown);
 
             _canAttack = true;
         }

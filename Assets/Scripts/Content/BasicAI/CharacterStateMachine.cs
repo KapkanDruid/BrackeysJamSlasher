@@ -7,14 +7,11 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterStateMachine : MonoBehaviour
     {
         [SerializeField] private Transform[] _patrolPoints;
-        [SerializeField] private Flags _characterFlag;
 
         private ICharacterState _currentState;
         private List<ICharacterState> _states = new();
-        private CharacterAttackState _attackState;
         private Transform _currentTarget;
 
-        public Flags CharacterFlag => _characterFlag;
         public Transform CurrentTarget => _currentTarget;
 
         [Inject]
@@ -22,10 +19,8 @@ namespace Assets.Scripts.Content.BasicAI
         {
             Vector2[] patrolPoints2D = ConvertTransformToVector2();
 
-            _attackState = new CharacterAttackState(characterHandler, this);
-
+            _states.Add(new CharacterAttackState(characterHandler));
             _states.Add(new CharacterPatrolState(characterHandler, this, patrolPoints2D, sensor));
-            _states.Add(_attackState);
             _states.Add(new CharacterChaseState(characterHandler, this, sensor));
 
 
