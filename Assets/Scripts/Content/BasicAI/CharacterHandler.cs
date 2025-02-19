@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +10,9 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private CharacterData _characterData;
 
         private CharacterHealthHandler _healthHandler;
+        private CancellationToken _cancellationToken;
 
+        public  CancellationToken CancellationToken => _cancellationToken;
         public CharacterData CharacterDatas => _characterData;
 
         [Inject]
@@ -16,6 +20,7 @@ namespace Assets.Scripts.Content.BasicAI
         {
             _healthHandler = healthHandler;
             _characterData.ThisEntity = this;
+            _cancellationToken = this.GetCancellationTokenOnDestroy();
         }
 
         public void MoveTo(Vector3 target)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Content.BasicAI
 
             Vector2[] patrolPoints2D = ConvertTransformToVector2();
 
-            _states.Add(new CharacterAttackState(characterHandler, _animator));
+            _states.Add(new CharacterAttackState(characterHandler, _animator, characterHandler.CancellationToken));
             _states.Add(new CharacterPatrolState(characterHandler, this, patrolPoints2D, sensor));
             _states.Add(new CharacterChaseState(characterHandler, this, sensor, _animator));
 
