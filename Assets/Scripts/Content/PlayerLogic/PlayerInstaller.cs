@@ -6,6 +6,7 @@ namespace Assets.Scripts.Content.PlayerLogic
     public class PlayerInstaller : MonoInstaller
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private AnimatorEventHandler _animatorEventHandler;
         [Inject] private PlayerController _playerController;
 
         public override void InstallBindings()
@@ -14,9 +15,12 @@ namespace Assets.Scripts.Content.PlayerLogic
             Container.BindInterfacesAndSelfTo<CharacterJumpHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAttackHandler>().AsSingle().NonLazy();
             Container.Bind<PlayerAttackAnimationController>().AsSingle().NonLazy();
+            Container.Bind<PlayerHealthHandler>().AsSingle().NonLazy();
 
             Container.Bind<Rigidbody2D>().FromComponentOnRoot().AsSingle();
+
             Container.Bind<Animator>().FromInstance(_animator).AsSingle();
+            Container.Bind<AnimatorEventHandler>().FromInstance(_animatorEventHandler).AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerData>().FromInstance(_playerController.PlayerData).AsSingle();
         }
     }

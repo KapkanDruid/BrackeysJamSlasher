@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f12bf16524cbbd4b93308118d7d3adb, type: 3}
   m_Name: SceneResources
   m_EditorClassIdentifier: 
-  _damageTextPrefab: {fileID: 8952633080984341501, guid: a9c5b2e6873df624983d2a121cefcf36, type: 3}
+  _damageTextPrefab: {fileID: 8146456115899650276, guid: a9c5b2e6873df624983d2a121cefcf36, type: 3}
   _damageTextPoolSize: 5

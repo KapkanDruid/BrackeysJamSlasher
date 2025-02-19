@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Content.PlayerLogic
@@ -13,23 +14,28 @@ namespace Assets.Scripts.Content.PlayerLogic
         [SerializeField] private Flags _flags;
         [SerializeField] private PlayerWeapon _currentPlayerWeapon;
         [SerializeField] private SpriteRenderer _weaponSpriteRenderer;
+        [SerializeField] private Transform _damageTextPoint;
         [SerializeField] private EntityFlags _enemyFlag;
 
         private IEntity _thisEntity;
+        private CancellationToken cancellationToken;
 
         public float Speed => _playerConfig.Speed;
         public float MaxHealth => _playerConfig.MaxHealth;
         public float JumpHeight => _playerConfig.JumpHeight;
         public float JumpDuration => _playerConfig.JumpDuration;
+        public float InvincibleFramesDuration => _playerConfig.InvincibleFramesDuration;
 
-        public Vector2 WeaponColliderSize => _currentPlayerWeapon.ColliderSize;
+        public CancellationToken CancellationToken { get => cancellationToken; set => cancellationToken = value; }
         public Vector2 WeaponColliderOffset => _currentPlayerWeapon.ColliderOffset;
+        public Vector2 WeaponColliderSize => _currentPlayerWeapon.ColliderSize;
 
         public Flags Flags => _flags;
-        public Sprite WeaponSprite => _currentPlayerWeapon.WeaponSprite;
         public Transform PlayerTransform => _playerTransform;
         public Transform ShadowTransform => _shadowTransform;
+        public Transform DamageTextPoint => _damageTextPoint;
         public Transform JumpObjectTransform => _jumpObjectTransform;
+        public Sprite WeaponSprite => _currentPlayerWeapon.WeaponSprite;
         public SpriteRenderer WeaponSpriteRenderer => _weaponSpriteRenderer;
         public PlayerWeapon CurrentPlayerWeapon { get => _currentPlayerWeapon; set => _currentPlayerWeapon = value; }
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using Assets.Scripts.Architecture;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,30 +12,33 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly PlayerData _data;
         private readonly Animator _animator;
         private readonly InputSystemActions _inputActions;
-        private readonly SpriteRenderer _weaponSpriteRenderer;
         private readonly CharacterJumpHandler _jumpHandler;
+        private readonly SpriteRenderer _weaponSpriteRenderer;
+        private readonly AnimatorEventHandler _animatorEventHandler;
         private readonly PlayerAttackAnimationController _playerAttackAnimationController;
 
-        private bool _isAttacking;
+        private bool _canDrawAttackCollider;
 
         public PlayerAttackHandler(
             InputSystemActions inputActions,
             PlayerAttackAnimationController playerAttackAnimationController,
             PlayerData data,
             Animator animator,
-            CharacterJumpHandler jumpHandler)
+            CharacterJumpHandler jumpHandler,
+            AnimatorEventHandler animatorEventHandler)
         {
             _data = data;
             _animator = animator;
             _jumpHandler = jumpHandler;
             _inputActions = inputActions;
+            _animatorEventHandler = animatorEventHandler;
             _playerAttackAnimationController = playerAttackAnimationController;
 
             _weaponSpriteRenderer = _data.WeaponSpriteRenderer;
 
             _inputActions.Player.Attack.performed += OnAttack;
 
-            _inputActions.Player.Attack.canceled += context => _isAttacking = false;
+            _animatorEventHandler.OnAnimationHit += OnAnimationHit;
         }
 
         private void OnAttack(InputAction.CallbackContext context)
@@ -41,16 +46,12 @@ namespace Assets.Scripts.Content.PlayerLogic
             if (!IsAttackAllowed())
                 return;
 
-            _isAttacking = true;
-
             _playerAttackAnimationController.PlayAttackAnimation(_data.CurrentPlayerWeapon);
 
             if (_data.WeaponSprite != null)
             {
                 _weaponSpriteRenderer.sprite = _data.WeaponSprite;
             }
-
-            EnableAttackCollider();
         }
 
         private bool IsAttackAllowed()
@@ -62,6 +63,14 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return false;
 
             return true;
+        }
+
+        private void OnAnimationHit()
+        {
+            EnableAttackCollider();
+            _canDrawAttackCollider = true;
+
+            DisableColliderDrawing().Forget();
         }
 
         private void EnableAttackCollider()
@@ -95,6 +104,26 @@ namespace Assets.Scripts.Content.PlayerLogic
             }
         }
 
+        public void Dispose()
+        {
+            _inputActions.Player.Attack.performed -= OnAttack;
+            _animatorEventHandler.OnAnimationHit -= OnAnimationHit;
+        }
+
+        private async UniTask DisableColliderDrawing()
+        {
+            try
+            {
+                await UniTask.WaitForSeconds(0.05f, cancellationToken: _data.CancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+
+            _canDrawAttackCollider = false;
+        }
+
         public void OnDrawGizmos()
         {
             if (_data == null)
@@ -103,17 +132,11 @@ namespace Assets.Scripts.Content.PlayerLogic
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube((Vector2)_data.PlayerTransform.position + _data.WeaponColliderOffset, _data.WeaponColliderSize);
 
-            if (!_isAttacking)
+            if (!_canDrawAttackCollider)
                 return;
 
             Gizmos.color = Color.red;
             Gizmos.DrawCube((Vector2)_data.PlayerTransform.position + _data.WeaponColliderOffset, _data.WeaponColliderSize);
         }
-
-        public void Dispose()
-        {
-            _inputActions.Player.Attack.performed -= OnAttack;
-        }
-
     }
 }
