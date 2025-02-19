@@ -12,5 +12,8 @@ namespace Assets.Scripts.Content
         public static readonly int IsLanding = Animator.StringToHash("IsLanding");
         public static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
         public static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+        public static readonly int IsTakingDamage = Animator.StringToHash("IsTakingDamage");
+        public static readonly int TakeDamageTrigger = Animator.StringToHash("TakeDamage");
+        public static readonly int DeathTrigger = Animator.StringToHash("Death");
     }
 }

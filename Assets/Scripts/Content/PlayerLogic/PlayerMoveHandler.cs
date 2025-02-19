@@ -9,6 +9,8 @@ namespace Assets.Scripts.Content.PlayerLogic
     public sealed class PlayerMoveHandler : IFixedTickable, IDisposable, IGizmosDrawer
     {
         private readonly GroundDirectionFinder _groundDirectionFinder;
+        private readonly PlayerHealthHandler _playerHealthHandler;
+        private readonly CharacterJumpHandler _jumpHandler;
         private readonly InputSystemActions _inputActions;
         private readonly Rigidbody2D _rigidbody;
         private readonly PlayerData _playerData;
@@ -26,16 +28,22 @@ namespace Assets.Scripts.Content.PlayerLogic
             GroundDirectionFinder groundDirectionFinder,
             PlayerData playerData,
             Rigidbody2D rigidbody,
-            Animator animator)
+            Animator animator,
+            PlayerHealthHandler playerHealthHandler,
+            CharacterJumpHandler jumpHandler)
         {
             _groundDirectionFinder = groundDirectionFinder;
+            _playerHealthHandler = playerHealthHandler;
             _inputActions = inputActions;
+            _jumpHandler = jumpHandler;
             _playerData = playerData;
             _rigidbody = rigidbody;
             _animator = animator;
 
             _inputActions.Player.Move.performed += OnInputVectorChanged;
             _inputActions.Player.Move.canceled += OnInputVectorChanged;
+
+            _inputActions.Player.Jump.performed += context => OnInputJump();
         }
 
         private void OnInputVectorChanged(InputAction.CallbackContext context)
@@ -48,11 +56,20 @@ namespace Assets.Scripts.Content.PlayerLogic
                 _animator.SetBool(AnimatorHashes.IsMoving, false);
         }
 
+        private void OnInputJump()
+        {
+            if (!IsMovementAllowed())
+                return;
+
+            _jumpHandler.Jump();
+            _animator.SetTrigger(AnimatorHashes.JumpTrigger);
+        }
+
         public void FixedTick()
         {
             if (IsMovementAllowed())
                 PlayerMovement();
-            else 
+            else
                 _rigidbody.linearVelocity = Vector2.zero;
         }
 
@@ -62,6 +79,12 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return false;
 
             if (_animator.GetBool(AnimatorHashes.IsAttacking))
+                return false;
+
+            if (_animator.GetBool(AnimatorHashes.IsTakingDamage))
+                return false;
+
+            if (_playerHealthHandler.IsDead)
                 return false;
 
             return true;
@@ -85,6 +108,8 @@ namespace Assets.Scripts.Content.PlayerLogic
         {
             _inputActions.Player.Move.performed -= OnInputVectorChanged;
             _inputActions.Player.Move.canceled -= OnInputVectorChanged;
+
+            _inputActions.Player.Jump.performed -= context => OnInputJump();
         }
 
         public void OnDrawGizmos()

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 691d3a5898bb03b4fa0e48057e92cfaa, type: 3}
+  m_Script: {fileID: 11500000, guid: b0280da3abcf434489374cc48c31ab31, type: 3}
   m_Name: DamageTextConfig
   m_EditorClassIdentifier: 
-  _startScale: 0.4
-  _scaleMultiplier: 0.2
+  _startScale: 1
+  _scaleMultiplier: 0.3
   _scaleChangeTime: 0.2
-  _fadeTime: 1
-  _fadePosition: {x: 0, y: 1, z: 0}
+  _fadeTime: 0.5
+  _fadePosition: {x: 0, y: 2, z: 0}
