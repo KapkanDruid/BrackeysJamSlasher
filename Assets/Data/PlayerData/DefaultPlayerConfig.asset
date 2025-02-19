@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DefaultPlayerConfig
   m_EditorClassIdentifier: 
   _speed: 5
-  _maxHealth: 5
+  _maxHealth: 30
   _jumpHeight: 2
   _jumpDuration: 0.5
+  _invincibleFramesDuration: 1

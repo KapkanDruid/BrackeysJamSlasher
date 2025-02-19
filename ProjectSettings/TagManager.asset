@@ -41,5 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SceneText
+    uniqueID: 555429531
+    locked: 0
   m_RenderingLayers:
   - Default
+  - SceneText

@@ -11,4 +11,6 @@ namespace Assets.Scripts.Content
         public Vector2 ColliderSize => _colliderSize;
         public Vector2 ColliderOffset => _colliderOffset;
     }
+
+
 }

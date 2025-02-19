@@ -9,13 +9,18 @@ namespace Assets.Scripts.Architecture
     {
         [SerializeField] private PlayerController _player;
         [SerializeField] private GroundDirectionPointsHandler _directionPointsHandler;
+        [SerializeField] private SceneResources _sceneResources;
+        [SerializeField] private MainSceneBootstrap _sceneBootstrap;
 
         public override void InstallBindings()
         {
             Container.Bind<InputSystemActions>().AsSingle().NonLazy();
             Container.Bind<PlayerController>().FromInstance(_player).AsSingle();
+            Container.Bind<MainSceneBootstrap>().FromInstance(_sceneBootstrap).AsSingle();
             Container.Bind<GroundDirectionPointsHandler>().FromInstance(_directionPointsHandler).AsSingle();
             Container.BindInterfacesAndSelfTo<GroundDirectionFinder>().AsSingle().NonLazy();
+            Container.Bind<SceneResources>().FromInstance(_sceneResources).AsSingle();
+            Container.Bind<PopupTextController>().AsSingle().NonLazy();
         }
     }
 }

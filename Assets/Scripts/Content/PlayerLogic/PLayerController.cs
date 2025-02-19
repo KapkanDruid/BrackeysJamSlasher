@@ -1,6 +1,6 @@
 using Assets.Scripts.Architecture;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Assets.Scripts.Content.PlayerLogic
@@ -9,6 +9,7 @@ namespace Assets.Scripts.Content.PlayerLogic
     {
         [SerializeField] private PlayerData _playerData;
 
+        private PlayerHealthHandler _healthHandler;
         private CharacterJumpHandler _jumpHandler;
         private InputSystemActions _inputActions;
         private Animator _animator;
@@ -19,29 +20,16 @@ namespace Assets.Scripts.Content.PlayerLogic
         private void Construct(
             CharacterJumpHandler jumpHandler, 
             InputSystemActions inputActions, 
-            Animator animator)
+            Animator animator,
+            PlayerHealthHandler healthHandler)
         {
+            _healthHandler = healthHandler;
             _inputActions = inputActions;
             _jumpHandler = jumpHandler;
             _animator = animator;
 
             _playerData.ThisEntity = this;
-
-            _inputActions.Player.Jump.performed += OnInputJump;
-        }
-
-        private void OnInputJump(InputAction.CallbackContext context)
-        {
-            _jumpHandler.Jump();
-            _animator.SetTrigger(AnimatorHashes.JumpTrigger);
-        }
-
-        public T ProvideComponent<T>() where T : class
-        {
-            if (_playerData.Flags is T flags)
-                return flags;
-
-            return null;
+            _playerData.CancellationToken = this.GetCancellationTokenOnDestroy();
         }
 
         private void Update()
@@ -52,9 +40,15 @@ namespace Assets.Scripts.Content.PlayerLogic
             }
         }
 
-        private void OnDestroy()
+        public T ProvideComponent<T>() where T : class
         {
-            _inputActions.Player.Jump.performed -= OnInputJump;
+            if (_playerData.Flags is T flags)
+                return flags;
+
+            if (_healthHandler is T healthHandler)
+                return healthHandler;
+
+            return null;
         }
     }
 }
