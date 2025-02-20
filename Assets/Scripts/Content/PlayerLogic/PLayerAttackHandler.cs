@@ -14,6 +14,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly InputSystemActions _inputActions;
         private readonly CharacterJumpHandler _jumpHandler;
         private readonly SpriteRenderer _weaponSpriteRenderer;
+        private readonly PlayerHealthHandler _playerHealthHandler;
         private readonly AnimatorEventHandler _animatorEventHandler;
         private readonly PlayerAttackAnimationController _playerAttackAnimationController;
 
@@ -25,7 +26,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             PlayerData data,
             Animator animator,
             CharacterJumpHandler jumpHandler,
-            AnimatorEventHandler animatorEventHandler)
+            AnimatorEventHandler animatorEventHandler,
+            PlayerHealthHandler playerHealthHandler)
         {
             _data = data;
             _animator = animator;
@@ -39,6 +41,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             _inputActions.Player.Attack.performed += OnAttack;
 
             _animatorEventHandler.OnAnimationHit += OnAnimationHit;
+            _playerHealthHandler = playerHealthHandler;
         }
 
         private void OnAttack(InputAction.CallbackContext context)
@@ -60,6 +63,9 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return false;
 
             if (!_jumpHandler.IsGrounded)
+                return false;
+
+            if (_playerHealthHandler.IsDead)
                 return false;
 
             return true;
