@@ -11,9 +11,12 @@ namespace Assets.Scripts.Content.BasicAI
 
         private CharacterHealthHandler _healthHandler;
         private CancellationToken _cancellationToken;
+        private bool _isKnocked = false;
 
         public  CancellationToken CancellationToken => _cancellationToken;
         public CharacterData CharacterDatas => _characterData;
+
+        public bool IsKnocked { get => _isKnocked; set => _isKnocked = value; }
 
         [Inject]
         public void Construct(CharacterHealthHandler healthHandler)
@@ -38,7 +41,6 @@ namespace Assets.Scripts.Content.BasicAI
 
             return null;
         }
-
 
         private void OnDrawGizmos()
         {

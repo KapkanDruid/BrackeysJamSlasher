@@ -10,7 +10,7 @@ namespace Assets.Scripts.Content.BasicAI
         private readonly CharacterSensor _sensor;
         private readonly Animator _animator;
         private Transform _target;
-        private float _distanceToChase = 0.7f;
+        private float _distanceToChase = 0.1f;
 
         public CharacterChaseState(CharacterHandler character, CharacterStateMachine stateMachine, CharacterSensor sensor, Animator animator)
         {
@@ -32,13 +32,13 @@ namespace Assets.Scripts.Content.BasicAI
                 _stateMachine.SetState<CharacterPatrolState>();
             }
 
-            if (Vector2.Distance(_character.transform.position, _target.position) > _distanceToChase)
+            if (Vector2.Distance(_character.transform.position, _target.position) > _distanceToChase && !_character.IsKnocked)
             {
                 _animator.SetBool(AnimatorHashes.IsMoving, true);
                 if (_target == null) return;
                 _character.MoveTo(_target.position);
             }
-            else if (Vector2.Distance(_character.transform.position, _target.position) <= _distanceToChase)
+            else if (Vector2.Distance(_character.transform.position, _target.position) <= _distanceToChase && !_character.IsKnocked)
             {
                 _animator.SetBool(AnimatorHashes.IsMoving, false);
                 

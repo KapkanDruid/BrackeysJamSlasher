@@ -5,6 +5,8 @@ namespace Assets.Scripts.Content.BasicAI
     [CreateAssetMenu(fileName = "CharacterConfig", menuName = "Slasher/CharacterConfig")]
     public class CharacterConfig : ScriptableObject
     {
+        [Header("Health System")]
+        [SerializeField] private float _health;
         [Header("Movement")]
         [SerializeField] private float _speed;
 
@@ -18,9 +20,10 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private float _sensorRadius;
 
         public float Speed => _speed;
+        public float Health => _health;
         public float AttackCooldown => _attackCooldown;
-        public int Damage => _damage;
         public float SensorRadius => _sensorRadius;
+        public int Damage => _damage;
         public Vector2 HitColliderSize => _hitColliderSize;
         public Vector2 HitColliderOffset => _hitColliderOffset;
     }

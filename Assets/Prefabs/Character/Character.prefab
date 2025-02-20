@@ -430,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterHandler: {fileID: 5514995059065853754}
+  _rigidbody: {fileID: 872979072779954473}
   _animator: {fileID: 2359266243146780134}
 --- !u!1 &7588469834584265075
 GameObject:

@@ -12,6 +12,7 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private EntityFlags _enemyFlag;
 
         public float Speed => _characterConfig.Speed;
+        public float Health => _characterConfig.Health;
         public float AttackCooldown => _characterConfig.AttackCooldown;
         public float SensorRadius => _characterConfig.SensorRadius;
         public int Damage => _characterConfig.Damage;
