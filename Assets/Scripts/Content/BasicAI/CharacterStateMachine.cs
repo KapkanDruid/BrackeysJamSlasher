@@ -44,6 +44,11 @@ namespace Assets.Scripts.Content.BasicAI
             _currentState.EnterState();
         }
 
+        public void SetTarget(Transform target)
+        {
+            _currentTarget = target;
+        }
+
         private Vector2[] ConvertTransformToVector2()
         {
             Vector2[] patrolPoints2D = new Vector2[_patrolPoints.Length];

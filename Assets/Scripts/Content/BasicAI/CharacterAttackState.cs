@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Content.BasicAI
 {
-    public class CharacterAttackState : ICharacterState
+    public class CharacterAttackState : ICharacterState, IGizmosDrawer
     {
         private readonly CharacterHandler _character;
         private readonly Animator _animator;
@@ -17,14 +17,15 @@ namespace Assets.Scripts.Content.BasicAI
         private RaycastHit2D[] _hits;
         private IDamageable _damageable;
         private bool _canAttack;
-        private bool _isTargetLost;
+
+        private Vector2 ColliderOffset => new Vector2(_data.HitColliderOffset.x * _character.CurrentOrientation, _data.HitColliderOffset.y);
 
         public CharacterAttackState(CharacterHandler character, Animator animator, CancellationToken cancellationToken, CharacterStateMachine stateMachine)
         {
             _character = character;
             _animator = animator;
             _cancellationToken = cancellationToken;
-            _data = _character.CharacterDatas;
+            _data = _character.CharacterData;
             _stateMachine = stateMachine;
         }
 
@@ -35,34 +36,45 @@ namespace Assets.Scripts.Content.BasicAI
 
         public void UpdateState()
         {
+            CheckDistanceToTarget();
             RaycastAttackArea();
             HitTarget();
-            CheckDistanceToTarget();
-            Attack();
         }
 
         public void ExitState()
         {
         
         }
-       
+
+        public void OnDrawGizmos()
+        {
+            if (_data == null)
+                return;
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(_character.transform.position, _data.SensorRadius);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube((Vector2)_character.transform.position + ColliderOffset, _data.HitColliderSize);
+        }
+
         private void CheckDistanceToTarget()
         {
             if (_entityTransform == null)
                 return;
 
-            if (Vector2.Distance(_entityTransform.position, (Vector2)_character.transform.position + _data.HitColliderOffset) > _data.HitColliderSize.x && !_character.IsKnocked)
+            if (Vector2.Distance(_entityTransform.position, (Vector2)_character.transform.position + ColliderOffset) > _data.HitColliderSize.x + ColliderOffset.x)
             {
                 _stateMachine.SetState<CharacterChaseState>();
                 Debug.Log("переход в состояние преследования");
-                _isTargetLost = true;
             }
+
         }
 
 
         private void RaycastAttackArea()
         {
-            Vector2 origin = (Vector2)_data.CharacterTransform.position + _data.HitColliderOffset;
+            Vector2 origin = (Vector2)_character.transform.position + ColliderOffset;
             Vector2 direction = Vector2.down;
             Vector2 size = _data.HitColliderSize;
 
@@ -73,7 +85,7 @@ namespace Assets.Scripts.Content.BasicAI
         {
             try
             {
-                await UniTask.WaitForSeconds(_character.CharacterDatas.AttackCooldown, cancellationToken: _cancellationToken);
+                await UniTask.WaitForSeconds(_data.AttackCooldown, cancellationToken: _cancellationToken);
             }
             catch (OperationCanceledException)
             {
@@ -118,12 +130,14 @@ namespace Assets.Scripts.Content.BasicAI
                     continue;
 
                 _entityTransform = entity.ProvideComponent<Transform>();
+
+                Attack();
             }
         }
 
         private void Attack()
         {
-            if (_isTargetLost && !_character.IsKnocked)
+            if (!_character.IsKnocked)
             {
                 _animator.SetBool(AnimatorHashes.IsAttacking, true);
                 _damageable.TakeDamage(_data.Damage);

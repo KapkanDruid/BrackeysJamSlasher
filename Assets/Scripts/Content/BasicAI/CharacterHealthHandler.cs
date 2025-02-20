@@ -9,14 +9,15 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterHealthHandler : IDamageable
     {
         private CharacterData _data;
-        private CharacterHandler _characterHandler;
+        private CharacterHandler _character;
         private Rigidbody2D _rigidbody;
         private Animator _animator;
         private CharacterStateMachine _stateMachine;
+        private CharacterChaseState _chaseState;
         private float _forcePushKnockback = 5f;
         private float _forcePushKnockdown = 5f;
         private float _forcePushUp = 5f;
-        private float _timeKnockdown = 1f;
+        private float _timeKnockdown = 3f;
         private float _timeKnockback = 0.2f;
         private float _maxAirTime = 0.5f;
         private float _comboHoldTime = 5f;
@@ -27,12 +28,12 @@ namespace Assets.Scripts.Content.BasicAI
         public float Health => _health;
 
         [Inject]
-        public void Construct(CharacterData data, Rigidbody2D rigidbody, CharacterHandler characterHandler, Animator animator, CharacterStateMachine stateMachine)
+        public void Construct(CharacterData data, Rigidbody2D rigidbody, CharacterHandler character, Animator animator, CharacterStateMachine stateMachine)
         {
             _data = data;
             _health = _data.Health;
             _rigidbody = rigidbody;
-            _characterHandler = characterHandler;
+            _character = character;
             _animator = animator;
             _stateMachine = stateMachine;
         }
@@ -56,7 +57,7 @@ namespace Assets.Scripts.Content.BasicAI
         {
             try
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_comboHoldTime), cancellationToken: _characterHandler.CancellationToken);
+                await UniTask.Delay(TimeSpan.FromSeconds(_comboHoldTime), cancellationToken: _character.CancellationToken);
                 _hitCount = 0;
                 Debug.Log("Hit count reset");
             }
@@ -87,26 +88,33 @@ namespace Assets.Scripts.Content.BasicAI
 
         private async UniTask Knockforce(float forsePush, bool isKnockdown)
         {
+            float direction = Mathf.Sign(_stateMachine.CurrentTarget.position.x - _character.transform.position.x) * -1f;
             //_animator.SetTrigger("Knockback");
             _rigidbody.linearVelocity = Vector2.zero;
-            _rigidbody.AddForce(Vector2.right * forsePush, ForceMode2D.Impulse);
+            _rigidbody.AddForce(new Vector2(direction, 0f) * forsePush, ForceMode2D.Impulse);
             Debug.Log("Enemy knocked back.");
             _stateMachine.SetState<CharacterChaseState>();
 
+            await UniTask.Delay(TimeSpan.FromSeconds(_maxAirTime), cancellationToken: _character.CancellationToken);
+            _rigidbody.linearVelocity = Vector2.zero;
+
             if (!isKnockdown)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockback), cancellationToken: _characterHandler.CancellationToken);
+                await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockback), cancellationToken: _character.CancellationToken);
             }
             else
             {
                 Debug.Log("Enemy knocked down.");
-                await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockdown), cancellationToken: _characterHandler.CancellationToken);
+                _isKnockedDown = true;
+                _character.IsKnocked = _isKnockedDown;
+                await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockdown), cancellationToken: _character.CancellationToken);
+                _isKnockedDown = false;
+                _character.IsKnocked = _isKnockedDown;
 
                 _hitCount = 0;
                 Debug.Log("Enemy gets up and attacks.");
 
             }
-            _rigidbody.linearVelocity = Vector2.zero;
         }
 
     }

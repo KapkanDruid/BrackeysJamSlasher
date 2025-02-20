@@ -11,13 +11,13 @@ namespace Assets.Scripts.Content.BasicAI
 
         public override void InstallBindings()
         {
+            Container.Bind<CharacterHealthHandler>().AsSingle().NonLazy();
             Container.Bind<CharacterHandler>().FromComponentOnRoot().AsSingle().NonLazy();
-            Container.Bind<CharacterData>().FromInstance(_characterHandler.CharacterDatas).AsSingle();
+            Container.Bind<CharacterData>().FromInstance(_characterHandler.CharacterData).AsSingle();
+            Container.Bind<Animator>().FromInstance(_animator).AsSingle();
             Container.Bind<Rigidbody2D>().FromInstance(_rigidbody).AsSingle();
-            Container.Bind<CharacterHealthHandler>().AsSingle();
             Container.Bind<CharacterStateMachine>().FromComponentOnRoot().AsSingle();
             Container.BindInterfacesAndSelfTo<CharacterSensor>().AsSingle().NonLazy();
-            Container.Bind<Animator>().FromInstance(_animator).AsSingle();
         }
     }
 }
