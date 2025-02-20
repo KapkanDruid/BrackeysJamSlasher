@@ -17,6 +17,7 @@ namespace Assets.Scripts.Content.BasicAI
             Container.Bind<Animator>().FromInstance(_animator).AsSingle();
             Container.Bind<Rigidbody2D>().FromInstance(_rigidbody).AsSingle();
             Container.Bind<CharacterStateMachine>().FromComponentOnRoot().AsSingle();
+            Container.Bind<GizmosDrawer>().FromComponentInChildren().AsSingle();
             Container.BindInterfacesAndSelfTo<CharacterSensor>().AsSingle().NonLazy();
         }
     }

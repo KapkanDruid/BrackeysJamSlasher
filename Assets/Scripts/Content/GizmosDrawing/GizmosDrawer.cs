@@ -6,14 +6,19 @@ namespace Assets.Scripts.Content
 {
     public sealed class GizmosDrawer : MonoBehaviour
     {
-        private IGizmosDrawer[] _gizmosDrawers;
+        private List<IGizmosDrawer> _gizmosDrawers = new();
         private IGizmosDrawerOnSelected[] _gizmosDrawerOnSelected;
 
         [Inject]
         private void Construct(List<IGizmosDrawer> gizmosDrawers, List<IGizmosDrawerOnSelected> gizmosDrawerOnSelected)
         {
-            _gizmosDrawers = gizmosDrawers.ToArray();
+            _gizmosDrawers.AddRange(gizmosDrawers);
             _gizmosDrawerOnSelected = gizmosDrawerOnSelected.ToArray();
+        }
+
+        public void AddGizmosDrawer(IGizmosDrawer gizmosDrawer)
+        {
+            _gizmosDrawers.Add(gizmosDrawer);
         }
 
         private void OnDrawGizmos()
