@@ -58,12 +58,13 @@ namespace Assets.Scripts.Content.PlayerLogic
                 _animator.SetBool(AnimatorHashes.IsMoving, true);
             else
                 _animator.SetBool(AnimatorHashes.IsMoving, false);
-
-            SetOrientation((int)_inputVector.x);
         }
 
-        private void SetOrientation(int direction)
+        private void SetOrientation(float direction)
         {
+            if (!IsMovementAllowed())
+                return;
+
             Transform playerTransform = _playerData.PlayerTransform;
 
             Vector3 rightOrientation = new Vector3(1, playerTransform.localScale.y, playerTransform.localScale.z);
@@ -93,6 +94,8 @@ namespace Assets.Scripts.Content.PlayerLogic
 
         public void FixedTick()
         {
+            SetOrientation(_inputVector.x);
+
             if (IsMovementAllowed())
                 PlayerMovement();
             else
