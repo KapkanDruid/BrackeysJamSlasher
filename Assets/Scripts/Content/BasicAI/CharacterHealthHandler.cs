@@ -77,44 +77,47 @@ namespace Assets.Scripts.Content.BasicAI
                     break;
 
                 case 2:
-                    Knockforce(_forcePushKnockback, false).Forget();
+                    Knockback(_forcePushKnockback).Forget();
                     break;
 
                 case 3:
-                    Knockforce(_forcePushKnockdown, true).Forget();
+                    Knockdown(_forcePushKnockdown).Forget();
                     break;
             }
         }
 
-        private async UniTask Knockforce(float forsePush, bool isKnockdown)
+        private async UniTask Knockback(float forsePush)
         {
             float direction = Mathf.Sign(_stateMachine.CurrentTarget.position.x - _character.transform.position.x) * -1f;
-            //_animator.SetTrigger("Knockback");
             _rigidbody.linearVelocity = Vector2.zero;
             _rigidbody.AddForce(new Vector2(direction, 0f) * forsePush, ForceMode2D.Impulse);
-            Debug.Log("Enemy knocked back.");
+            _animator.SetTrigger(AnimatorHashes.Knockback);
             _stateMachine.SetState<CharacterChaseState>();
 
+            Debug.Log("Enemy knocked back.");
+            await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockback), cancellationToken: _character.CancellationToken);
+            _rigidbody.linearVelocity = Vector2.zero;
+
+        }
+
+        private async UniTask Knockdown(float forsePush)
+        {
+            float direction = Mathf.Sign(_stateMachine.CurrentTarget.position.x - _character.transform.position.x) * -1f;
+            _animator.SetTrigger(AnimatorHashes.Knockdown);
+            Debug.Log("Enemy knocked down.");
+            _rigidbody.AddForce(new Vector2(direction, 0f) * forsePush, ForceMode2D.Impulse);
+            
             await UniTask.Delay(TimeSpan.FromSeconds(_maxAirTime), cancellationToken: _character.CancellationToken);
             _rigidbody.linearVelocity = Vector2.zero;
 
-            if (!isKnockdown)
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockback), cancellationToken: _character.CancellationToken);
-            }
-            else
-            {
-                Debug.Log("Enemy knocked down.");
-                _isKnockedDown = true;
-                _character.IsKnocked = _isKnockedDown;
-                await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockdown), cancellationToken: _character.CancellationToken);
-                _isKnockedDown = false;
-                _character.IsKnocked = _isKnockedDown;
-
-                _hitCount = 0;
-                Debug.Log("Enemy gets up and attacks.");
-
-            }
+            _isKnockedDown = true;
+            _character.IsKnocked = _isKnockedDown;
+            await UniTask.Delay(TimeSpan.FromSeconds(_timeKnockdown), cancellationToken: _character.CancellationToken);
+            _isKnockedDown = false;
+            _character.IsKnocked = _isKnockedDown;
+            _hitCount = 0;
+            Debug.Log("Enemy gets up and attacks.");
+        
         }
 
     }

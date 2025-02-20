@@ -66,7 +66,6 @@ namespace Assets.Scripts.Content.BasicAI
             if (Vector2.Distance(_entityTransform.position, (Vector2)_character.transform.position + ColliderOffset) > _data.HitColliderSize.x + ColliderOffset.x)
             {
                 _stateMachine.SetState<CharacterChaseState>();
-                Debug.Log("переход в состояние преследования");
             }
 
         }
