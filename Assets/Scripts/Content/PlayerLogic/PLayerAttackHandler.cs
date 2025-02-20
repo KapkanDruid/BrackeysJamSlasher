@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Assets.Scripts.Architecture;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -14,10 +13,13 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly InputSystemActions _inputActions;
         private readonly CharacterJumpHandler _jumpHandler;
         private readonly SpriteRenderer _weaponSpriteRenderer;
+        private readonly PlayerMoveHandler _playerMoveHandler;
+        private readonly PlayerHealthHandler _playerHealthHandler;
         private readonly AnimatorEventHandler _animatorEventHandler;
         private readonly PlayerAttackAnimationController _playerAttackAnimationController;
 
         private bool _canDrawAttackCollider;
+        private Vector2 ColliderOffset => new Vector2(_data.WeaponColliderOffset.x * _playerMoveHandler.CurrentOrientation, _data.WeaponColliderOffset.y);
 
         public PlayerAttackHandler(
             InputSystemActions inputActions,
@@ -25,7 +27,9 @@ namespace Assets.Scripts.Content.PlayerLogic
             PlayerData data,
             Animator animator,
             CharacterJumpHandler jumpHandler,
-            AnimatorEventHandler animatorEventHandler)
+            AnimatorEventHandler animatorEventHandler,
+            PlayerHealthHandler playerHealthHandler,
+            PlayerMoveHandler playerMoveHandler)
         {
             _data = data;
             _animator = animator;
@@ -39,6 +43,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             _inputActions.Player.Attack.performed += OnAttack;
 
             _animatorEventHandler.OnAnimationHit += OnAnimationHit;
+            _playerHealthHandler = playerHealthHandler;
+            _playerMoveHandler = playerMoveHandler;
         }
 
         private void OnAttack(InputAction.CallbackContext context)
@@ -62,6 +68,9 @@ namespace Assets.Scripts.Content.PlayerLogic
             if (!_jumpHandler.IsGrounded)
                 return false;
 
+            if (_playerHealthHandler.IsDead)
+                return false;
+
             return true;
         }
 
@@ -75,7 +84,8 @@ namespace Assets.Scripts.Content.PlayerLogic
 
         private void EnableAttackCollider()
         {
-            Vector2 origin = (Vector2)_data.PlayerTransform.position + _data.WeaponColliderOffset;
+            Vector2 origin = (Vector2)_data.PlayerTransform.position + ColliderOffset;
+
             Vector2 size = _data.WeaponColliderSize;
             Vector2 direction = Vector2.down;
 
@@ -130,13 +140,13 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return;
 
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube((Vector2)_data.PlayerTransform.position + _data.WeaponColliderOffset, _data.WeaponColliderSize);
+            Gizmos.DrawWireCube((Vector2)_data.PlayerTransform.position + ColliderOffset, _data.WeaponColliderSize);
 
             if (!_canDrawAttackCollider)
                 return;
 
             Gizmos.color = Color.red;
-            Gizmos.DrawCube((Vector2)_data.PlayerTransform.position + _data.WeaponColliderOffset, _data.WeaponColliderSize);
+            Gizmos.DrawCube((Vector2)_data.PlayerTransform.position + ColliderOffset, _data.WeaponColliderSize);
         }
     }
 }

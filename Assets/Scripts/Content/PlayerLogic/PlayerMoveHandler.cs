@@ -20,8 +20,10 @@ namespace Assets.Scripts.Content.PlayerLogic
         private Vector2 _inputVector;
 
         private bool _isLanding;
+        private int _currentOrientation;
 
         public bool IsLanding { get => _isLanding; set => _isLanding = value; }
+        public int CurrentOrientation => _currentOrientation;
 
         public PlayerMoveHandler
             (InputSystemActions inputActions,
@@ -40,6 +42,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             _rigidbody = rigidbody;
             _animator = animator;
 
+            _currentOrientation = Mathf.Clamp(Mathf.RoundToInt(_playerData.PlayerTransform.localScale.x), -1, 1);
+
             _inputActions.Player.Move.performed += OnInputVectorChanged;
             _inputActions.Player.Move.canceled += OnInputVectorChanged;
 
@@ -54,6 +58,28 @@ namespace Assets.Scripts.Content.PlayerLogic
                 _animator.SetBool(AnimatorHashes.IsMoving, true);
             else
                 _animator.SetBool(AnimatorHashes.IsMoving, false);
+
+            SetOrientation((int)_inputVector.x);
+        }
+
+        private void SetOrientation(int direction)
+        {
+            Transform playerTransform = _playerData.PlayerTransform;
+
+            Vector3 rightOrientation = new Vector3(1, playerTransform.localScale.y, playerTransform.localScale.z);
+            Vector3 leftOrientation = new Vector3(-1, playerTransform.localScale.y, playerTransform.localScale.z);
+
+
+            if (direction > 0)
+            {
+                _currentOrientation = 1;
+                playerTransform.localScale = rightOrientation;
+            }
+            else if (direction < 0)
+            {
+                _currentOrientation = -1;
+                playerTransform.localScale = leftOrientation;
+            }
         }
 
         private void OnInputJump()
