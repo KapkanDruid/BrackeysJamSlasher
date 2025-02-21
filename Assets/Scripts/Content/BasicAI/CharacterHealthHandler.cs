@@ -14,7 +14,6 @@ namespace Assets.Scripts.Content.BasicAI
         private Rigidbody2D _rigidbody;
         private Animator _animator;
         private CharacterStateMachine _stateMachine;
-        private CharacterChaseState _chaseState;
         private float _health;
         private int _hitCount = 0;
         private bool _isKnockedDown = false;

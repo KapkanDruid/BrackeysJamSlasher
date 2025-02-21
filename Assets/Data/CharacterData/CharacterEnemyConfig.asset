@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: CharacterEnemyConfig
   m_EditorClassIdentifier: 
   _health: 100
+  _forcePushKnockback: 5
+  _forcePushKnockdown: 5
+  _timeKnockback: 0.2
+  _timeKnockdown: 1.5
+  _maxAirTime: 0.5
+  _comboHoldTime: 5
   _speed: 1
   _damage: 10
   _attackCooldown: 1
+  _attackDelay: 0.5
   _hitColliderSize: {x: 1, y: 0.5}
   _hitColliderOffset: {x: 1, y: 0}
   _sensorRadius: 20

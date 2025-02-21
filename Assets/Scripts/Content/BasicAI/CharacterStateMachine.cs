@@ -17,15 +17,15 @@ namespace Assets.Scripts.Content.BasicAI
         public Transform CurrentTarget => _currentTarget;
 
         [Inject]
-        public void Construct(CharacterHandler characterHandler, CharacterSensor sensor, Animator animator, GizmosDrawer gizmosDrawer)
+        public void Construct(CharacterHandler characterHandler, CharacterSensor sensor, Animator animator, GizmosDrawer gizmosDrawer, AnimatorEventHandler animatorEventHandler)
         {
             _animator = animator;
 
             Vector2[] patrolPoints2D = ConvertTransformToVector2();
 
-            _states.Add(new CharacterAttackState(characterHandler, _animator, characterHandler.CancellationToken, this));
+            _states.Add(new CharacterAttackState(characterHandler, _animator, characterHandler.CancellationToken, this, animatorEventHandler));
             _states.Add(new CharacterPatrolState(characterHandler, this, patrolPoints2D, sensor));
-            _states.Add(new CharacterChaseState(characterHandler, this, sensor, _animator, (CharacterAttackState)_states[0], gizmosDrawer));
+            _states.Add(new CharacterChaseState(characterHandler, this, sensor, _animator, gizmosDrawer));
 
 
             SetState<CharacterPatrolState>();

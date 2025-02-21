@@ -20,6 +20,7 @@ namespace Assets.Scripts.Content.BasicAI
         [Header("Attack System")]
         [SerializeField] private int _damage;
         [SerializeField] private float _attackCooldown = 1.5f;
+        [SerializeField] private float _attackDelay = 0.5f;
         [SerializeField] private Vector2 _hitColliderSize;
         [SerializeField] private Vector2 _hitColliderOffset;
 
@@ -36,6 +37,7 @@ namespace Assets.Scripts.Content.BasicAI
         public float TimeKnockdown => _timeKnockdown;
         public float MaxAirTime => _maxAirTime;
         public float ComboHoldTime => _comboHoldTime;
+        public float AttackDelay => _attackDelay;
         public int Damage => _damage;
         public Vector2 HitColliderSize => _hitColliderSize;
         public Vector2 HitColliderOffset => _hitColliderOffset;

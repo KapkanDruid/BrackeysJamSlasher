@@ -1,5 +1,6 @@
 using Assets.Scripts.Content.PlayerLogic;
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 using Zenject;
@@ -63,9 +64,6 @@ namespace Assets.Scripts.Content.BasicAI
                 transform.localScale = leftOrientation;
             }
         }
-
-
-
     }
 }
 

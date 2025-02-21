@@ -21,6 +21,7 @@ namespace Assets.Scripts.Content.BasicAI
         public float TimeKnockdown => _characterConfig.TimeKnockdown;
         public float MaxAirTime => _characterConfig.MaxAirTime;
         public float ComboHoldTime => _characterConfig.ComboHoldTime;
+        public float AttackDelay => _characterConfig.AttackDelay;
         public int Damage => _characterConfig.Damage;
         public Transform CharacterTransform => _characterTransform;
         public Flags Flags => _flags;
