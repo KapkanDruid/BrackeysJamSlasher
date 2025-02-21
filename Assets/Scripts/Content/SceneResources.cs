@@ -7,8 +7,10 @@ namespace Assets.Scripts.Content
     {
         [SerializeField] private PopupText _damageTextPrefab;
         [SerializeField] private int _damageTextPoolSize;
+        [SerializeField] private SceneTransiter _sceneTransiter;
 
         public PopupText DamageTextPrefab => _damageTextPrefab;
         public int DamageTextPoolSize => _damageTextPoolSize;
+        public SceneTransiter SceneTransiter => _sceneTransiter;
     }
 }
