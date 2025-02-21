@@ -11,6 +11,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly Animator _animator;
         private readonly PopupTextController _popupTextController;
         private readonly CharacterJumpHandler _characterJumpHandler;
+        private readonly GameEndController _gameEndController;
 
         private float _currentHealth;
         private bool _canBeDamaged;
@@ -22,7 +23,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             PlayerData playerData,
             PopupTextController popupTextController,
             CharacterJumpHandler characterJumpHandler,
-            Animator animator)
+            Animator animator,
+            GameEndController gameEndController)
         {
             _data = playerData;
             _animator = animator;
@@ -32,6 +34,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             _currentHealth = _data.MaxHealth;
             _canBeDamaged = true;
             _isDead = false;
+            _gameEndController = gameEndController;
         }
 
         public void TakeDamage(float damage, Action callBack = null)
@@ -58,10 +61,11 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             if (_currentHealth <= 0)
             {
-                //death event
                 _currentHealth = 0;
                 _isDead = true;
                 _animator.SetTrigger(AnimatorHashes.DeathTrigger);
+
+                _gameEndController.OnPlayerDeath();
             }
         }
 

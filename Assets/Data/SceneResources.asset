@@ -15,3 +15,6 @@ MonoBehaviour:
   _damageTextPrefab: {fileID: 8146456115899650276, guid: a9c5b2e6873df624983d2a121cefcf36, type: 3}
   _damageTextPoolSize: 5
   _sceneTransiter: {fileID: 9188540823950802318, guid: 076b02326cbf8c348962be46eeee9f09, type: 3}
+  _gameLoosePopup: {fileID: 1502162379524884380, guid: 80ec4639ce176a34ba9bdcf337b1ce14, type: 3}
+  _mainMenu: MainMenu
+  _firstLevel: Level1 1Test

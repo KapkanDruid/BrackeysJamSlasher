@@ -7,9 +7,9 @@ using Zenject;
 public class MainSceneBootstrap : MonoBehaviour
 {
     [Inject] private InputSystemActions _inputActions;
+    [Inject] private GameEndController _gameEndController;
     [Inject] private PopupTextController _popupTextController;
     [Inject] private GroundDirectionFinder _groundDirectionFinder;
-    [Inject] private SceneTransitionController _sceneTransitionController;
     [Inject] private GroundDirectionPointsHandler _groundDirectionPointsHandler;
 
     public event Action OnServicesInitialized;
@@ -21,7 +21,7 @@ public class MainSceneBootstrap : MonoBehaviour
 
     private void Initialize()
     {
-        _sceneTransitionController.Initialize();
+        _gameEndController.Initialize();
         _inputActions.Enable();
         _groundDirectionPointsHandler.Initialize();
         _groundDirectionFinder.Initialize();

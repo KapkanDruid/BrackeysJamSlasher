@@ -12,6 +12,7 @@ namespace Assets.Scripts.Architecture
         [SerializeField] private SceneResources _sceneResources;
         [SerializeField] private MainSceneBootstrap _sceneBootstrap;
         [SerializeField] private Canvas _levelCanvas;
+        [SerializeField] private SceneTransiter _sceneTransiter;
 
         public override void InstallBindings()
         {
@@ -23,12 +24,10 @@ namespace Assets.Scripts.Architecture
             Container.Bind<SceneResources>().FromInstance(_sceneResources).AsSingle();
             Container.Bind<PopupTextController>().AsSingle().NonLazy();
 
-            if (_levelCanvas == null)
-                Container.Bind<Canvas>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
-            else
-                Container.Bind<Canvas>().FromInstance(_levelCanvas).AsSingle().NonLazy();
+            Container.Bind<SceneTransiter>().FromInstance(_sceneTransiter).AsSingle().NonLazy();
+            Container.Bind<Canvas>().FromInstance(_levelCanvas).AsSingle().NonLazy();
 
-            Container.Bind<SceneTransitionController>().AsSingle().NonLazy();
+            Container.Bind<GameEndController>().AsSingle().NonLazy();
         }
     }
 }
