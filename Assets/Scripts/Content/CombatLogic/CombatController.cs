@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Assets.Scripts.Architecture;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,15 +68,7 @@ namespace Assets.Scripts.Content
             if (_combatStarted)
                 return;
 
-            if (!collision.TryGetComponent(out IEntity entity))
-                return;
-
-            Flags flags = entity.ProvideComponent<Flags>();
-
-            if (flags == null)
-                return;
-
-            if (!flags.Contain(EntityFlags.Player))
+            if (!PlayerEnterCondition.IsPlayer(collision.gameObject))
                 return;
 
             StartCombat();
@@ -136,30 +129,6 @@ namespace Assets.Scripts.Content
         {
             foreach (var wall in _walls)
                 wall.SetActive(false);
-        }
-    }
-
-    [Serializable]
-    public class EntitySubList
-    {
-        [SerializeField] private List<GameObject> _entities;
-
-        public List<IEntity> Entities
-        {
-            get
-            {
-                List<IEntity> entities = new();
-
-                foreach (var gameObject in _entities)
-                {
-                    if (gameObject.TryGetComponent(out IEntity entity))
-                        entities.Add(entity);
-                    else
-                        Debug.LogError("Entities array must contain only IEntity objects!");
-                }
-
-                return entities;
-            }
         }
     }
 }
