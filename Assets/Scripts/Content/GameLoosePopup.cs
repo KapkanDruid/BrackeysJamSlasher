@@ -27,7 +27,7 @@ namespace Assets.Scripts.Content
 
             _startPosition = _targetPosition - new Vector2(0, Screen.height);
 
-            _rectTransform.position = _startPosition;
+            _rectTransform.anchoredPosition = _startPosition;
 
             gameObject.SetActive(false);
         }

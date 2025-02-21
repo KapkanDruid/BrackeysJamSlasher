@@ -87,7 +87,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             Vector2 origin = (Vector2)_data.PlayerTransform.position + ColliderOffset;
 
             Vector2 size = _data.WeaponColliderSize;
-            Vector2 direction = Vector2.down;
+            Vector2 direction = Vector2.zero;
 
             RaycastHit2D[] hits = Physics2D.BoxCastAll(origin, size, 0, direction);
 
