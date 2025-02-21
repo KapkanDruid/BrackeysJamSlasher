@@ -15,6 +15,8 @@ namespace Assets.Scripts.Content
         public static readonly int IsTakingDamage = Animator.StringToHash("IsTakingDamage");
         public static readonly int TakeDamageTrigger = Animator.StringToHash("TakeDamage");
         public static readonly int DeathTrigger = Animator.StringToHash("Death");
+        public static readonly int StartSceneTrigger = Animator.StringToHash("StartScene");
+        public static readonly int EndSceneTrigger = Animator.StringToHash("EndScene");
         public static readonly int Knockback = Animator.StringToHash("Knockback");
         public static readonly int Knockdown = Animator.StringToHash("Knockdown");
     }
