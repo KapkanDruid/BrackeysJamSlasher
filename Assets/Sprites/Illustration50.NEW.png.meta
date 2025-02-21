@@ -372,6 +372,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2434,7 +2447,100 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Illustration50.NEW_0: -1634265717491805739
+      Illustration50.NEW_1: -7870561002354267622
+      Illustration50.NEW_10: 4800990246194791516
+      Illustration50.NEW_11: 5532988191458801359
+      Illustration50.NEW_12: -6112272303665840817
+      Illustration50.NEW_13: -4667532665373979986
+      Illustration50.NEW_14: 8527374030215043329
+      Illustration50.NEW_15: 7078743927113664872
+      Illustration50.NEW_16: -4531827341433590195
+      Illustration50.NEW_17: 8312853317272880430
+      Illustration50.NEW_18: 4190571850464368530
+      Illustration50.NEW_19: -1486042241873713303
+      Illustration50.NEW_2: 8918180969810886471
+      Illustration50.NEW_20: -2657029956979285654
+      Illustration50.NEW_21: 2021417205960166353
+      Illustration50.NEW_22: -2281113127059192214
+      Illustration50.NEW_23: 360808841299450139
+      Illustration50.NEW_24: -8882213146433087545
+      Illustration50.NEW_25: 4704137052460657554
+      Illustration50.NEW_26: -6321474982609658880
+      Illustration50.NEW_27: 150659197338999123
+      Illustration50.NEW_28: -4943900559382546728
+      Illustration50.NEW_29: -3441856940036934786
+      Illustration50.NEW_3: -2467782685169470398
+      Illustration50.NEW_30: -9083419444994014719
+      Illustration50.NEW_31: -2174871940312233735
+      Illustration50.NEW_32: 7310520114833065550
+      Illustration50.NEW_33: -2162418943545357737
+      Illustration50.NEW_34: 8206453963970149744
+      Illustration50.NEW_35: 1764651779722345145
+      Illustration50.NEW_36: -6754609497141566642
+      Illustration50.NEW_37: -9079361513993818208
+      Illustration50.NEW_38: -6519703982885796420
+      Illustration50.NEW_39: 5231109462623743303
+      Illustration50.NEW_4: 3570020637860610510
+      Illustration50.NEW_40: -7354789856302342011
+      Illustration50.NEW_41: 8135583314266929740
+      Illustration50.NEW_42: 8768803847384583707
+      Illustration50.NEW_43: -5125952234435890927
+      Illustration50.NEW_44: -3448843698783709031
+      Illustration50.NEW_45: -2055153613542062740
+      Illustration50.NEW_46: -634352543130487209
+      Illustration50.NEW_47: -1686954499159722067
+      Illustration50.NEW_48: -4006667792817036392
+      Illustration50.NEW_49: -7717265542288443679
+      Illustration50.NEW_5: -6471295774119703091
+      Illustration50.NEW_50: -7015878309362956301
+      Illustration50.NEW_51: 2196269074142632420
+      Illustration50.NEW_52: 6017124723147010847
+      Illustration50.NEW_53: -6633170298147540886
+      Illustration50.NEW_54: -4008472387158978154
+      Illustration50.NEW_55: 4601892386022375759
+      Illustration50.NEW_56: 2892179376285278436
+      Illustration50.NEW_57: 4360837443286046726
+      Illustration50.NEW_58: 7286542010704269430
+      Illustration50.NEW_59: 6641142747547642843
+      Illustration50.NEW_6: 3080470193223285719
+      Illustration50.NEW_60: -3393950581848280311
+      Illustration50.NEW_61: -7061508251968635155
+      Illustration50.NEW_62: -7977068284852646950
+      Illustration50.NEW_63: -4817231169076035629
+      Illustration50.NEW_64: 7833931758895371498
+      Illustration50.NEW_65: -4677953604175405158
+      Illustration50.NEW_66: -5503808224794744115
+      Illustration50.NEW_67: -6125260395209867841
+      Illustration50.NEW_68: -3084171911840087387
+      Illustration50.NEW_69: 6244934313268919500
+      Illustration50.NEW_7: 1546226006907358508
+      Illustration50.NEW_70: -3863325952569849474
+      Illustration50.NEW_71: 3821819002762881283
+      Illustration50.NEW_72: -8320624025656809873
+      Illustration50.NEW_73: -1729426499187371096
+      Illustration50.NEW_74: 38173351086578728
+      Illustration50.NEW_75: -7028467289088654542
+      Illustration50.NEW_76: 3300504901440542438
+      Illustration50.NEW_77: -4268703832879352056
+      Illustration50.NEW_78: 8910546275861305199
+      Illustration50.NEW_79: 6915127319447117296
+      Illustration50.NEW_8: 3568548068853143022
+      Illustration50.NEW_80: -6262630705567229651
+      Illustration50.NEW_81: -6954937154891909283
+      Illustration50.NEW_82: -4346810106225206365
+      Illustration50.NEW_83: -4602636221471229209
+      Illustration50.NEW_84: -8942012300140791081
+      Illustration50.NEW_85: 2151298044385884116
+      Illustration50.NEW_86: 6058863658251097446
+      Illustration50.NEW_87: 2404438933134652763
+      Illustration50.NEW_88: 5148802316794196320
+      Illustration50.NEW_89: 2967445387333558998
+      Illustration50.NEW_9: -2491541534291165035
+      Illustration50.NEW_90: -1554372756729860151
+      Illustration50.NEW_91: -6541562868229139494
+      Illustration50.NEW_92: -6924895503447750232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
