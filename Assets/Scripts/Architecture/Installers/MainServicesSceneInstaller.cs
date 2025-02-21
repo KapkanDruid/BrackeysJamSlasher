@@ -11,6 +11,7 @@ namespace Assets.Scripts.Architecture
         [SerializeField] private GroundDirectionPointsHandler _directionPointsHandler;
         [SerializeField] private SceneResources _sceneResources;
         [SerializeField] private MainSceneBootstrap _sceneBootstrap;
+        [SerializeField] private Canvas _levelCanvas;
 
         public override void InstallBindings()
         {
@@ -21,6 +22,13 @@ namespace Assets.Scripts.Architecture
             Container.BindInterfacesAndSelfTo<GroundDirectionFinder>().AsSingle().NonLazy();
             Container.Bind<SceneResources>().FromInstance(_sceneResources).AsSingle();
             Container.Bind<PopupTextController>().AsSingle().NonLazy();
+
+            if (_levelCanvas == null)
+                Container.Bind<Canvas>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
+            else
+                Container.Bind<Canvas>().FromInstance(_levelCanvas).AsSingle().NonLazy();
+
+            Container.Bind<SceneTransitionController>().AsSingle().NonLazy();
         }
     }
 }
