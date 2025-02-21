@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Architecture;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Content.BasicAI

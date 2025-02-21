@@ -14,9 +14,6 @@ namespace Assets.Scripts.Content.BasicAI
         private readonly CharacterData _data;
         private IDamageable _damageable;
         private CharacterStateMachine _stateMachine;
-        
-
-        private bool _canAttack;
 
         public CharacterAttackState(CharacterHandler character, Animator animator, CancellationToken cancellationToken, CharacterStateMachine stateMachine)
         {
@@ -30,7 +27,6 @@ namespace Assets.Scripts.Content.BasicAI
 
         public void EnterState()
         {
-            _canAttack = true;
             Attack();
         }
 
@@ -60,7 +56,6 @@ namespace Assets.Scripts.Content.BasicAI
                 return;
             }
 
-            _canAttack = true;
         }
 
         private void Attack()
@@ -70,7 +65,6 @@ namespace Assets.Scripts.Content.BasicAI
                 _animator.SetBool(AnimatorHashes.IsAttacking, true);
                 _damageable.TakeDamage(_data.Damage);
 
-                _canAttack = false;
                 AttackTimer().Forget();
                 _stateMachine.SetState<CharacterChaseState>();
             }
