@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de99fba8f8e95f4e87f86827bf2fc15, type: 3}
   m_Name: CharacterEnemyConfig
   m_EditorClassIdentifier: 
-  _health: 100
+  _health: 50
   _forcePushKnockback: 5
   _forcePushKnockdown: 5
   _timeKnockback: 0.2
@@ -23,6 +23,6 @@ MonoBehaviour:
   _damage: 10
   _attackCooldown: 1
   _attackDelay: 0.5
-  _hitColliderSize: {x: 1, y: 0.5}
-  _hitColliderOffset: {x: 1, y: 0}
+  _hitColliderSize: {x: 0.5, y: 0.5}
+  _hitColliderOffset: {x: 0.61, y: 0}
   _sensorRadius: 20

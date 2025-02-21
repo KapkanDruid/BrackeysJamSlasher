@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621788927650985364}
   - component: {fileID: 2359266243146780134}
+  - component: {fileID: 8596468379899762445}
   m_Layer: 0
   m_Name: AnimationObject
   m_TagString: Untagged
@@ -101,6 +102,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8596468379899762445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286217759591513256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f60f516f7493341b08f2403eafaf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &797061884686992589
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,11 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9548328badfdb8347a3e8780be0598bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _patrolPoints: []
 --- !u!114 &5514995059065853754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,8 +457,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -437408681
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
@@ -509,6 +518,7 @@ MonoBehaviour:
   _characterHandler: {fileID: 5514995059065853754}
   _rigidbody: {fileID: 872979072779954473}
   _animator: {fileID: 2359266243146780134}
+  _animatorEventHandler: {fileID: 8596468379899762445}
 --- !u!1 &7588469834584265075
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,8 +592,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -437408681
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0.2688679, b: 0.2688679, a: 1}

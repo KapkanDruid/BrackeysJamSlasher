@@ -17,6 +17,7 @@ namespace Assets.Scripts.Content.BasicAI
         private float _health;
         private int _hitCount = 0;
         private bool _isKnockedDown = false;
+        private bool _isDead;
 
         public float Health => _health;
 
@@ -33,7 +34,11 @@ namespace Assets.Scripts.Content.BasicAI
 
         public void TakeDamage(float damage, Action callback)
         {
-            if (_isKnockedDown) return;
+            if (_isDead)
+                return;
+
+            if (_isKnockedDown) 
+                return;
 
             callback?.Invoke();
             _health -= damage;

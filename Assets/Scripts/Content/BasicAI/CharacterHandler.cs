@@ -11,12 +11,13 @@ namespace Assets.Scripts.Content.BasicAI
     {
         [SerializeField] private CharacterData _data;
 
+        private EnemyDeadHandler _enemyDeadHandler;
         private CharacterHealthHandler _healthHandler;
         private CancellationToken _cancellationToken;
         private bool _isKnocked = false;
         private int _currentOrientation = 1;
 
-        public  CancellationToken CancellationToken => _cancellationToken;
+        public CancellationToken CancellationToken => _cancellationToken;
         public CharacterData CharacterData => _data;
 
         public bool IsKnocked { get => _isKnocked; set => _isKnocked = value; }
@@ -24,10 +25,13 @@ namespace Assets.Scripts.Content.BasicAI
 
 
         [Inject]
-        public void Construct(CharacterHealthHandler healthHandler)
+        public void Construct(CharacterHealthHandler healthHandler, EnemyDeadHandler enemyDeadHandler)
         {
             _healthHandler = healthHandler;
             _data.ThisEntity = this;
+            _enemyDeadHandler = enemyDeadHandler;
+            _enemyDeadHandler.Initialize(transform);
+
             _cancellationToken = this.GetCancellationTokenOnDestroy();
             _currentOrientation = Mathf.Clamp(Mathf.RoundToInt(transform.localScale.x), -1, 1);
         }
@@ -44,6 +48,12 @@ namespace Assets.Scripts.Content.BasicAI
 
             if (_healthHandler is T healthHandler)
                 return healthHandler;
+            
+            if (transform is T characterTransform)
+                return characterTransform;
+
+            if (_enemyDeadHandler is T deadHandler)
+                return deadHandler;
 
             return null;
         }
@@ -63,6 +73,15 @@ namespace Assets.Scripts.Content.BasicAI
                 _currentOrientation = -1;
                 transform.localScale = leftOrientation;
             }
+        }
+
+        private void Update()
+        {
+            if (_healthHandler.Health == 0)
+            {
+                _enemyDeadHandler.Death();
+            }
+            
         }
     }
 }
