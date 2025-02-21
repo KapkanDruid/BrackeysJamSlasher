@@ -76,8 +76,6 @@ namespace Assets.Scripts.Content
 
         private void StartCombat()
         {
-            Debug.Log("Combat Started!");
-
             foreach (var wall in _walls)
                 wall.SetActive(true);
 
