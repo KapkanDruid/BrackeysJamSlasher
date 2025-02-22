@@ -21,13 +21,16 @@ namespace Assets.Scripts.Content.BasicAI
         public float TimeKnockdown => _characterConfig.TimeKnockdown;
         public float MaxAirTime => _characterConfig.MaxAirTime;
         public float ComboHoldTime => _characterConfig.ComboHoldTime;
-        public float AttackDelay => _characterConfig.AttackDelay;
         public int Damage => _characterConfig.Damage;
+        public int SplashDamage => _characterConfig.SplashDamage;
+        public bool Boss => _characterConfig.Boss;
         public Transform CharacterTransform => _characterTransform;
         public Flags Flags => _flags;
         public EntityFlags EnemyFlag => _enemyFlag;
         public Vector2 HitColliderSize => _characterConfig.HitColliderSize;
         public Vector2 HitColliderOffset => _characterConfig.HitColliderOffset;
+        public Vector2 HitSplashColliderSize => _characterConfig.HitSplashColliderSize;
+        public Vector2 HitSplashColliderOffset => _characterConfig.HitSplashColliderOffset;
         public IEntity ThisEntity { get; set; }
     }
 }

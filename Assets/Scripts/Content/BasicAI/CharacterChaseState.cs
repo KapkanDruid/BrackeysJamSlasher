@@ -18,6 +18,7 @@ namespace Assets.Scripts.Content.BasicAI
         private bool _isAttacking;
 
         private Vector2 ColliderOffset => new Vector2(_character.CharacterData.HitColliderOffset.x * _character.CurrentOrientation, _character.CharacterData.HitColliderOffset.y);
+        private Vector2 SplashColliderOffset => new Vector2(_character.CharacterData.HitSplashColliderOffset.x * _character.CurrentOrientation, _character.CharacterData.HitSplashColliderOffset.y);
 
         public CharacterChaseState(CharacterHandler character,
                                    CharacterStateMachine stateMachine, 
@@ -70,6 +71,9 @@ namespace Assets.Scripts.Content.BasicAI
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube((Vector2)_character.transform.position + ColliderOffset, _character.CharacterData.HitColliderSize);
+            
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube((Vector2)_character.transform.position + SplashColliderOffset, _character.CharacterData.HitSplashColliderSize);
         }
        
 

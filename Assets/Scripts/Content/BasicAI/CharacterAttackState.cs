@@ -18,6 +18,7 @@ namespace Assets.Scripts.Content.BasicAI
         private CharacterStateMachine _stateMachine;
 
         private Vector2 ColliderOffset => new Vector2(_character.CharacterData.HitColliderOffset.x * _character.CurrentOrientation, _character.CharacterData.HitColliderOffset.y);
+        private Vector2 SplashColliderOffset => new Vector2(_character.CharacterData.HitSplashColliderOffset.x * _character.CurrentOrientation, _character.CharacterData.HitSplashColliderOffset.y);
 
         public CharacterAttackState(CharacterHandler character, Animator animator, CancellationToken cancellationToken, CharacterStateMachine stateMachine, AnimatorEventHandler animatorEventHandler)
         {
@@ -52,10 +53,9 @@ namespace Assets.Scripts.Content.BasicAI
             _animatorEventHandler.OnAnimationHit -= OnAnimationHit;
         }
 
-        private async void StartAttack()
+        private void StartAttack()
         {
             _animator.SetTrigger(AnimatorHashes.SpikeAttackTrigger);
-            await AttackTimer();
         }
 
         private void OnAnimationHit()
@@ -87,6 +87,23 @@ namespace Assets.Scripts.Content.BasicAI
             var _hits = Physics2D.BoxCastAll(origin, size, 0, direction);
 
             int count = _hits.Length;
+            ChackTargetOnDamageable(_hits, count);
+        }
+
+        private void SplashCheckRaycast()
+        {
+            Vector2 origin = (Vector2)_character.transform.position + SplashColliderOffset;
+            Vector2 direction = Vector2.zero;
+            Vector2 size = _character.CharacterData.HitSplashColliderSize;
+
+            var _hits = Physics2D.BoxCastAll(origin, size, 0, direction);
+
+            int count = _hits.Length;
+            ChackTargetOnDamageable(_hits, count);
+        }
+
+        private void ChackTargetOnDamageable(RaycastHit2D[] _hits, int count)
+        {
             for (int i = 0; i < count; i++)
             {
                 if (!_hits[i].collider.TryGetComponent(out IEntity entity))
@@ -107,7 +124,7 @@ namespace Assets.Scripts.Content.BasicAI
             }
         }
 
-        private void Attack()
+        private async void Attack()
         {
             CheckRaycast();
             if (_damageable == null)
@@ -116,6 +133,15 @@ namespace Assets.Scripts.Content.BasicAI
                 return;
             }
             _damageable.TakeDamage(_data.Damage);
+
+            if (_data.Boss)
+            {
+                SplashCheckRaycast();
+                _damageable.TakeDamage(_data.SplashDamage);
+            }
+
+            await AttackTimer();
+
             _stateMachine.SetState<CharacterChaseState>();
 
         }

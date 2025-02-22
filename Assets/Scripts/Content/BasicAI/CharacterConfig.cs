@@ -19,10 +19,13 @@ namespace Assets.Scripts.Content.BasicAI
 
         [Header("Attack System")]
         [SerializeField] private int _damage;
-        [SerializeField] private float _attackCooldown = 1.5f;
-        [SerializeField] private float _attackDelay = 0.5f;
+        [SerializeField] private int _splashDamage;
+        [SerializeField] private float _attackCooldown;
         [SerializeField] private Vector2 _hitColliderSize;
         [SerializeField] private Vector2 _hitColliderOffset;
+        [SerializeField] private bool _boss;
+        [SerializeField] private Vector2 _hitSplashColliderSize;
+        [SerializeField] private Vector2 _hitSplashColliderOffset;
 
         [Header("Sensor System")]
         [SerializeField] private float _sensorRadius;
@@ -37,9 +40,12 @@ namespace Assets.Scripts.Content.BasicAI
         public float TimeKnockdown => _timeKnockdown;
         public float MaxAirTime => _maxAirTime;
         public float ComboHoldTime => _comboHoldTime;
-        public float AttackDelay => _attackDelay;
         public int Damage => _damage;
+        public int SplashDamage => _splashDamage;
+        public bool Boss => _boss;
         public Vector2 HitColliderSize => _hitColliderSize;
         public Vector2 HitColliderOffset => _hitColliderOffset;
+        public Vector2 HitSplashColliderSize => _hitSplashColliderSize;
+        public Vector2 HitSplashColliderOffset => _hitSplashColliderOffset;
     }
 }
