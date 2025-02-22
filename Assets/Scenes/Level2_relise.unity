@@ -16894,6 +16894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: _progressCardsConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 51154bf5df70881439771151abf6b676, type: 2}
     - target: {fileID: 1184651396842614783, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17630,6 +17634,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: _progressCardsConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ebae55b34d86a843b838407a11b65ca, type: 2}
     - target: {fileID: 1184651396842614783, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -19898,6 +19906,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: _progressCardsConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 8190c7595ad7dbf44af6e624734a927c, type: 2}
     - target: {fileID: 1184651396842614783, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -25040,6 +25052,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: _progressCardsConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: e8b648934d0857449aaa7a8173f72297, type: 2}
     - target: {fileID: 1184651396842614783, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: m_IsActive
       value: 0
