@@ -13,6 +13,7 @@ namespace Assets.Scripts.Architecture
         [SerializeField] private MainSceneBootstrap _sceneBootstrap;
         [SerializeField] private Canvas _levelCanvas;
         [SerializeField] private SceneTransiter _sceneTransiter;
+        [SerializeField] private AudioController _audioController;
 
         public override void InstallBindings()
         {
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Architecture
             Container.Bind<Canvas>().FromInstance(_levelCanvas).AsSingle().NonLazy();
 
             Container.Bind<GameEndController>().AsSingle().NonLazy();
+            Container.Bind<AudioController>().FromInstance(_audioController).AsSingle().NonLazy();
         }
     }
 }

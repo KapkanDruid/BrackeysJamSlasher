@@ -12,6 +12,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly PopupTextController _popupTextController;
         private readonly CharacterJumpHandler _characterJumpHandler;
         private readonly GameEndController _gameEndController;
+        private readonly AudioController _audioController;
 
         private float _currentHealth;
         private bool _canBeDamaged;
@@ -24,7 +25,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             PopupTextController popupTextController,
             CharacterJumpHandler characterJumpHandler,
             Animator animator,
-            GameEndController gameEndController)
+            GameEndController gameEndController,
+            AudioController audioController)
         {
             _data = playerData;
             _animator = animator;
@@ -35,6 +37,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             _canBeDamaged = true;
             _isDead = false;
             _gameEndController = gameEndController;
+            _audioController = audioController;
         }
 
         public void TakeDamage(float damage, Action callBack = null)
@@ -54,6 +57,8 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             _currentHealth -= damage;
             _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
+
+            _audioController.PlayOneShot(AudioController.SoundEffects.PlayerHit);
 
             callBack?.Invoke();
 
