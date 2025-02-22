@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _maxHealth: 30
+  _healPercent: 10
   _jumpHeight: 2
   _jumpDuration: 0.5
+  _criticalChancePercent: 5
+  _criticalMultiplier: 2
   _invincibleFramesDuration: 1
+  _dodgeChancePercent: 5

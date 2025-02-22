@@ -12,6 +12,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly PlayerHealthHandler _playerHealthHandler;
         private readonly CharacterJumpHandler _jumpHandler;
         private readonly InputSystemActions _inputActions;
+        private readonly AudioController _audioController;
         private readonly Rigidbody2D _rigidbody;
         private readonly PlayerData _playerData;
         private readonly Animator _animator;
@@ -32,10 +33,12 @@ namespace Assets.Scripts.Content.PlayerLogic
             Rigidbody2D rigidbody,
             Animator animator,
             PlayerHealthHandler playerHealthHandler,
-            CharacterJumpHandler jumpHandler)
+            CharacterJumpHandler jumpHandler,
+            AudioController controller)
         {
             _groundDirectionFinder = groundDirectionFinder;
             _playerHealthHandler = playerHealthHandler;
+            _audioController = controller;
             _inputActions = inputActions;
             _jumpHandler = jumpHandler;
             _playerData = playerData;
@@ -58,6 +61,14 @@ namespace Assets.Scripts.Content.PlayerLogic
                 _animator.SetBool(AnimatorHashes.IsMoving, true);
             else
                 _animator.SetBool(AnimatorHashes.IsMoving, false);
+        }
+
+        private void UpdateStepSound()
+        {
+            if (_inputVector != Vector2.zero && IsMovementAllowed() && _jumpHandler.IsGrounded)
+                _audioController.StartFootsteps();
+            else
+                _audioController.StopFootsteps();
         }
 
         private void SetOrientation(float direction)
@@ -90,6 +101,9 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             _jumpHandler.Jump();
             _animator.SetTrigger(AnimatorHashes.JumpTrigger);
+            _audioController.StopFootsteps();
+
+            UpdateStepSound();
         }
 
         public void FixedTick()
@@ -100,6 +114,8 @@ namespace Assets.Scripts.Content.PlayerLogic
                 PlayerMovement();
             else
                 _rigidbody.linearVelocity = Vector2.zero;
+
+            UpdateStepSound();
         }
 
         private bool IsMovementAllowed()

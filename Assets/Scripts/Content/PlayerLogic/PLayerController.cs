@@ -40,6 +40,11 @@ namespace Assets.Scripts.Content.PlayerLogic
             }
         }
 
+        public void Heal()
+        {
+            _healthHandler.Heal();
+        }
+
         public T ProvideComponent<T>() where T : class
         {
             if (_playerData.Flags is T flags)

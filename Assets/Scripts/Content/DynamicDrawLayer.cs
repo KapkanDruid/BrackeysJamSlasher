@@ -13,6 +13,7 @@ namespace Assets.Scripts.Content
 
         private Transform _lastObject;
         private Vector3[] _childPositions;
+        private int _mainObjectIndex;
 
         private void Start()
         {
@@ -35,9 +36,9 @@ namespace Assets.Scripts.Content
         [ContextMenu("SetObjectsLayer")]
         private void SortObjectsLayer()
         {
-            var mainObjectIndex = _childObjects.IndexOf(_mainObject);
+            _mainObjectIndex = _childObjects.IndexOf(_mainObject);
 
-            mainObjectIndex *= -1;
+            _mainObjectIndex *= -1;
 
             for (int i = 0; i < _childObjects.Count; i++)
             {
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Content
                     continue;
                 }
 
-                _childObjects[i].localPosition = new Vector3(_childObjects[i].localPosition.x, _childObjects[i].localPosition.y, mainObjectIndex + i);
+                _childObjects[i].localPosition = new Vector3(_childObjects[i].localPosition.x, _childObjects[i].localPosition.y, _mainObjectIndex + i);
                 _lastObject = _childObjects[i];
             }
 
@@ -69,6 +70,26 @@ namespace Assets.Scripts.Content
         {
             SetMainObjectPosition();
             SetShadowPosition();
+        }
+        private void LateUpdate()
+        {
+            SetMainObjectPosition();
+            SortObjects();
+        }
+
+        private void SortObjects()
+        {
+            for (int i = 0; i < _childObjects.Count; i++)
+            {
+                if (_childObjects[i] == _mainObject)
+                {
+                    _lastObject = _childObjects[i];
+                    continue;
+                }
+
+                _childObjects[i].localPosition = new Vector3(_childObjects[i].localPosition.x, _childObjects[i].localPosition.y, _mainObjectIndex + i);
+                _lastObject = _childObjects[i];
+            }
         }
     }
 }

@@ -37,14 +37,20 @@ namespace Assets.Scripts.Content.PlayerLogic
             _inputActions = inputActions;
             _animatorEventHandler = animatorEventHandler;
             _playerAttackAnimationController = playerAttackAnimationController;
+            _playerHealthHandler = playerHealthHandler;
+            _playerMoveHandler = playerMoveHandler;
 
             _weaponSpriteRenderer = _data.WeaponSpriteRenderer;
 
             _inputActions.Player.Attack.performed += OnAttack;
 
             _animatorEventHandler.OnAnimationHit += OnAnimationHit;
-            _playerHealthHandler = playerHealthHandler;
-            _playerMoveHandler = playerMoveHandler;
+
+
+            if (_data.WeaponSprites != null)
+            {
+                _weaponSpriteRenderer.sprite = _data.WeaponSprites[0];
+            }
         }
 
         private void OnAttack(InputAction.CallbackContext context)
@@ -53,11 +59,6 @@ namespace Assets.Scripts.Content.PlayerLogic
                 return;
 
             _playerAttackAnimationController.PlayAttackAnimation(_data.CurrentPlayerWeapon);
-
-            if (_data.WeaponSprite != null)
-            {
-                _weaponSpriteRenderer.sprite = _data.WeaponSprite;
-            }
         }
 
         private bool IsAttackAllowed()
@@ -87,7 +88,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             Vector2 origin = (Vector2)_data.PlayerTransform.position + ColliderOffset;
 
             Vector2 size = _data.WeaponColliderSize;
-            Vector2 direction = Vector2.down;
+            Vector2 direction = Vector2.zero;
 
             RaycastHit2D[] hits = Physics2D.BoxCastAll(origin, size, 0, direction);
 
@@ -110,8 +111,16 @@ namespace Assets.Scripts.Content.PlayerLogic
 
                 IDamageable damageable = entity.ProvideComponent<IDamageable>();
 
-                damageable.TakeDamage(_data.CurrentPlayerWeapon.Damage);
+                damageable.TakeDamage(DetermineDamage());
             }
+        }
+
+        private float DetermineDamage()
+        {
+            if (UnityEngine.Random.Range(0f, 100f) < _data.CriticalChance)
+                return _data.CurrentPlayerWeapon.Damage * _data.CriticalMultiplier;
+            else
+                return _data.CurrentPlayerWeapon.Damage;
         }
 
         public void Dispose()
