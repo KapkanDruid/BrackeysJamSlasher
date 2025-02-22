@@ -27,4 +27,21 @@ namespace Assets.Scripts.Content
             _loosePopup.Show();
         }
     }
+
+    public class HUDController
+    {
+        private SceneResources _sceneResources;
+        private Canvas _canvas;
+        private HeadUpDisplay _display;
+
+        public HUDController(SceneResources sceneResources, Canvas canvas)
+        {
+            _sceneResources = sceneResources;
+            _canvas = canvas;
+
+            _display = GameObject.Instantiate(_sceneResources.HUDPrefab, _canvas.transform);
+        }
+
+ 
+    }
 }

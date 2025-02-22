@@ -15,6 +15,7 @@ MonoBehaviour:
   _damageTextPrefab: {fileID: 8146456115899650276, guid: a9c5b2e6873df624983d2a121cefcf36, type: 3}
   _damageTextPoolSize: 5
   _gameLoosePopup: {fileID: 1502162379524884380, guid: 80ec4639ce176a34ba9bdcf337b1ce14, type: 3}
+  _HUDPrefab: {fileID: 780534723268663252, guid: 4fd174dbdb710ea498342091296ab3c4, type: 3}
   _soundEffect:
   - _effectType: 0
     _effectClip: {fileID: 8300000, guid: 072e739f92480e2418de1c824795844f, type: 3}

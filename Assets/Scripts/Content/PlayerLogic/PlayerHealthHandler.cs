@@ -13,6 +13,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly CharacterJumpHandler _characterJumpHandler;
         private readonly GameEndController _gameEndController;
         private readonly AudioController _audioController;
+        private readonly HeadUpDisplay _headUpDisplay;
 
         private float _currentHealth;
         private bool _canBeDamaged;
@@ -26,7 +27,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             CharacterJumpHandler characterJumpHandler,
             Animator animator,
             GameEndController gameEndController,
-            AudioController audioController)
+            AudioController audioController,
+            HeadUpDisplay headUpDisplay)
         {
             _data = playerData;
             _animator = animator;
@@ -38,6 +40,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             _isDead = false;
             _gameEndController = gameEndController;
             _audioController = audioController;
+            _headUpDisplay = headUpDisplay;
         }
 
         public void TakeDamage(float damage, Action callBack = null)
@@ -60,6 +63,8 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             _audioController.PlayOneShot(AudioController.SoundEffects.PlayerHit);
 
+            _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+
             callBack?.Invoke();
 
             ActivateInvincibleFrames().Forget();
@@ -69,6 +74,8 @@ namespace Assets.Scripts.Content.PlayerLogic
                 _currentHealth = 0;
                 _isDead = true;
                 _animator.SetTrigger(AnimatorHashes.DeathTrigger);
+
+                _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
 
                 _gameEndController.OnPlayerDeath();
             }
@@ -97,6 +104,8 @@ namespace Assets.Scripts.Content.PlayerLogic
             {
                 _currentHealth = _data.MaxHealth;
             }
+
+            _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
         }
     }
 }

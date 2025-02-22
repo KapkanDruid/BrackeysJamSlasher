@@ -11,6 +11,7 @@ namespace Assets.Scripts.Content
         [SerializeField] private PopupText _damageTextPrefab;
         [SerializeField] private int _damageTextPoolSize;
         [SerializeField] private GameLoosePopup _gameLoosePopup;
+        [SerializeField] private HeadUpDisplay _HUDPrefab;
 
         [Header("Sound Settings")]
         [SerializeField] private List<SoundEffects> _soundEffect;
@@ -29,6 +30,7 @@ namespace Assets.Scripts.Content
         public List<SoundEffects> SoundEffect => _soundEffect;
         public AudioClip[] StepSounds => _stepSounds;
         public float StepSoundDelay => _stepSoundDelay;
+        public HeadUpDisplay HUDPrefab => _HUDPrefab;
     }
 
     [Serializable]
