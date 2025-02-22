@@ -1,11 +1,12 @@
 ﻿using Assets.Scripts.Architecture;
+using Assets.Scripts.Content.CoreProgression;
 using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Content.PlayerLogic
 {
-    public class PlayerHealthHandler : IDamageable
+    public class PlayerHealthHandler : IDamageable, IDisposable
     {
         private readonly PlayerData _data;
         private readonly Animator _animator;
@@ -35,12 +36,30 @@ namespace Assets.Scripts.Content.PlayerLogic
             _popupTextController = popupTextController;
             _characterJumpHandler = characterJumpHandler;
 
-            _currentHealth = _data.MaxHealth;
             _canBeDamaged = true;
             _isDead = false;
             _gameEndController = gameEndController;
             _audioController = audioController;
             _headUpDisplay = headUpDisplay;
+        }
+
+        public void Initialize()
+        {
+            if (StaticData.CurrentPlayerHP > 0)
+                _currentHealth = StaticData.CurrentPlayerHP;
+            else
+            {
+                _currentHealth = _data.MaxHealth;
+                StaticData.CurrentPlayerHP = _currentHealth;
+            }
+
+            StaticData.OnMaxHealthChanged += OnMaxHealthChanged;
+            _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+        }
+
+        public void OnMaxHealthChanged()
+        {
+            _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
         }
 
         public void TakeDamage(float damage, Action callBack = null)
@@ -116,6 +135,12 @@ namespace Assets.Scripts.Content.PlayerLogic
             }
 
             _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+        }
+
+        public void Dispose()
+        {
+            StaticData.CurrentPlayerHP = _currentHealth;
+            StaticData.OnMaxHealthChanged -= OnMaxHealthChanged;
         }
     }
 }

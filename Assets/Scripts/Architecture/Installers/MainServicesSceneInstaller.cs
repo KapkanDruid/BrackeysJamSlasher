@@ -36,6 +36,7 @@ namespace Assets.Scripts.Architecture
             Container.Bind<StopwatchTimer>().FromInstance(GameObject.Instantiate(_sceneResources.StopwatchTimer, _levelCanvas.transform)).AsSingle().NonLazy();
             Container.Bind<ProgressCardsPopup>().FromInstance(_cardsPopup).AsSingle().NonLazy();
             Container.Bind<PlayerProgressController>().AsSingle().NonLazy();
+            Container.Bind<GameDataLoader>().AsSingle().NonLazy();
 
         }
     }

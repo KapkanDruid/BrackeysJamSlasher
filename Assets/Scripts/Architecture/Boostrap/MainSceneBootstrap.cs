@@ -1,5 +1,6 @@
 using Assets.Scripts.Architecture;
 using Assets.Scripts.Content;
+using Assets.Scripts.Content.CoreProgression;
 using System;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,7 @@ public class MainSceneBootstrap : MonoBehaviour
     [Inject] private PopupTextController _popupTextController;
     [Inject] private GroundDirectionFinder _groundDirectionFinder;
     [Inject] private GroundDirectionPointsHandler _groundDirectionPointsHandler;
+    [Inject] private GameDataLoader _gameDataLoader;
 
     public event Action OnServicesInitialized;
 
@@ -21,6 +23,7 @@ public class MainSceneBootstrap : MonoBehaviour
 
     private void Initialize()
     {
+        _gameDataLoader.Initialize();
         _gameEndController.Initialize();
         _inputActions.Enable();
         _groundDirectionPointsHandler.Initialize();

@@ -148,6 +148,8 @@ namespace Assets.Scripts.Content
 
             _playerController.Heal();
 
+            _timer.Stop();
+
             EndTimer().Forget();
         }
 

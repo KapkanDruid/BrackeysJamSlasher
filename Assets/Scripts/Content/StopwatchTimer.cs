@@ -60,6 +60,11 @@ namespace Assets.Scripts.Content
                 .SetEase(Ease.OutExpo).OnComplete(() => gameObject.SetActive(false));
         }
 
+        public void Stop()
+        {
+            _isRunning = false;
+        }
+
         public float ResetTimer()
         {
             Hide();
