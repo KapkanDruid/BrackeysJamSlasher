@@ -14,6 +14,7 @@ namespace Assets.Scripts.Content.BasicAI
         private Transform _target;
         private RaycastHit2D[] _hits;
         private float _distanceToChase = 0.4f;
+        private float direction;
         private bool _canMoving;
         private bool _isAttacking;
 
@@ -21,9 +22,9 @@ namespace Assets.Scripts.Content.BasicAI
         private Vector2 SplashColliderOffset => new Vector2(_character.CharacterData.HitSplashColliderOffset.x * _character.CurrentOrientation, _character.CharacterData.HitSplashColliderOffset.y);
 
         public CharacterChaseState(CharacterHandler character,
-                                   CharacterStateMachine stateMachine, 
-                                   CharacterSensor sensor, 
-                                   Animator animator, 
+                                   CharacterStateMachine stateMachine,
+                                   CharacterSensor sensor,
+                                   Animator animator,
                                    GizmosDrawer gizmosDrawer)
         {
             _character = character;
@@ -36,13 +37,13 @@ namespace Assets.Scripts.Content.BasicAI
 
         public void EnterState()
         {
-            _target = _sensor.TargetTransform;
             _canMoving = true;
             _isAttacking = false;
         }
 
         public void UpdateState()
         {
+            _target = _sensor.TargetTransform;
             SetDirection();
 
             _stateMachine.SetTarget(_target);
@@ -51,6 +52,8 @@ namespace Assets.Scripts.Content.BasicAI
             {
                 _stateMachine.SetState<CharacterPatrolState>();
             }
+
+            RangeAttack();
 
             CheckDistanceToTarget();
             CheckRaycast();
@@ -71,15 +74,22 @@ namespace Assets.Scripts.Content.BasicAI
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube((Vector2)_character.transform.position + ColliderOffset, _character.CharacterData.HitColliderSize);
-            
+
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube((Vector2)_character.transform.position + SplashColliderOffset, _character.CharacterData.HitSplashColliderSize);
         }
-       
+
+        private void RangeAttack()
+        {
+            if (_character.CharacterData.HasRangeAttack)
+            {
+                _character.Shoot(new(_target.position.x, _target.position.y));
+            }
+        }
 
         private void SetDirection()
         {
-            float direction = Mathf.Sign(_target.position.x - _character.transform.position.x);
+            direction = Mathf.Sign(_target.position.x - _character.transform.position.x);
             _character.SetOrientation((int)direction);
         }
 
@@ -91,7 +101,7 @@ namespace Assets.Scripts.Content.BasicAI
                 {
                     _animator.SetBool(AnimatorHashes.IsMoving, true);
                     _character.MoveTo(_target.position);
-                    
+
                 }
             }
         }

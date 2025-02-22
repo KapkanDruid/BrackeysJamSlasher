@@ -14,6 +14,7 @@ namespace Assets.Scripts.Content.BasicAI
         public float Speed => _characterConfig.Speed;
         public float Health => _characterConfig.Health;
         public float AttackCooldown => _characterConfig.AttackCooldown;
+        public float RangeAttackCooldown => _characterConfig.RangeAttackCooldown;
         public float SensorRadius => _characterConfig.SensorRadius;
         public float ForcePushKnockback => _characterConfig.ForcePushKnockback;
         public float ForcePushKnockdown => _characterConfig.ForcePushKnockdown;
@@ -22,8 +23,10 @@ namespace Assets.Scripts.Content.BasicAI
         public float MaxAirTime => _characterConfig.MaxAirTime;
         public float ComboHoldTime => _characterConfig.ComboHoldTime;
         public int Damage => _characterConfig.Damage;
+        public int RangeDamage => _characterConfig.RangeDamage;
         public int SplashDamage => _characterConfig.SplashDamage;
         public bool Boss => _characterConfig.Boss;
+        public bool HasRangeAttack => _characterConfig.HasRangeAttack;
         public Transform CharacterTransform => _characterTransform;
         public Flags Flags => _flags;
         public EntityFlags EnemyFlag => _enemyFlag;

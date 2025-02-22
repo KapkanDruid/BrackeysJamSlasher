@@ -18,12 +18,19 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private float _speed;
 
         [Header("Attack System")]
+        [Header("Melee")]
         [SerializeField] private int _damage;
-        [SerializeField] private int _splashDamage;
         [SerializeField] private float _attackCooldown;
         [SerializeField] private Vector2 _hitColliderSize;
         [SerializeField] private Vector2 _hitColliderOffset;
+        [Header("Range")]
+        [SerializeField] private bool _hasRangeAttack;
+        [SerializeField] private int _rangeDamage;
+        [SerializeField] private float _rangeAttackCooldown;
+        [SerializeField] private float _attackRange;
+        [Header("Boss")]
         [SerializeField] private bool _boss;
+        [SerializeField] private int _splashDamage;
         [SerializeField] private Vector2 _hitSplashColliderSize;
         [SerializeField] private Vector2 _hitSplashColliderOffset;
 
@@ -33,6 +40,7 @@ namespace Assets.Scripts.Content.BasicAI
         public float Speed => _speed;
         public float Health => _health;
         public float AttackCooldown => _attackCooldown;
+        public float RangeAttackCooldown => _rangeAttackCooldown;
         public float SensorRadius => _sensorRadius;
         public float ForcePushKnockback => _forcePushKnockback;
         public float ForcePushKnockdown => _forcePushKnockdown;
@@ -41,8 +49,10 @@ namespace Assets.Scripts.Content.BasicAI
         public float MaxAirTime => _maxAirTime;
         public float ComboHoldTime => _comboHoldTime;
         public int Damage => _damage;
+        public int RangeDamage => _rangeDamage;
         public int SplashDamage => _splashDamage;
         public bool Boss => _boss;
+        public bool HasRangeAttack => _hasRangeAttack;
         public Vector2 HitColliderSize => _hitColliderSize;
         public Vector2 HitColliderOffset => _hitColliderOffset;
         public Vector2 HitSplashColliderSize => _hitSplashColliderSize;
