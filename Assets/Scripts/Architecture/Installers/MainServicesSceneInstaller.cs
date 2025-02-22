@@ -1,6 +1,6 @@
 using Assets.Scripts.Content;
+using Assets.Scripts.Content.CoreProgression;
 using Assets.Scripts.Content.PlayerLogic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -32,6 +32,10 @@ namespace Assets.Scripts.Architecture
             Container.Bind<GameEndController>().AsSingle().NonLazy();
             Container.Bind<AudioController>().FromInstance(_audioController).AsSingle().NonLazy();
             Container.Bind<HeadUpDisplay>().FromInstance(GameObject.Instantiate(_sceneResources.HUDPrefab, _levelCanvas.transform)).AsSingle().NonLazy();
+            Container.Bind<StopwatchTimer>().FromInstance(GameObject.Instantiate(_sceneResources.StopwatchTimer, _levelCanvas.transform)).AsSingle().NonLazy();
+            Container.Bind<ProgressCardsPopup>().FromInstance(GameObject.Instantiate(_sceneResources.ProgressCardsPopup, _levelCanvas.transform)).AsSingle().NonLazy();
+            Container.Bind<PlayerProgressController>().AsSingle().NonLazy();
+
         }
     }
 }

@@ -58,12 +58,19 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             _animator.SetTrigger(AnimatorHashes.TakeDamageTrigger);
 
-            _currentHealth -= damage;
-            _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
-
             _audioController.PlayOneShot(AudioController.SoundEffects.PlayerHit);
 
-            _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+            if (UnityEngine.Random.Range(0, 100) < _data.DodgeChancePercent)
+            {
+                _popupTextController.ShowDodge(_data.DamageTextPoint.position);
+            }
+            else
+            {
+                _currentHealth -= damage;
+                _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
+
+                _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+            }
 
             callBack?.Invoke();
 
@@ -96,9 +103,12 @@ namespace Assets.Scripts.Content.PlayerLogic
         }
 
 
-        public void Heal(float healValue)
+        public void Heal()
         {
-            _currentHealth += healValue;
+            _popupTextController.ShowHeal(_data.DamageTextPoint.position, _currentHealth * _data.HealPercent / 100);
+
+            var healAmount = (1 + _data.HealPercent / 100);
+            _currentHealth *= healAmount;
 
             if (_currentHealth > _data.MaxHealth)
             {

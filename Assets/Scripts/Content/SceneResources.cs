@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Content.CoreProgression;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Assets.Scripts.Content.AudioController;
@@ -9,9 +10,13 @@ namespace Assets.Scripts.Content
     public class SceneResources : ScriptableObject
     {
         [SerializeField] private PopupText _damageTextPrefab;
+        [SerializeField] private PopupText _healTextPrefab;
+        [SerializeField] private PopupText _dodgeTextPrefab;
         [SerializeField] private int _damageTextPoolSize;
         [SerializeField] private GameLoosePopup _gameLoosePopup;
         [SerializeField] private HeadUpDisplay _HUDPrefab;
+        [SerializeField] private StopwatchTimer _stopwatchTimer;
+        [SerializeField] private ProgressCardsPopup _progressCardsPopup;
 
         [Header("Sound Settings")]
         [SerializeField] private List<SoundEffects> _soundEffect;
@@ -22,6 +27,10 @@ namespace Assets.Scripts.Content
         [SerializeField] private string _mainMenu;
         [SerializeField] private string _firstLevel;
 
+        [Header("Time settings")]
+        [SerializeField] private float _maxATime;
+        [SerializeField] private float _maxBTime;
+
         public PopupText DamageTextPrefab => _damageTextPrefab;
         public int DamageTextPoolSize => _damageTextPoolSize;
         public GameLoosePopup GameLoosePopup => _gameLoosePopup;
@@ -31,6 +40,12 @@ namespace Assets.Scripts.Content
         public AudioClip[] StepSounds => _stepSounds;
         public float StepSoundDelay => _stepSoundDelay;
         public HeadUpDisplay HUDPrefab => _HUDPrefab;
+        public StopwatchTimer StopwatchTimer => _stopwatchTimer;
+        public PopupText HealTextPrefab => _healTextPrefab;
+        public PopupText DodgeTextPrefab => _dodgeTextPrefab;
+        public float MaxATime => _maxATime;
+        public float MaxBTime => _maxBTime;
+        public ProgressCardsPopup ProgressCardsPopup => _progressCardsPopup;
     }
 
     [Serializable]

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1971846160227459877}
   - component: {fileID: 8146456115899650276}
   m_Layer: 0
-  m_Name: DamageText
+  m_Name: DODGEText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.51719385, y: 0.4821808}
-  m_SizeDelta: {x: 3, y: 2}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 6.1925, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5909259527526090793
 MeshRenderer:
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: DODGE!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2090dae9dd2d0ca4c96d4a4599cfb33d, type: 2}
   m_sharedMaterial: {fileID: 7821244672650549401, guid: 2090dae9dd2d0ca4c96d4a4599cfb33d, type: 2}
@@ -112,10 +112,10 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278244095
+  m_fontColor: {r: 1, g: 0.8245816, b: 0, a: 1}
   m_enableVertexGradient: 1
-  m_colorMode: 3
+  m_colorMode: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.0064628124, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0

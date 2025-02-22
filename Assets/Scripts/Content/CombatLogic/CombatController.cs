@@ -1,21 +1,37 @@
 ﻿using Assets.Scripts.Architecture;
+using Assets.Scripts.Content.CoreProgression;
+using Assets.Scripts.Content.PlayerLogic;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Content
 {
     public class CombatController : MonoBehaviour
     {
+        [SerializeField] private ProgressCardsConfig _progressCardsConfig;
         [SerializeField] private List<EntitySubList> _enemyWaves;
         [SerializeField] private List<float> _wavesDelay;
         [SerializeField] private List<Transform> _spawnPoints;
         [SerializeField] private List<GameObject> _walls;
 
+        private StopwatchTimer _timer;
+        private PlayerController _playerController;
+        private PlayerProgressController _playerProgressController;
+
         private EnemyDeadHandler[] _enemies;
         private bool _isComplete;
         private bool _combatStarted;
+
+        [Inject]
+        private void Construct(StopwatchTimer timer, PlayerController playerController, PlayerProgressController playerProgressController)
+        {
+            _timer = timer;
+            _playerController = playerController;
+            _playerProgressController = playerProgressController;
+        }
 
         private void Start()
         {
@@ -82,6 +98,8 @@ namespace Assets.Scripts.Content
             SpawnEnemiesAsync().Forget();
 
             _combatStarted = true;
+
+            _timer.StartTimer();
         }
 
         private async UniTask SpawnEnemiesAsync()
@@ -127,6 +145,11 @@ namespace Assets.Scripts.Content
         {
             foreach (var wall in _walls)
                 wall.SetActive(false);
+
+            _playerController.Heal();
+
+
+            _playerProgressController.ShowProgressCards(_progressCardsConfig, _timer.ResetTimer());
         }
     }
 }
