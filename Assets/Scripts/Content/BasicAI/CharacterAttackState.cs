@@ -14,6 +14,8 @@ namespace Assets.Scripts.Content.BasicAI
         private readonly CancellationToken _cancellationToken;
         private readonly CharacterData _data;
         private readonly AnimatorEventHandler _animatorEventHandler;
+        private int _addAttack = 4;
+        private int _hasAttacked = 0;
         private IDamageable _damageable;
         private CharacterStateMachine _stateMachine;
 
@@ -37,6 +39,7 @@ namespace Assets.Scripts.Content.BasicAI
         {
             StartAttack();
             _damageable = null;
+            _hasAttacked = 0;
         }
 
         public void UpdateState()
@@ -53,16 +56,25 @@ namespace Assets.Scripts.Content.BasicAI
             _animatorEventHandler.OnAnimationHit -= OnAnimationHit;
         }
 
-        private void StartAttack()
+        private async void StartAttack()
         {
             _animator.SetTrigger(AnimatorHashes.SpikeAttackTrigger);
+
+            await AttackTimer();
         }
 
         private void OnAnimationHit()
         {
             if (!_character.IsKnocked)
             {
-                Attack();
+                if (!_data.MeatBoss)
+                {
+                    Attack();
+                }
+                else
+                {
+                    MeatBossAttack();
+                }
             }
         }
 
@@ -124,7 +136,7 @@ namespace Assets.Scripts.Content.BasicAI
             }
         }
 
-        private async void Attack()
+        private void Attack()
         {
             CheckRaycast();
             if (_damageable == null)
@@ -132,19 +144,54 @@ namespace Assets.Scripts.Content.BasicAI
                 _stateMachine.SetState<CharacterChaseState>();
                 return;
             }
+
             _damageable.TakeDamage(_data.Damage);
 
-            if (_data.Boss)
+            if (!_data.Boss)
             {
-                SplashCheckRaycast();
+                _stateMachine.SetState<CharacterChaseState>();
+                return;
+            }
+
+            SplashCheckRaycast();
+
+
+            if (_damageable == null)
+            {
+                _stateMachine.SetState<CharacterChaseState>();
+                return;
+            }
+
+            _damageable.TakeDamage(_data.SplashDamage);
+
+            _stateMachine.SetState<CharacterChaseState>();
+        }
+
+        private void MeatBossAttack()
+        {
+            CheckRaycast();
+            if (_damageable != null)
+            {
+                _damageable.TakeDamage(_data.Damage);
+            }
+
+            SplashCheckRaycast();
+
+            if (_damageable != null)
+            {
                 _damageable.TakeDamage(_data.SplashDamage);
             }
 
-            await AttackTimer();
-
-            _stateMachine.SetState<CharacterChaseState>();
-
+            if (_hasAttacked < _addAttack)
+            {
+                _animator.SetTrigger(AnimatorHashes.SpikeAttackTrigger);
+                _damageable = null;
+                _hasAttacked++;
+            }
+            else
+            {
+                _stateMachine.SetState<CharacterChaseState>();
+            }
         }
-
     }
 }

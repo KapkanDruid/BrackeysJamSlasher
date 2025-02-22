@@ -7,6 +7,7 @@ namespace Assets.Scripts.Content
         public static readonly int SimpleAttackTrigger = Animator.StringToHash("SimpleAttack");
         public static readonly int ArealAttackTrigger = Animator.StringToHash("ArealAttack");
         public static readonly int SpikeAttackTrigger = Animator.StringToHash("SpikeAttack");
+        public static readonly int RangeAttackTrigger = Animator.StringToHash("RangeAttack");
         public static readonly int IsMoving = Animator.StringToHash("IsMoving");
         public static readonly int JumpTrigger = Animator.StringToHash("Jump");
         public static readonly int IsLanding = Animator.StringToHash("IsLanding");

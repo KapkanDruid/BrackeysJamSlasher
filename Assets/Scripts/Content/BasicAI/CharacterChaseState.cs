@@ -11,6 +11,7 @@ namespace Assets.Scripts.Content.BasicAI
         private readonly CharacterStateMachine _stateMachine;
         private readonly CharacterSensor _sensor;
         private readonly Animator _animator;
+        private readonly Vector2[] _patrolPoints;
         private Transform _target;
         private RaycastHit2D[] _hits;
         private float _distanceToChase = 0.4f;
@@ -25,12 +26,14 @@ namespace Assets.Scripts.Content.BasicAI
                                    CharacterStateMachine stateMachine,
                                    CharacterSensor sensor,
                                    Animator animator,
-                                   GizmosDrawer gizmosDrawer)
+                                   GizmosDrawer gizmosDrawer, 
+                                   Vector2[] patrolPoints)
         {
             _character = character;
             _stateMachine = stateMachine;
             _sensor = sensor;
             _animator = animator;
+            _patrolPoints = patrolPoints;
             gizmosDrawer.AddGizmosDrawer(this);
 
         }
@@ -83,7 +86,11 @@ namespace Assets.Scripts.Content.BasicAI
         {
             if (_character.CharacterData.HasRangeAttack)
             {
-                _character.Shoot(new(_target.position.x, _target.position.y));
+                if (_character.transform.position.y == _target.position.y)
+                {
+                    _animator.SetTrigger(AnimatorHashes.RangeAttackTrigger);
+                    _character.Shoot(new(_character.CurrentOrientation, 0f));
+                }
             }
         }
 
@@ -100,7 +107,14 @@ namespace Assets.Scripts.Content.BasicAI
                 if (_canMoving)
                 {
                     _animator.SetBool(AnimatorHashes.IsMoving, true);
-                    _character.MoveTo(_target.position);
+                    if (_character.CharacterData.HasRangeAttack)
+                    {
+                        _character.MoveTo(new Vector2(_patrolPoints[0].x, _target.position.y));
+                    }
+                    else
+                    {
+                        _character.MoveTo(_target.position);
+                    }
 
                 }
             }

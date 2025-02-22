@@ -25,7 +25,7 @@ namespace Assets.Scripts.Content.BasicAI
 
             _states.Add(new CharacterAttackState(characterHandler, _animator, characterHandler.CancellationToken, this, animatorEventHandler));
             _states.Add(new CharacterPatrolState(characterHandler, this, patrolPoints2D, sensor));
-            _states.Add(new CharacterChaseState(characterHandler, this, sensor, _animator, gizmosDrawer));
+            _states.Add(new CharacterChaseState(characterHandler, this, sensor, _animator, gizmosDrawer, patrolPoints2D));
 
 
             SetState<CharacterPatrolState>();

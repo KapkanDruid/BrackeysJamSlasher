@@ -30,6 +30,7 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private float _attackRange;
         [Header("Boss")]
         [SerializeField] private bool _boss;
+        [SerializeField] private bool _meatBoss;
         [SerializeField] private int _splashDamage;
         [SerializeField] private Vector2 _hitSplashColliderSize;
         [SerializeField] private Vector2 _hitSplashColliderOffset;
@@ -52,6 +53,7 @@ namespace Assets.Scripts.Content.BasicAI
         public int RangeDamage => _rangeDamage;
         public int SplashDamage => _splashDamage;
         public bool Boss => _boss;
+        public bool MeatBoss => _meatBoss;
         public bool HasRangeAttack => _hasRangeAttack;
         public Vector2 HitColliderSize => _hitColliderSize;
         public Vector2 HitColliderOffset => _hitColliderOffset;
