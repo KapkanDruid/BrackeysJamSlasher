@@ -8,10 +8,10 @@ namespace Assets.Scripts.Content
     {
         [SerializeField] private string _sceneName;
 
-        private SceneTransitionController _sceneTransitionController;
+        private SceneTransiter _sceneTransitionController;
 
         [Inject]
-        private void Construct(SceneTransitionController sceneTransitionController)
+        private void Construct(SceneTransiter sceneTransitionController)
         {
             _sceneTransitionController = sceneTransitionController;
         }
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Content
             if (!PlayerEnterCondition.IsPlayer(collision.gameObject))
                 return;
 
-            _sceneTransitionController.ChangeScene(_sceneName);
+            _sceneTransitionController.SwitchToScene(_sceneName);
         }
     }
 }

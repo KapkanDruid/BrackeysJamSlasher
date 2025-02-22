@@ -1,4 +1,5 @@
 using Assets.Scripts.Content;
+using Assets.Scripts.Content.CoreProgression;
 using Assets.Scripts.Content.PlayerLogic;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,9 @@ namespace Assets.Scripts.Architecture
         [SerializeField] private SceneResources _sceneResources;
         [SerializeField] private MainSceneBootstrap _sceneBootstrap;
         [SerializeField] private Canvas _levelCanvas;
+        [SerializeField] private SceneTransiter _sceneTransiter;
+        [SerializeField] private AudioController _audioController;
+        [SerializeField] private ProgressCardsPopup _cardsPopup;
 
         public override void InstallBindings()
         {
@@ -23,12 +27,16 @@ namespace Assets.Scripts.Architecture
             Container.Bind<SceneResources>().FromInstance(_sceneResources).AsSingle();
             Container.Bind<PopupTextController>().AsSingle().NonLazy();
 
-            if (_levelCanvas == null)
-                Container.Bind<Canvas>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
-            else
-                Container.Bind<Canvas>().FromInstance(_levelCanvas).AsSingle().NonLazy();
+            Container.Bind<SceneTransiter>().FromInstance(_sceneTransiter).AsSingle().NonLazy();
+            Container.Bind<Canvas>().FromInstance(_levelCanvas).AsSingle().NonLazy();
 
-            Container.Bind<SceneTransitionController>().AsSingle().NonLazy();
+            Container.Bind<GameEndController>().AsSingle().NonLazy();
+            Container.Bind<AudioController>().FromInstance(_audioController).AsSingle().NonLazy();
+            Container.Bind<HeadUpDisplay>().FromInstance(GameObject.Instantiate(_sceneResources.HUDPrefab, _levelCanvas.transform)).AsSingle().NonLazy();
+            Container.Bind<StopwatchTimer>().FromInstance(GameObject.Instantiate(_sceneResources.StopwatchTimer, _levelCanvas.transform)).AsSingle().NonLazy();
+            Container.Bind<ProgressCardsPopup>().FromInstance(_cardsPopup).AsSingle().NonLazy();
+            Container.Bind<PlayerProgressController>().AsSingle().NonLazy();
+
         }
     }
 }

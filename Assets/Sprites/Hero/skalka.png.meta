@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      skalka_0: -494903092476531861
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
