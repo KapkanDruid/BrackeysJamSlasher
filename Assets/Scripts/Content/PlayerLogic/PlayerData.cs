@@ -22,8 +22,12 @@ namespace Assets.Scripts.Content.PlayerLogic
 
         public float Speed => _playerConfig.Speed;
         public float MaxHealth => _playerConfig.MaxHealth;
+        public float HealPercent => _playerConfig.HealPercent;
         public float JumpHeight => _playerConfig.JumpHeight;
         public float JumpDuration => _playerConfig.JumpDuration;
+        public float CriticalChance => _playerConfig.CriticalChance;
+        public float DodgeChancePercent => _playerConfig.DodgeChancePercent;
+        public float CriticalMultiplier => _playerConfig.CriticalMultiplier;
         public float InvincibleFramesDuration => _playerConfig.InvincibleFramesDuration;
 
         public CancellationToken CancellationToken { get => cancellationToken; set => cancellationToken = value; }
@@ -35,7 +39,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         public Transform ShadowTransform => _shadowTransform;
         public Transform DamageTextPoint => _damageTextPoint;
         public Transform JumpObjectTransform => _jumpObjectTransform;
-        public Sprite WeaponSprite => _currentPlayerWeapon.WeaponSprite;
+        public Sprite[] WeaponSprites => _currentPlayerWeapon.WeaponSprites;
         public SpriteRenderer WeaponSpriteRenderer => _weaponSpriteRenderer;
         public PlayerWeapon CurrentPlayerWeapon { get => _currentPlayerWeapon; set => _currentPlayerWeapon = value; }
 

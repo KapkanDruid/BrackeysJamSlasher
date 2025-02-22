@@ -11,6 +11,9 @@ namespace Assets.Scripts.Content.PlayerLogic
         private readonly Animator _animator;
         private readonly PopupTextController _popupTextController;
         private readonly CharacterJumpHandler _characterJumpHandler;
+        private readonly GameEndController _gameEndController;
+        private readonly AudioController _audioController;
+        private readonly HeadUpDisplay _headUpDisplay;
 
         private float _currentHealth;
         private bool _canBeDamaged;
@@ -22,7 +25,10 @@ namespace Assets.Scripts.Content.PlayerLogic
             PlayerData playerData,
             PopupTextController popupTextController,
             CharacterJumpHandler characterJumpHandler,
-            Animator animator)
+            Animator animator,
+            GameEndController gameEndController,
+            AudioController audioController,
+            HeadUpDisplay headUpDisplay)
         {
             _data = playerData;
             _animator = animator;
@@ -32,6 +38,9 @@ namespace Assets.Scripts.Content.PlayerLogic
             _currentHealth = _data.MaxHealth;
             _canBeDamaged = true;
             _isDead = false;
+            _gameEndController = gameEndController;
+            _audioController = audioController;
+            _headUpDisplay = headUpDisplay;
         }
 
         public void TakeDamage(float damage, Action callBack = null)
@@ -49,8 +58,19 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             _animator.SetTrigger(AnimatorHashes.TakeDamageTrigger);
 
-            _currentHealth -= damage;
-            _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
+            _audioController.PlayOneShot(AudioController.SoundEffects.PlayerHit);
+
+            if (UnityEngine.Random.Range(0, 100) < _data.DodgeChancePercent)
+            {
+                _popupTextController.ShowDodge(_data.DamageTextPoint.position);
+            }
+            else
+            {
+                _currentHealth -= damage;
+                _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
+
+                _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+            }
 
             callBack?.Invoke();
 
@@ -58,10 +78,13 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             if (_currentHealth <= 0)
             {
-                //death event
                 _currentHealth = 0;
                 _isDead = true;
                 _animator.SetTrigger(AnimatorHashes.DeathTrigger);
+
+                _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
+
+                _gameEndController.OnPlayerDeath();
             }
         }
 
@@ -80,14 +103,19 @@ namespace Assets.Scripts.Content.PlayerLogic
         }
 
 
-        public void Heal(float healValue)
+        public void Heal()
         {
-            _currentHealth += healValue;
+            _popupTextController.ShowHeal(_data.DamageTextPoint.position, _currentHealth * _data.HealPercent / 100);
+
+            var healAmount = (1 + _data.HealPercent / 100);
+            _currentHealth *= healAmount;
 
             if (_currentHealth > _data.MaxHealth)
             {
                 _currentHealth = _data.MaxHealth;
             }
+
+            _headUpDisplay.ChangeHealth(_currentHealth / _data.MaxHealth);
         }
     }
 }
