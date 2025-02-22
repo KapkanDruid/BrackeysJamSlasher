@@ -21,3 +21,4 @@ MonoBehaviour:
   _criticalMultiplier: 2
   _invincibleFramesDuration: 1
   _dodgeChancePercent: 5
+  _weapon: {fileID: 11400000, guid: 46724805fe2945542a459a16a4d66e9e, type: 2}

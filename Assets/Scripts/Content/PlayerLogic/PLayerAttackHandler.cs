@@ -45,8 +45,10 @@ namespace Assets.Scripts.Content.PlayerLogic
             _inputActions.Player.Attack.performed += OnAttack;
 
             _animatorEventHandler.OnAnimationHit += OnAnimationHit;
+        }
 
-
+        public void Initialize()
+        {
             if (_data.WeaponSprites != null)
             {
                 _weaponSpriteRenderer.sprite = _data.WeaponSprites[0];
@@ -118,9 +120,9 @@ namespace Assets.Scripts.Content.PlayerLogic
         private float DetermineDamage()
         {
             if (UnityEngine.Random.Range(0f, 100f) < _data.CriticalChance)
-                return _data.CurrentPlayerWeapon.Damage * _data.CriticalMultiplier;
+                return _data.Damage * _data.CriticalMultiplier;
             else
-                return _data.CurrentPlayerWeapon.Damage;
+                return _data.Damage;
         }
 
         public void Dispose()

@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: TestSimpleWeapon
   m_EditorClassIdentifier: 
   _playerWeaponType: 2
-  _weaponSprite: {fileID: -1029431455884925118, guid: 2631b67977c4ef34a8421522e02bfb8c, type: 3}
+  _weaponSprites:
+  - {fileID: -3646482273839619509, guid: 3d939d53fa91c94498d7d9e672089484, type: 3}
   _damage: 5
   _weaponCollider: {fileID: 11400000, guid: fe50350e43c905c45adff1860b3974a1, type: 2}
+  _additiveDamagePerLevel: 0
+  _additiveDamageForA: 0
+  _additiveDamageForB: 0
+  _additiveDamageForC: 0
