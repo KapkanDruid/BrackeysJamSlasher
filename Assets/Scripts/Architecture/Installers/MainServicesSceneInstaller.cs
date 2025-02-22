@@ -15,6 +15,7 @@ namespace Assets.Scripts.Architecture
         [SerializeField] private Canvas _levelCanvas;
         [SerializeField] private SceneTransiter _sceneTransiter;
         [SerializeField] private AudioController _audioController;
+        [SerializeField] private ProgressCardsPopup _cardsPopup;
 
         public override void InstallBindings()
         {
@@ -33,7 +34,7 @@ namespace Assets.Scripts.Architecture
             Container.Bind<AudioController>().FromInstance(_audioController).AsSingle().NonLazy();
             Container.Bind<HeadUpDisplay>().FromInstance(GameObject.Instantiate(_sceneResources.HUDPrefab, _levelCanvas.transform)).AsSingle().NonLazy();
             Container.Bind<StopwatchTimer>().FromInstance(GameObject.Instantiate(_sceneResources.StopwatchTimer, _levelCanvas.transform)).AsSingle().NonLazy();
-            Container.Bind<ProgressCardsPopup>().FromInstance(GameObject.Instantiate(_sceneResources.ProgressCardsPopup, _levelCanvas.transform)).AsSingle().NonLazy();
+            Container.Bind<ProgressCardsPopup>().FromInstance(_cardsPopup).AsSingle().NonLazy();
             Container.Bind<PlayerProgressController>().AsSingle().NonLazy();
 
         }

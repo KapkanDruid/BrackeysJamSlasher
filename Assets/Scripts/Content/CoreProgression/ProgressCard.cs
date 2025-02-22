@@ -43,7 +43,7 @@ namespace Assets.Scripts.Content.CoreProgression
                 if (value.SuccessRate == _currentSuccessRate)
                 {
                     _mainImage.sprite = value.RateSprite;
-                    _iconText.text = value.IncreaseValue.ToString();
+                    _iconText.text = value.CardText;
                     _currentIncreaseValue = value.IncreaseValue;
                 }
             }

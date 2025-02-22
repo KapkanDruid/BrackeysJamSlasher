@@ -8,10 +8,12 @@ namespace Assets.Scripts.Content.CoreProgression
     {
         [SerializeField] private SuccessRate _successRate;
         [SerializeField] private float _increaseValue;
+        [SerializeField] private string _cardText;
         [SerializeField] private Sprite _rateSprite;
 
         public SuccessRate SuccessRate => _successRate;
         public float IncreaseValue => _increaseValue;
         public Sprite RateSprite { get => _rateSprite; set => _rateSprite = value; }
+        public string CardText => _cardText;
     }
 }

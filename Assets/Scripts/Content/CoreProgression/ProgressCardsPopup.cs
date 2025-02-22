@@ -54,7 +54,9 @@ namespace Assets.Scripts.Content.CoreProgression
             _rectTransform.gameObject.SetActive(true);
 
             _rectTransform.DOAnchorPos(_targetPosition, _showSpeed)
-                .SetEase(Ease.OutExpo);
+                .SetEase(Ease.OutExpo).SetUpdate(true);
+
+            Time.timeScale = 0;
         }
 
 
@@ -62,6 +64,7 @@ namespace Assets.Scripts.Content.CoreProgression
         {
             _progressController.DetermineProgress(progressValues);
 
+            Time.timeScale = 1;
             Hide();
         }
 

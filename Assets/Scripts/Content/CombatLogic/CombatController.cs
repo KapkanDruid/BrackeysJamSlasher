@@ -148,6 +148,19 @@ namespace Assets.Scripts.Content
 
             _playerController.Heal();
 
+            EndTimer().Forget();
+        }
+
+        private async UniTask EndTimer()
+        {
+            try
+            {
+                await UniTask.WaitForSeconds(2, cancellationToken: this.GetCancellationTokenOnDestroy());
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
 
             _playerProgressController.ShowProgressCards(_progressCardsConfig, _timer.ResetTimer());
         }

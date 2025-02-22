@@ -16,7 +16,6 @@ namespace Assets.Scripts.Content
         [SerializeField] private GameLoosePopup _gameLoosePopup;
         [SerializeField] private HeadUpDisplay _HUDPrefab;
         [SerializeField] private StopwatchTimer _stopwatchTimer;
-        [SerializeField] private ProgressCardsPopup _progressCardsPopup;
 
         [Header("Sound Settings")]
         [SerializeField] private List<SoundEffects> _soundEffect;
@@ -45,7 +44,6 @@ namespace Assets.Scripts.Content
         public PopupText DodgeTextPrefab => _dodgeTextPrefab;
         public float MaxATime => _maxATime;
         public float MaxBTime => _maxBTime;
-        public ProgressCardsPopup ProgressCardsPopup => _progressCardsPopup;
     }
 
     [Serializable]
