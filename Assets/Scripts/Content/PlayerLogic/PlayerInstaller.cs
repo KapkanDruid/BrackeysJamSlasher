@@ -15,7 +15,7 @@ namespace Assets.Scripts.Content.PlayerLogic
             Container.BindInterfacesAndSelfTo<CharacterJumpHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerAttackHandler>().AsSingle().NonLazy();
             Container.Bind<PlayerAttackAnimationController>().AsSingle().NonLazy();
-            Container.Bind<PlayerHealthHandler>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerHealthHandler>().AsSingle().NonLazy();
 
             Container.Bind<Rigidbody2D>().FromComponentOnRoot().AsSingle();
 

@@ -18,13 +18,13 @@ namespace Assets.Scripts.Content.PlayerLogic
 
         public WeaponAnimationType PlayerWeaponType => _playerWeaponType;
         public Sprite[] WeaponSprites => _weaponSprites;
-        public float Damage => _damage;
         public Vector2 ColliderSize => _weaponCollider.ColliderSize;
         public Vector2 ColliderOffset => _weaponCollider.ColliderOffset;
         public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
         public float AdditiveDamageForA => _additiveDamageForA;
         public float AdditiveDamageForB => _additiveDamageForB;
         public float AdditiveDamageForC => _additiveDamageForC;
-        public float AdditiveDamagePerLevel => _additiveDamagePerLevel; 
+        public float AdditiveDamagePerLevel => _additiveDamagePerLevel;
+        public float Damage { get => _damage; set => _damage = value; }
     }
 }

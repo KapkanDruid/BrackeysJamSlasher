@@ -14,6 +14,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         [SerializeField] private float _criticalMultiplier;
         [SerializeField] private float _invincibleFramesDuration;
         [SerializeField, Range(0, 100)] private float _dodgeChancePercent;
+        [SerializeField] private PlayerWeapon _weapon;
 
         public float Speed => _speed;
         public float MaxHealth => _maxHealth;
@@ -24,5 +25,6 @@ namespace Assets.Scripts.Content.PlayerLogic
         public float JumpDuration => _jumpDuration;
         public float DodgeChancePercent => _dodgeChancePercent;
         public float InvincibleFramesDuration => _invincibleFramesDuration;
+        public PlayerWeapon Weapon => _weapon;
     }
 }

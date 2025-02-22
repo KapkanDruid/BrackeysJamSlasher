@@ -12,6 +12,7 @@ namespace Assets.Scripts.Content.PlayerLogic
         private PlayerHealthHandler _healthHandler;
         private CharacterJumpHandler _jumpHandler;
         private InputSystemActions _inputActions;
+        private PlayerAttackHandler _attackHandler;
         private Animator _animator;
 
         public PlayerData PlayerData => _playerData;
@@ -21,15 +22,23 @@ namespace Assets.Scripts.Content.PlayerLogic
             CharacterJumpHandler jumpHandler, 
             InputSystemActions inputActions, 
             Animator animator,
-            PlayerHealthHandler healthHandler)
+            PlayerHealthHandler healthHandler,
+            PlayerAttackHandler playerAttackHandler)
         {
             _healthHandler = healthHandler;
             _inputActions = inputActions;
             _jumpHandler = jumpHandler;
             _animator = animator;
+            _attackHandler = playerAttackHandler;
 
             _playerData.ThisEntity = this;
             _playerData.CancellationToken = this.GetCancellationTokenOnDestroy();
+        }
+
+        private void Start()
+        {
+            _healthHandler.Initialize();
+            _attackHandler.Initialize();
         }
 
         private void Update()

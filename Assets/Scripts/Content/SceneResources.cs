@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Content.CoreProgression;
+using Assets.Scripts.Content.PlayerLogic;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Content
         [SerializeField] private GameLoosePopup _gameLoosePopup;
         [SerializeField] private HeadUpDisplay _HUDPrefab;
         [SerializeField] private StopwatchTimer _stopwatchTimer;
+        [SerializeField] private PlayerConfig _playerConfig;
 
         [Header("Sound Settings")]
         [SerializeField] private List<SoundEffects> _soundEffect;
@@ -44,6 +46,7 @@ namespace Assets.Scripts.Content
         public PopupText DodgeTextPrefab => _dodgeTextPrefab;
         public float MaxATime => _maxATime;
         public float MaxBTime => _maxBTime;
+        public PlayerConfig PlayerConfig => _playerConfig;
     }
 
     [Serializable]
