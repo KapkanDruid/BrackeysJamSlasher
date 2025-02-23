@@ -28,6 +28,8 @@ namespace Assets.Scripts.Content
         [SerializeField] private List<SoundEffects> _soundEffect;
         [SerializeField] private AudioClip[] _stepSounds;
         [SerializeField] private float _stepSoundDelay = 0.4f;
+        [SerializeField] private AudioClip[] _mainMenuMusic;
+        [SerializeField] private AudioClip[] _levelMusic;
 
         [Header("SceneNames")]
         [SerializeField] private string _mainMenu;
@@ -56,6 +58,8 @@ namespace Assets.Scripts.Content
         public CharacterConfig SausageConfig => _sausageConfig;
         public CharacterConfig BreadConfig => _breadConfig;
         public CharacterConfig MeatConfig => _meatConfig;
+        public AudioClip[] MainMenuMusic => _mainMenuMusic;
+        public AudioClip[] LevelMusic => _levelMusic;
     }
 
     [Serializable]

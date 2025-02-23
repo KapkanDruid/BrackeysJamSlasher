@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Assets.Scripts.Content
@@ -9,15 +10,13 @@ namespace Assets.Scripts.Content
         [SerializeField] private AudioSource _SFXSource;
         [SerializeField] private AudioSource _stepSource;
 
+        private AudioClip[] _musicClips;
+
         private SceneResources _sceneResources;
         private bool _isStepsPlaying;
         private float _nextStepTime = 0f;
 
-        [Inject]
-        private void Construct(SceneResources sceneResources)
-        {
-            _sceneResources = sceneResources;
-        }
+        private int _currentClipIndex;
 
         public enum SoundEffects
         {
@@ -27,6 +26,22 @@ namespace Assets.Scripts.Content
             BreadHit,
             GroundHit,
         }
+
+        [Inject]
+        private void Construct(SceneResources sceneResources)
+        {
+            _sceneResources = sceneResources;
+        }
+
+        private void Start()
+        {
+            if (SceneManager.GetActiveScene().name == _sceneResources.MainMenu)
+                _musicClips = _sceneResources.MainMenuMusic;
+            else
+                _musicClips = _sceneResources.LevelMusic;
+
+        }
+
 
         public void PlayOneShot(SoundEffects effectType)
         {
@@ -44,8 +59,20 @@ namespace Assets.Scripts.Content
                 PlayRandomFootstep();
                 _nextStepTime = Time.time + _sceneResources.StepSoundDelay;
             }
+
+            if (!_musicSource.isPlaying)
+            {
+                PlayNextClip();
+            }
         }
 
+        private void PlayNextClip()
+        {
+            _musicSource.clip = _musicClips[Random.Range(0, _musicClips.Length -1)];
+
+            _musicSource.Play();
+        }
+    
         public void StartFootsteps()
         {
             if (_isStepsPlaying)

@@ -13,6 +13,9 @@ public class MainSceneBootstrap : MonoBehaviour
     [Inject] private GroundDirectionFinder _groundDirectionFinder;
     [Inject] private GroundDirectionPointsHandler _groundDirectionPointsHandler;
     [Inject] private GameDataLoader _gameDataLoader;
+    [Inject] private HeadUpDisplay _HUDDisplay;
+    [Inject] private SceneTransiter _sceneTransiter;
+    [Inject] private SceneResources _sceneResources;
 
     public event Action OnServicesInitialized;
 
@@ -29,6 +32,7 @@ public class MainSceneBootstrap : MonoBehaviour
         _groundDirectionPointsHandler.Initialize();
         _groundDirectionFinder.Initialize();
         _popupTextController.Initialize();
+        _HUDDisplay.Initialize(_sceneTransiter, _sceneResources, _inputActions);
 
         OnServicesInitialized?.Invoke();
     }
