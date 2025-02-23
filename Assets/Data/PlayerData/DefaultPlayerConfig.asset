@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: DefaultPlayerConfig
   m_EditorClassIdentifier: 
   _speed: 5
-  _maxHealth: 30
+  _maxHealth: 100
   _healPercent: 10
   _jumpHeight: 2
   _jumpDuration: 0.6
   _criticalChancePercent: 5
-  _criticalMultiplier: 2
+  _criticalMultiplier: 3
   _invincibleFramesDuration: 1
-  _dodgeChancePercent: 5
+  _dodgeChancePercent: 25
   _weapon: {fileID: 11400000, guid: 46724805fe2945542a459a16a4d66e9e, type: 2}
