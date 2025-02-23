@@ -123,6 +123,7 @@ namespace Assets.Scripts.Content.BasicAI
             _character.IsKnocked = _isKnockedDown;
             _hitCount = 0;
 
+            _stateMachine.SetState<CharacterPatrolState>();
         }
 
         private void SetAnimatorTrigger(int name)

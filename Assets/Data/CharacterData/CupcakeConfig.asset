@@ -13,19 +13,24 @@ MonoBehaviour:
   m_Name: CupcakeConfig
   m_EditorClassIdentifier: 
   _health: 60
-  _forcePushKnockback: 5
-  _forcePushKnockdown: 5
-  _timeKnockback: 0.2
+  _forcePushKnockback: 6
+  _forcePushKnockdown: 9
+  _timeKnockback: 0.8
   _timeKnockdown: 1.5
   _maxAirTime: 0.5
   _comboHoldTime: 5
   _speed: 2
   _damage: 6
-  _splashDamage: 0
   _attackCooldown: 2
   _hitColliderSize: {x: 0.5, y: 0.5}
   _hitColliderOffset: {x: 0.61, y: 0}
+  _hasRangeAttack: 0
+  _rangeDamage: 0
+  _rangeAttackCooldown: 0
+  _attackRange: 0
   _boss: 0
+  _meatBoss: 0
+  _splashDamage: 0
   _hitSplashColliderSize: {x: 0, y: 0}
   _hitSplashColliderOffset: {x: 0, y: 0}
   _sensorRadius: 20
