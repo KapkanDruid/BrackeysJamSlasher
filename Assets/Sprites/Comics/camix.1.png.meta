@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      camix.1_0: 8919526753596451449
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
