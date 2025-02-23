@@ -16,6 +16,7 @@ namespace Assets.Scripts.Content.BasicAI
         private AudioController _audioController;
         private Animator _animator;
         private CharacterStateMachine _stateMachine;
+        private EnemyDeadHandler _enemyDeadHandler;
         private float _health;
         private int _hitCount = 0;
         private bool _isKnockedDown = false;
@@ -30,7 +31,8 @@ namespace Assets.Scripts.Content.BasicAI
                               Animator animator,
                               CharacterStateMachine stateMachine,
                               PopupTextController popupTextController,
-                              AudioController audioController)
+                              AudioController audioController,
+                              EnemyDeadHandler enemyDeadHandler)
         {
             _data = data;
             _health = _data.Health;
@@ -40,6 +42,7 @@ namespace Assets.Scripts.Content.BasicAI
             _stateMachine = stateMachine;
             _popupTextController = popupTextController;
             _audioController = audioController;
+            _enemyDeadHandler = enemyDeadHandler;
         }
 
         public void TakeDamage(float damage, Action callback)
@@ -60,6 +63,11 @@ namespace Assets.Scripts.Content.BasicAI
             ProcessHitReaction();
 
             ResetHitCountTimer().Forget();
+
+            if ( _health <= 0)
+            {
+                _enemyDeadHandler.Death();
+            }
         }
 
         private void PlaySaund()
