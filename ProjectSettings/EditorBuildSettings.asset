@@ -12,8 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1 1Test.unity
     guid: a72ca81ee5a2d3b44bdefc5c28a2afa3
   - enabled: 1
-    path: Assets/Scenes/Level2 Test.unity
-    guid: 988807ce3f86b9148974683cf30c2ce0
+    path: Assets/Scenes/Level1_relise.unity
+    guid: 65f8d0f9c3545954c9eb00cfd3844e63
+  - enabled: 1
+    path: Assets/Scenes/Level2_relise.unity
+    guid: 09c36c7827b2f524c8356eaf9c8e593a
+  - enabled: 1
+    path: Assets/Scenes/Level1_relise_circle_2.unity
+    guid: b05b7dfe492c4044abed19d6b5338e2f
+  - enabled: 1
+    path: Assets/Scenes/Level2_relise_cirlce_2.unity
+    guid: 2608906e46d8bbf49865432acc4b41f3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
