@@ -19,6 +19,10 @@ MonoBehaviour:
   _timeKnockdown: 1.5
   _maxAirTime: 0.5
   _comboHoldTime: 5
+  _cupcake: 1
+  _sausage: 0
+  _breadBoss: 0
+  _meatBoss: 0
   _speed: 2
   _damage: 6
   _attackCooldown: 2
@@ -29,7 +33,6 @@ MonoBehaviour:
   _rangeAttackCooldown: 0
   _attackRange: 0
   _boss: 0
-  _meatBoss: 0
   _splashDamage: 0
   _hitSplashColliderSize: {x: 0, y: 0}
   _hitSplashColliderOffset: {x: 0, y: 0}

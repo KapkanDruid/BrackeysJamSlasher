@@ -13,6 +13,10 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private float _timeKnockdown = 3f;
         [SerializeField] private float _maxAirTime = 0.5f;
         [SerializeField] private float _comboHoldTime = 5f;
+        [SerializeField] private bool _cupcake;
+        [SerializeField] private bool _sausage;
+        [SerializeField] private bool _breadBoss;
+        [SerializeField] private bool _meatBoss;
 
         [Header("Movement")]
         [SerializeField] private float _speed;
@@ -30,7 +34,6 @@ namespace Assets.Scripts.Content.BasicAI
         [SerializeField] private float _attackRange;
         [Header("Boss")]
         [SerializeField] private bool _boss;
-        [SerializeField] private bool _meatBoss;
         [SerializeField] private int _splashDamage;
         [SerializeField] private Vector2 _hitSplashColliderSize;
         [SerializeField] private Vector2 _hitSplashColliderOffset;
@@ -57,6 +60,9 @@ namespace Assets.Scripts.Content.BasicAI
         public int RangeDamage => _rangeDamage;
         public int SplashDamage => _splashDamage;
         public bool Boss => _boss;
+        public bool Cupcaka => _cupcake;
+        public bool Sausage => _sausage;
+        public bool BreadBoss => _breadBoss;
         public bool MeatBoss => _meatBoss;
         public bool HasRangeAttack => _hasRangeAttack;
         public Vector2 HitColliderSize => _hitColliderSize;

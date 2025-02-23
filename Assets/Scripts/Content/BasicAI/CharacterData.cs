@@ -27,6 +27,9 @@ namespace Assets.Scripts.Content.BasicAI
         public int RangeDamage => _characterConfig.RangeDamage;
         public int SplashDamage => _characterConfig.SplashDamage;
         public bool Boss => _characterConfig.Boss;
+        public bool Cupcake => _characterConfig.Cupcaka;
+        public bool Sausage => _characterConfig.Sausage;
+        public bool BreadBoss => _characterConfig.BreadBoss;
         public bool MeatBoss => _characterConfig.MeatBoss;
         public bool HasRangeAttack => _characterConfig.HasRangeAttack;
         public Transform CharacterTransform => _characterTransform;

@@ -56,11 +56,11 @@ namespace Assets.Scripts.Content.BasicAI
             _animatorEventHandler.OnAnimationHit -= OnAnimationHit;
         }
 
-        private async void StartAttack()
+        private void StartAttack()
         {
             _animator.SetTrigger(AnimatorHashes.SpikeAttackTrigger);
 
-            await AttackTimer();
+
         }
 
         private void OnAnimationHit()
@@ -136,16 +136,13 @@ namespace Assets.Scripts.Content.BasicAI
             }
         }
 
-        private void Attack()
+        private async void Attack()
         {
             CheckRaycast();
-            if (_damageable == null)
+            if (_damageable != null)
             {
-                _stateMachine.SetState<CharacterChaseState>();
-                return;
+                _damageable.TakeDamage(_data.Damage);
             }
-
-            _damageable.TakeDamage(_data.Damage);
 
             if (!_data.Boss)
             {
@@ -156,13 +153,13 @@ namespace Assets.Scripts.Content.BasicAI
             SplashCheckRaycast();
 
 
-            if (_damageable == null)
+            if (_damageable != null)
             {
-                _stateMachine.SetState<CharacterChaseState>();
-                return;
+                _damageable.TakeDamage(_data.SplashDamage);
             }
 
-            _damageable.TakeDamage(_data.SplashDamage);
+
+            await AttackTimer();
 
             _stateMachine.SetState<CharacterChaseState>();
         }
