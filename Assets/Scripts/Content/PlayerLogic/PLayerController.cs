@@ -61,6 +61,10 @@ namespace Assets.Scripts.Content.PlayerLogic
 
             if (_healthHandler is T healthHandler)
                 return healthHandler;
+            
+            if (_playerData.PlayerTransform is T transform)
+                return transform;
+
 
             return null;
         }

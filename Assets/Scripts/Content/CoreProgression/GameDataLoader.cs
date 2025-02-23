@@ -16,7 +16,7 @@ namespace Assets.Scripts.Content.CoreProgression
         {
             if (SceneManager.GetActiveScene().name == _sceneResources.FirstLevel)
             {
-                StaticData.Initialize(_sceneResources.PlayerConfig);
+                StaticData.Initialize(_sceneResources.PlayerConfig, _sceneResources.CupcakeConfig, _sceneResources.SausageConfig, _sceneResources.BreadConfig, _sceneResources.MeatConfig);
                 Debug.Log("Data reset");
             }
         }
