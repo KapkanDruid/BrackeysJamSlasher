@@ -27,6 +27,12 @@ MonoBehaviour:
   _soundEffect:
   - _effectType: 0
     _effectClip: {fileID: 8300000, guid: 072e739f92480e2418de1c824795844f, type: 3}
+  - _effectType: 1
+    _effectClip: {fileID: 8300000, guid: dc16eae6f6ce64347b2c765564d77e20, type: 3}
+  - _effectType: 2
+    _effectClip: {fileID: 8300000, guid: 13bcda1727b148e458a3487aa7f51dcc, type: 3}
+  - _effectType: 3
+    _effectClip: {fileID: 8300000, guid: 6f3056f6327ef7d44b104e16962bd4b5, type: 3}
   _stepSounds:
   - {fileID: 8300000, guid: 4ae2e0094fc05d249b0b9f869d927b14, type: 3}
   - {fileID: 8300000, guid: 1a3fa7ab587bb8b4c9fbe437f633a1ee, type: 3}

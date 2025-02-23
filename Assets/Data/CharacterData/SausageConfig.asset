@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: SausageConfig
   m_EditorClassIdentifier: 
   _health: 45
-  _forcePushKnockback: 5
-  _forcePushKnockdown: 5
-  _timeKnockback: 0.2
-  _timeKnockdown: 1.5
-  _maxAirTime: 0.5
+  _forcePushKnockback: 6
+  _forcePushKnockdown: 9
+  _timeKnockback: 0.8
+  _timeKnockdown: 1
+  _maxAirTime: 1
   _comboHoldTime: 5
+  _cupcake: 0
+  _sausage: 1
+  _breadBoss: 0
+  _meatBoss: 0
   _speed: 1
   _damage: 0
   _attackCooldown: 0
@@ -29,7 +33,10 @@ MonoBehaviour:
   _rangeAttackCooldown: 0
   _attackRange: 0
   _boss: 0
+  _meatBoss: 0
   _splashDamage: 0
   _hitSplashColliderSize: {x: 0, y: 0}
   _hitSplashColliderOffset: {x: 0, y: 0}
   _sensorRadius: 20
+  _waveMovementStrength: 0
+  _waveMovementFrequency: 0

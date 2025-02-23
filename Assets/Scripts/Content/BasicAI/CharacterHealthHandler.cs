@@ -13,6 +13,7 @@ namespace Assets.Scripts.Content.BasicAI
         private CharacterHandler _character;
         private PopupTextController _popupTextController;
         private Rigidbody2D _rigidbody;
+        private AudioController _audioController;
         private Animator _animator;
         private CharacterStateMachine _stateMachine;
         private float _health;
@@ -23,12 +24,13 @@ namespace Assets.Scripts.Content.BasicAI
         public float Health => _health;
 
         [Inject]
-        public void Construct(CharacterData data, 
-                              Rigidbody2D rigidbody, 
-                              CharacterHandler character, 
-                              Animator animator, 
+        public void Construct(CharacterData data,
+                              Rigidbody2D rigidbody,
+                              CharacterHandler character,
+                              Animator animator,
                               CharacterStateMachine stateMachine,
-                              PopupTextController popupTextController)
+                              PopupTextController popupTextController,
+                              AudioController audioController)
         {
             _data = data;
             _health = _data.Health;
@@ -37,6 +39,7 @@ namespace Assets.Scripts.Content.BasicAI
             _animator = animator;
             _stateMachine = stateMachine;
             _popupTextController = popupTextController;
+            _audioController = audioController;
         }
 
         public void TakeDamage(float damage, Action callback)
@@ -44,17 +47,39 @@ namespace Assets.Scripts.Content.BasicAI
             if (_isDead)
                 return;
 
-            if (_isKnockedDown) 
+            if (_isKnockedDown)
                 return;
 
             callback?.Invoke();
+
             _health -= damage;
             Debug.Log("_popup = null");
+            PlaySaund();
             _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
             _hitCount++;
             ProcessHitReaction();
 
             ResetHitCountTimer().Forget();
+        }
+
+        private void PlaySaund()
+        {
+            if (_data.Cupcake)
+            {
+                _audioController.PlayOneShot(AudioController.SoundEffects.CakeHit);
+            }
+            if (_data.Sausage)
+            {
+                _audioController.PlayOneShot(AudioController.SoundEffects.SausageHit);
+            }
+            if (_data.BreadBoss)
+            {
+                _audioController.PlayOneShot(AudioController.SoundEffects.BreadHit);
+            }
+            if (_data.MeatBoss)
+            {
+                _audioController.PlayOneShot(AudioController.SoundEffects.SausageHit);
+            }
         }
 
         private async UniTask ResetHitCountTimer()
