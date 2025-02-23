@@ -3561,6 +3561,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: '_wavesDelay.Array.data[0]'
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1184651396842614783, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6238,11 +6242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_spawnPoints.Array.data[0]'
@@ -20316,11 +20320,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_spawnPoints.Array.data[0]'
@@ -21742,11 +21746,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_spawnPoints.Array.data[0]'

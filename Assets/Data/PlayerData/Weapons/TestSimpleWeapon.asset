@@ -15,9 +15,9 @@ MonoBehaviour:
   _playerWeaponType: 2
   _weaponSprites:
   - {fileID: -3646482273839619509, guid: 3d939d53fa91c94498d7d9e672089484, type: 3}
-  _damage: 5
+  _damage: 16
   _weaponCollider: {fileID: 11400000, guid: fe50350e43c905c45adff1860b3974a1, type: 2}
-  _additiveDamagePerLevel: 0
-  _additiveDamageForA: 0
-  _additiveDamageForB: 0
-  _additiveDamageForC: 0
+  _additiveDamagePerLevel: 6
+  _additiveDamageForA: 8
+  _additiveDamageForB: 4
+  _additiveDamageForC: 2

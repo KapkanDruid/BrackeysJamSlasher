@@ -4081,7 +4081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3025641287985241174, guid: c69cbea88b087ab48af651b0300e21e1, type: 3}
       propertyPath: _sceneName
-      value: MainMenu
+      value: final_comics_scene
       objectReference: {fileID: 0}
     - target: {fileID: 3321726780564021584, guid: c69cbea88b087ab48af651b0300e21e1, type: 3}
       propertyPath: m_Name
