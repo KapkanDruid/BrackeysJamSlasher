@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de99fba8f8e95f4e87f86827bf2fc15, type: 3}
+  m_Name: CupcakeConfig
+  m_EditorClassIdentifier: 
+  _health: 60
+  _forcePushKnockback: 4
+  _forcePushKnockdown: 9
+  _timeKnockback: 0.6
+  _timeKnockdown: 1.5
+  _maxAirTime: 0.5
+  _comboHoldTime: 5
+  _cupcake: 1
+  _sausage: 0
+  _breadBoss: 0
+  _meatBoss: 0
+  _speed: 2
+  _damage: 6
+  _attackCooldown: 2
+  _hitColliderSize: {x: 0.5, y: 0.5}
+  _hitColliderOffset: {x: 0.61, y: 0}
+  _hasRangeAttack: 0
+  _rangeDamage: 0
+  _rangeAttackCooldown: 0
+  _attackRange: 0
+  _boss: 0
+  _splashDamage: 0
+  _hitSplashColliderSize: {x: 0, y: 0}
+  _hitSplashColliderOffset: {x: 0, y: 0}
+  _sensorRadius: 20
+  _waveMovementStrength: 1.87
+  _waveMovementFrequency: 0.87

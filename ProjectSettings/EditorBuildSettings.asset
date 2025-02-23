@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ce55b2d8385594a43825c794d82f1e96
+  - enabled: 1
+    path: Assets/Scenes/comics_scene.unity
+    guid: 063721fa82994bd45a53394af7856233
+  - enabled: 1
+    path: Assets/Scenes/Level1 1Test.unity
+    guid: a72ca81ee5a2d3b44bdefc5c28a2afa3
+  - enabled: 1
+    path: Assets/Scenes/Level1_relise.unity
+    guid: 65f8d0f9c3545954c9eb00cfd3844e63
+  - enabled: 1
+    path: Assets/Scenes/Level2_relise.unity
+    guid: 09c36c7827b2f524c8356eaf9c8e593a
+  - enabled: 1
+    path: Assets/Scenes/Level1_relise_circle_2.unity
+    guid: b05b7dfe492c4044abed19d6b5338e2f
+  - enabled: 1
+    path: Assets/Scenes/Level2_relise_cirlce_2.unity
+    guid: 2608906e46d8bbf49865432acc4b41f3
+  - enabled: 1
+    path: Assets/Scenes/Level1_relise_reverse.unity
+    guid: 6e8fd4b4012699344a4ef7c8cc42f648
+  - enabled: 1
+    path: Assets/Scenes/final_comics_scene.unity
+    guid: 881cce64486f14544afb7c6dd556ffee
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0

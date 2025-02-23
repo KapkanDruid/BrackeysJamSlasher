@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f12bf16524cbbd4b93308118d7d3adb, type: 3}
+  m_Name: SceneResources
+  m_EditorClassIdentifier: 
+  _damageTextPrefab: {fileID: 8146456115899650276, guid: a9c5b2e6873df624983d2a121cefcf36, type: 3}
+  _healTextPrefab: {fileID: 8146456115899650276, guid: d49fa9d847a8b0645a8e3607d2e0becf, type: 3}
+  _dodgeTextPrefab: {fileID: 8146456115899650276, guid: 77f44968c6f0fc34d87a0a1b9ec04785, type: 3}
+  _damageTextPoolSize: 5
+  _gameLoosePopup: {fileID: 1502162379524884380, guid: 80ec4639ce176a34ba9bdcf337b1ce14, type: 3}
+  _HUDPrefab: {fileID: 780534723268663252, guid: 4fd174dbdb710ea498342091296ab3c4, type: 3}
+  _stopwatchTimer: {fileID: 1109884277660647617, guid: 56c3364b5021db94b96b08900eef4f17, type: 3}
+  _playerConfig: {fileID: 11400000, guid: 2a9dde376d614a246941c6dffd972fd6, type: 2}
+  _cupcakeConfig: {fileID: 11400000, guid: f469b5f3126e5ec488f1c83fb64d7263, type: 2}
+  _sausageConfig: {fileID: 11400000, guid: bdf77c17573013f4da6879f71efff059, type: 2}
+  _breadConfig: {fileID: 11400000, guid: c1daadd70a358ca45a641f9c9f7c200c, type: 2}
+  _meatConfig: {fileID: 11400000, guid: d7c695a63bd370a45ac0642fcc570bcc, type: 2}
+  _soundEffect:
+  - _effectType: 0
+    _effectClip: {fileID: 8300000, guid: 072e739f92480e2418de1c824795844f, type: 3}
+  - _effectType: 1
+    _effectClip: {fileID: 8300000, guid: dc16eae6f6ce64347b2c765564d77e20, type: 3}
+  - _effectType: 2
+    _effectClip: {fileID: 8300000, guid: 13bcda1727b148e458a3487aa7f51dcc, type: 3}
+  - _effectType: 3
+    _effectClip: {fileID: 8300000, guid: 6f3056f6327ef7d44b104e16962bd4b5, type: 3}
+  _stepSounds:
+  - {fileID: 8300000, guid: 4ae2e0094fc05d249b0b9f869d927b14, type: 3}
+  - {fileID: 8300000, guid: 1a3fa7ab587bb8b4c9fbe437f633a1ee, type: 3}
+  - {fileID: 8300000, guid: ba4120177474e60488905dba9196f79d, type: 3}
+  - {fileID: 8300000, guid: 5e6878ec8dbe2b145b4c1af668f8318b, type: 3}
+  - {fileID: 8300000, guid: 10fc6c55fb898b44c9de1150edf95d1a, type: 3}
+  _stepSoundDelay: 0.4
+  _mainMenuMusic:
+  - {fileID: 8300000, guid: 438581992c141a74bbbd46e768f25873, type: 3}
+  _levelMusic:
+  - {fileID: 8300000, guid: 127ec96c85b578c439081b3c82ad012d, type: 3}
+  - {fileID: 8300000, guid: aa33b627f20bfc54db6748de09be1df5, type: 3}
+  - {fileID: 8300000, guid: 305f0ec518caa1f48a02e15ee5fde897, type: 3}
+  _mainMenu: MainMenu
+  _firstLevel: Level1_relise
+  _maxATime: 60
+  _maxBTime: 70

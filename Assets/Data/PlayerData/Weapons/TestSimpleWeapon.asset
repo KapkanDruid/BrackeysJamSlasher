@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333d14658c5c0294bb630bf1ab902568, type: 3}
+  m_Name: TestSimpleWeapon
+  m_EditorClassIdentifier: 
+  _playerWeaponType: 2
+  _weaponSprites:
+  - {fileID: -3646482273839619509, guid: 3d939d53fa91c94498d7d9e672089484, type: 3}
+  _damage: 16
+  _weaponCollider: {fileID: 11400000, guid: fe50350e43c905c45adff1860b3974a1, type: 2}
+  _additiveDamagePerLevel: 6
+  _additiveDamageForA: 8
+  _additiveDamageForB: 4
+  _additiveDamageForC: 2
