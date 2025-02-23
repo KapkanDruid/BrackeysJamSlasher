@@ -11,6 +11,7 @@ namespace Assets.Scripts.Content.BasicAI
     {
         private CharacterData _data;
         private CharacterHandler _character;
+        private PopupTextController _popupTextController;
         private Rigidbody2D _rigidbody;
         private Animator _animator;
         private CharacterStateMachine _stateMachine;
@@ -22,7 +23,12 @@ namespace Assets.Scripts.Content.BasicAI
         public float Health => _health;
 
         [Inject]
-        public void Construct(CharacterData data, Rigidbody2D rigidbody, CharacterHandler character, Animator animator, CharacterStateMachine stateMachine)
+        public void Construct(CharacterData data, 
+                              Rigidbody2D rigidbody, 
+                              CharacterHandler character, 
+                              Animator animator, 
+                              CharacterStateMachine stateMachine,
+                              PopupTextController popupTextController)
         {
             _data = data;
             _health = _data.Health;
@@ -30,6 +36,7 @@ namespace Assets.Scripts.Content.BasicAI
             _character = character;
             _animator = animator;
             _stateMachine = stateMachine;
+            _popupTextController = popupTextController;
         }
 
         public void TakeDamage(float damage, Action callback)
@@ -42,7 +49,8 @@ namespace Assets.Scripts.Content.BasicAI
 
             callback?.Invoke();
             _health -= damage;
-
+            Debug.Log("_popup = null");
+            _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
             _hitCount++;
             ProcessHitReaction();
 

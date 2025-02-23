@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2274222260621946271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6810277111138463333}
+  m_Layer: 13
+  m_Name: TextPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6810277111138463333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274222260621946271}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -63.07, y: 4.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6181032236388393920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2405446755527523689
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,37 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bb40db93b74e94ebf7132d5d3feeda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &3330283490538026207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5556852594261194489}
-  m_Layer: 13
-  m_Name: PatrolPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5556852594261194489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3330283490538026207}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.695, y: -0.326, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6181032236388393920}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3426159587621005716
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,11 +261,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6810277111138463333}
   - {fileID: 7597730892824741247}
   - {fileID: 2068255260623656282}
   - {fileID: 5177891004574112678}
   - {fileID: 6066172791357465596}
-  - {fileID: 5556852594261194489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8431571137807675781
@@ -280,8 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9548328badfdb8347a3e8780be0598bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patrolPoints:
-  - {fileID: 5556852594261194489}
+  _patrolPoints: []
 --- !u!114 &7629052249556704577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _characterConfig: {fileID: 11400000, guid: bdf77c17573013f4da6879f71efff059, type: 2}
+    _damageTextPoint: {fileID: 6810277111138463333}
     _characterTransform: {fileID: 6181032236388393920}
     _flags:
       _flags: 01000000

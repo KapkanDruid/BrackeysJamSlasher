@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Content.CoreProgression;
+﻿using Assets.Scripts.Content.BasicAI;
+using Assets.Scripts.Content.CoreProgression;
 using Assets.Scripts.Content.PlayerLogic;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace Assets.Scripts.Content
         [SerializeField] private HeadUpDisplay _HUDPrefab;
         [SerializeField] private StopwatchTimer _stopwatchTimer;
         [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private CharacterConfig _cupcakeConfig;
+        [SerializeField] private CharacterConfig _sausageConfig;
+        [SerializeField] private CharacterConfig _breadConfig;
+        [SerializeField] private CharacterConfig _meatConfig;
 
         [Header("Sound Settings")]
         [SerializeField] private List<SoundEffects> _soundEffect;
@@ -47,6 +52,10 @@ namespace Assets.Scripts.Content
         public float MaxATime => _maxATime;
         public float MaxBTime => _maxBTime;
         public PlayerConfig PlayerConfig => _playerConfig;
+        public CharacterConfig CupcakeConfig => _cupcakeConfig;
+        public CharacterConfig SausageConfig => _sausageConfig;
+        public CharacterConfig BreadConfig => _breadConfig;
+        public CharacterConfig MeatConfig => _meatConfig;
     }
 
     [Serializable]

@@ -7,6 +7,7 @@ namespace Assets.Scripts.Content.BasicAI
     public class CharacterData
     {
         [SerializeField] private CharacterConfig _characterConfig;
+        [SerializeField] private Transform _damageTextPoint;
         [SerializeField] private Transform _characterTransform;
         [SerializeField] private Flags _flags;
         [SerializeField] private EntityFlags _enemyFlag;
@@ -29,6 +30,7 @@ namespace Assets.Scripts.Content.BasicAI
         public bool MeatBoss => _characterConfig.MeatBoss;
         public bool HasRangeAttack => _characterConfig.HasRangeAttack;
         public Transform CharacterTransform => _characterTransform;
+        public Transform DamageTextPoint => _damageTextPoint;
         public Flags Flags => _flags;
         public EntityFlags EnemyFlag => _enemyFlag;
         public Vector2 HitColliderSize => _characterConfig.HitColliderSize;
