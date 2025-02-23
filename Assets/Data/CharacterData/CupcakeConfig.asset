@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CupcakeConfig
   m_EditorClassIdentifier: 
   _health: 60
-  _forcePushKnockback: 6
+  _forcePushKnockback: 4
   _forcePushKnockdown: 9
-  _timeKnockback: 0.8
+  _timeKnockback: 0.6
   _timeKnockdown: 1.5
   _maxAirTime: 0.5
   _comboHoldTime: 5
