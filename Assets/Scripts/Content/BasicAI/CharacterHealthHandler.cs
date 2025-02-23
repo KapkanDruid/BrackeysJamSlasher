@@ -100,6 +100,7 @@ namespace Assets.Scripts.Content.BasicAI
             await AwaitDelay(_data.TimeKnockback);
             ResetVelocity();
 
+            _stateMachine.SetState<CharacterPatrolState>();
         }
 
         private async UniTask Knockdown(float forsePush)

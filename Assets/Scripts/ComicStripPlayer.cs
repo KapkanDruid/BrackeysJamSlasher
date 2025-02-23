@@ -49,6 +49,16 @@ public class ComicStripPlayer : MonoBehaviour
         }
     }
 
+    public void ShowAll()
+    {
+        StopAllCoroutines();
+        foreach (var image in comicImages)
+        {
+            image.gameObject.SetActive(true);
+            SetAlpha(image, 1);
+        }
+    }
+
     void SetAlpha(Image image, float alpha)
     {
         var color = image.color;
