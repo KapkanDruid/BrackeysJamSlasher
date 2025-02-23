@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2_relise_cirlce_2.unity
     guid: 2608906e46d8bbf49865432acc4b41f3
+  - enabled: 1
+    path: Assets/Scenes/Level1_relise_reverse.unity
+    guid: 6e8fd4b4012699344a4ef7c8cc42f648
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
