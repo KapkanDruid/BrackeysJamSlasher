@@ -11,6 +11,7 @@ namespace Assets.Scripts.Content
         [SerializeField] private AudioSource _stepSource;
 
         private AudioClip[] _musicClips;
+        private AudioClip _currentClip;
 
         private SceneResources _sceneResources;
         private bool _isStepsPlaying;
@@ -40,6 +41,7 @@ namespace Assets.Scripts.Content
             else
                 _musicClips = _sceneResources.LevelMusic;
 
+            _currentClip = _musicClips[Random.Range(0, _musicClips.Length - 1)];
         }
 
 
@@ -68,7 +70,7 @@ namespace Assets.Scripts.Content
 
         private void PlayNextClip()
         {
-            _musicSource.clip = _musicClips[Random.Range(0, _musicClips.Length -1)];
+            _musicSource.clip = _currentClip;
 
             _musicSource.Play();
         }
