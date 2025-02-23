@@ -38,6 +38,10 @@ namespace Assets.Scripts.Content.BasicAI
         [Header("Sensor System")]
         [SerializeField] private float _sensorRadius;
 
+        [Header("Random movement")]
+        [SerializeField] private float _waveMovementStrength;
+        [SerializeField] private float _waveMovementFrequency;
+
         public float Speed => _speed;
         public float Health => _health;
         public float AttackCooldown => _attackCooldown;
@@ -59,5 +63,7 @@ namespace Assets.Scripts.Content.BasicAI
         public Vector2 HitColliderOffset => _hitColliderOffset;
         public Vector2 HitSplashColliderSize => _hitSplashColliderSize;
         public Vector2 HitSplashColliderOffset => _hitSplashColliderOffset;
+        public float WaveMovementStrength => _waveMovementStrength;
+        public float WaveMovementFrequency => _waveMovementFrequency;
     }
 }

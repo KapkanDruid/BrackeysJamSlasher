@@ -100,6 +100,7 @@ namespace Assets.Scripts.Content.BasicAI
             await AwaitDelay(_data.TimeKnockback);
             ResetVelocity();
 
+            _stateMachine.SetState<CharacterPatrolState>();
         }
 
         private async UniTask Knockdown(float forsePush)
@@ -123,6 +124,7 @@ namespace Assets.Scripts.Content.BasicAI
             _character.IsKnocked = _isKnockedDown;
             _hitCount = 0;
 
+            _stateMachine.SetState<CharacterPatrolState>();
         }
 
         private void SetAnimatorTrigger(int name)

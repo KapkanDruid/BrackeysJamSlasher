@@ -38,6 +38,9 @@ namespace Assets.Scripts.Content.BasicAI
         public Vector2 HitSplashColliderSize => _characterConfig.HitSplashColliderSize;
         public Vector2 HitSplashColliderOffset => _characterConfig.HitSplashColliderOffset;
         public IEntity ThisEntity { get; set; }
+
+        public float WaveMovementStrength => _characterConfig.WaveMovementStrength;
+        public float WaveMovementFrequency => _characterConfig.WaveMovementFrequency;
     }
 }
 

@@ -113,7 +113,7 @@ namespace Assets.Scripts.Content.BasicAI
                     }
                     else
                     {
-                        _character.MoveTo(_target.position);
+                        _character.MoveToRandom(_target.position);
                     }
 
                 }
