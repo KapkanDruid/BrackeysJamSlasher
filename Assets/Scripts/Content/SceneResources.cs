@@ -23,6 +23,8 @@ namespace Assets.Scripts.Content
         [SerializeField] private List<SoundEffects> _soundEffect;
         [SerializeField] private AudioClip[] _stepSounds;
         [SerializeField] private float _stepSoundDelay = 0.4f;
+        [SerializeField] private AudioClip[] _mainMenuMusic;
+        [SerializeField] private AudioClip[] _levelMusic;
 
         [Header("SceneNames")]
         [SerializeField] private string _mainMenu;
@@ -47,6 +49,8 @@ namespace Assets.Scripts.Content
         public float MaxATime => _maxATime;
         public float MaxBTime => _maxBTime;
         public PlayerConfig PlayerConfig => _playerConfig;
+        public AudioClip[] MainMenuMusic => _mainMenuMusic;
+        public AudioClip[] LevelMusic => _levelMusic;
     }
 
     [Serializable]
