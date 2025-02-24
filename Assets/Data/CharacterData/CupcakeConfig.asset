@@ -37,5 +37,5 @@ MonoBehaviour:
   _hitSplashColliderSize: {x: 0, y: 0}
   _hitSplashColliderOffset: {x: 0, y: 0}
   _sensorRadius: 20
-  _waveMovementStrength: 1.87
-  _waveMovementFrequency: 0.87
+  _waveMovementStrength: 1.17
+  _waveMovementFrequency: 2.34
