@@ -10035,7 +10035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
@@ -15819,7 +15819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
@@ -22861,7 +22861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
@@ -31519,7 +31519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[0]'
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: '_wavesDelay.Array.data[1]'
