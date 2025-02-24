@@ -369,6 +369,7 @@ MonoBehaviour:
     _flags:
       _flags: 01000000
     _enemyFlag: 0
+    _typeCharacter: 1
   _projectileData:
     _projectilePrefab: {fileID: 3837556592421036684, guid: 3a6853eae728c50499ca7c26243be9e4, type: 3}
     _shootPoint: {fileID: 6688588166580573837}
