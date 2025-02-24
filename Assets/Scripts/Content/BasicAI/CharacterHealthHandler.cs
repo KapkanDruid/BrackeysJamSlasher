@@ -57,18 +57,20 @@ namespace Assets.Scripts.Content.BasicAI
             callback?.Invoke();
 
             _health -= damage;
-            Debug.Log("_popup = null");
             PlaySaund();
             _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
+            if ( _health <= 0)
+            {
+                _enemyDeadHandler.Death();
+                _isDead = true;
+                _animator.SetBool(AnimatorHashes.IsDead, _isDead);
+                return;
+            }
             _hitCount++;
             ProcessHitReaction();
 
             ResetHitCountTimer().Forget();
 
-            if ( _health <= 0)
-            {
-                _enemyDeadHandler.Death();
-            }
         }
 
         private void PlaySaund()
