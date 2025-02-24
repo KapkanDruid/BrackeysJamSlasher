@@ -112,6 +112,7 @@ namespace Assets.Scripts.Content.BasicAI
             {
                 case 1:
                     SetAnimatorTrigger(AnimatorHashes.TakeDamageTrigger);
+                    _stateMachine.SetState<CharacterAttackState>();
                     break;
 
                 case 2:
