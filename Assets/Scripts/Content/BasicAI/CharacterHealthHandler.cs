@@ -20,7 +20,7 @@ namespace Assets.Scripts.Content.BasicAI
         private float _health;
         private int _hitCount = 0;
         private bool _isKnockedDown = false;
-        private bool _isDead;
+        private bool _isDead = false;
 
         public float Health => _health;
 
@@ -43,6 +43,7 @@ namespace Assets.Scripts.Content.BasicAI
             _popupTextController = popupTextController;
             _audioController = audioController;
             _enemyDeadHandler = enemyDeadHandler;
+            _enemyDeadHandler.Initialize(_character.transform);
         }
 
         public void TakeDamage(float damage, Action callback)
@@ -56,18 +57,20 @@ namespace Assets.Scripts.Content.BasicAI
             callback?.Invoke();
 
             _health -= damage;
-            Debug.Log("_popup = null");
             PlaySaund();
             _popupTextController.ShowDamage(_data.DamageTextPoint.position, damage);
+            if ( _health <= 0)
+            {
+                _enemyDeadHandler.Death();
+                _isDead = true;
+                _animator.SetBool(AnimatorHashes.IsDead, _isDead);
+                return;
+            }
             _hitCount++;
             ProcessHitReaction();
 
             ResetHitCountTimer().Forget();
-
-            if ( _health <= 0)
-            {
-                _enemyDeadHandler.Death();
-            }
+            _stateMachine.SetState<CharacterChaseState>();
         }
 
         private void PlaySaund()
@@ -109,6 +112,7 @@ namespace Assets.Scripts.Content.BasicAI
             {
                 case 1:
                     SetAnimatorTrigger(AnimatorHashes.TakeDamageTrigger);
+                    _stateMachine.SetState<CharacterChaseState>();
                     break;
 
                 case 2:
@@ -133,7 +137,7 @@ namespace Assets.Scripts.Content.BasicAI
             await AwaitDelay(_data.TimeKnockback);
             ResetVelocity();
 
-            _stateMachine.SetState<CharacterPatrolState>();
+            _stateMachine.SetState<CharacterChaseState>();
         }
 
         private async UniTask Knockdown(float forsePush)
@@ -157,7 +161,7 @@ namespace Assets.Scripts.Content.BasicAI
             _character.IsKnocked = _isKnockedDown;
             _hitCount = 0;
 
-            _stateMachine.SetState<CharacterPatrolState>();
+            _stateMachine.SetState<CharacterChaseState>();
         }
 
         private void SetAnimatorTrigger(int name)

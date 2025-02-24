@@ -34,7 +34,8 @@ namespace Assets.Scripts.Content
         {
             if (_isDead)
                 return;
-
+            if (_animator == null)
+                Debug.Log("_animator = null");
             if (_animator != null)
                 _animator.SetTrigger(AnimatorHashes.DeathTrigger);
 
