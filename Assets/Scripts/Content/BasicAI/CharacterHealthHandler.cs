@@ -35,7 +35,6 @@ namespace Assets.Scripts.Content.BasicAI
                               EnemyDeadHandler enemyDeadHandler)
         {
             _data = data;
-            _health = _data.Health;
             _rigidbody = rigidbody;
             _character = character;
             _animator = animator;
@@ -44,6 +43,11 @@ namespace Assets.Scripts.Content.BasicAI
             _audioController = audioController;
             _enemyDeadHandler = enemyDeadHandler;
             _enemyDeadHandler.Initialize(_character.transform);
+        }
+
+        public void Initialize()
+        {
+            _health = _data.Health;
         }
 
         public void TakeDamage(float damage, Action callback)
