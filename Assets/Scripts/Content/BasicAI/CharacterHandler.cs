@@ -15,6 +15,7 @@ namespace Assets.Scripts.Content.BasicAI
 
         private CustomPool<DirectProjectile> _projectilePool;
 
+        private EnemyDeadHandler _enemyDeadHandler;
         private CharacterHealthHandler _healthHandler;
         private CancellationToken _cancellationToken;
         private bool _isKnocked = false;
@@ -29,10 +30,11 @@ namespace Assets.Scripts.Content.BasicAI
 
 
         [Inject]
-        public void Construct(CharacterHealthHandler healthHandler)
+        public void Construct(CharacterHealthHandler healthHandler, EnemyDeadHandler enemyDeadHandler)
         {
             _healthHandler = healthHandler;
             _data.ThisEntity = this;
+            _enemyDeadHandler = enemyDeadHandler;
 
             _cancellationToken = this.GetCancellationTokenOnDestroy();
             _currentOrientation = Mathf.Clamp(Mathf.RoundToInt(transform.localScale.x), -1, 1);
@@ -71,6 +73,9 @@ namespace Assets.Scripts.Content.BasicAI
             
             if (transform is T characterTransform)
                 return characterTransform;
+
+            if (_enemyDeadHandler is T deadHandler)
+                return deadHandler;
 
             return null;
         }
@@ -122,6 +127,7 @@ namespace Assets.Scripts.Content.BasicAI
 
             _isReadyToShoot = true;
         }
+
     }
 }
 
