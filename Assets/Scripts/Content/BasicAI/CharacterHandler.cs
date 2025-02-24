@@ -35,7 +35,6 @@ namespace Assets.Scripts.Content.BasicAI
             _healthHandler = healthHandler;
             _data.ThisEntity = this;
             _enemyDeadHandler = enemyDeadHandler;
-            _enemyDeadHandler.Initialize(transform);
 
             _cancellationToken = this.GetCancellationTokenOnDestroy();
             _currentOrientation = Mathf.Clamp(Mathf.RoundToInt(transform.localScale.x), -1, 1);
@@ -129,14 +128,6 @@ namespace Assets.Scripts.Content.BasicAI
             _isReadyToShoot = true;
         }
 
-        private void Update()
-        {
-            if (_healthHandler.Health == 0)
-            {
-                _enemyDeadHandler.Death();
-            }
-            
-        }
     }
 }
 
