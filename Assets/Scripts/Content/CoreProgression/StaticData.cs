@@ -121,6 +121,10 @@ namespace Assets.Scripts.Content.CoreProgression
             _playerCriticalChance = _playerConfig.CriticalChance;
             _playerDodgeChance = _playerConfig.DodgeChancePercent;
             _criticalMultiplier = _playerConfig.CriticalMultiplier;
+
+            _currentPlayerHP = _playerMaxHealth;
+
+            OnMaxHealthChanged?.Invoke();
         }
 
         public static void ExecuteProgress(ProgressValue progressValue, SuccessRate successRate)
