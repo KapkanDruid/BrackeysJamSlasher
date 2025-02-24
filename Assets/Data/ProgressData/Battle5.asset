@@ -17,46 +17,46 @@ MonoBehaviour:
     _progressValues:
     - _successRate: 0
       _increaseValue: 7
-      _cardText: +7
+      _cardText: +7 Multi Crit
       _rateSprite: {fileID: 3157075028041788105, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 1
       _increaseValue: 4
-      _cardText: +4
+      _cardText: +4 Multi Crit
       _rateSprite: {fileID: 1189195474183918636, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 2
       _increaseValue: 2
-      _cardText: +2
+      _cardText: +2 Multi Crit
       _rateSprite: {fileID: -2675041909866985410, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
-    _valueIcon: {fileID: -9035897473069529807, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
+    _valueIcon: {fileID: 6484338688935088149, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
   _centralCardData:
     _progressType: 3
     _progressValues:
     - _successRate: 0
       _increaseValue: 5
-      _cardText: +5%
+      _cardText: +5% Crit Chance
       _rateSprite: {fileID: 3157075028041788105, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 1
       _increaseValue: 3
-      _cardText: +3%
+      _cardText: +3% Crit Chance
       _rateSprite: {fileID: 1189195474183918636, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 2
       _increaseValue: 1
-      _cardText: +1%
+      _cardText: +1% Crit Cgance
       _rateSprite: {fileID: -2675041909866985410, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
-    _valueIcon: {fileID: 7263185661845264403, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
+    _valueIcon: {fileID: 3776574574225122644, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
   _rightCardData:
     _progressType: 2
     _progressValues:
     - _successRate: 0
       _increaseValue: 8
-      _cardText: +8
+      _cardText: +8 Damage
       _rateSprite: {fileID: 3157075028041788105, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 1
       _increaseValue: 4
-      _cardText: +4
+      _cardText: +4 Damage
       _rateSprite: {fileID: 1189195474183918636, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 2
       _increaseValue: 2
-      _cardText: +2
+      _cardText: +2 Damage
       _rateSprite: {fileID: -2675041909866985410, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     _valueIcon: {fileID: 5084253637217129110, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
