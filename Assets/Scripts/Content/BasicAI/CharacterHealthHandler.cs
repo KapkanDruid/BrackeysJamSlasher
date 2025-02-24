@@ -70,7 +70,7 @@ namespace Assets.Scripts.Content.BasicAI
             ProcessHitReaction();
 
             ResetHitCountTimer().Forget();
-
+            _stateMachine.SetState<CharacterChaseState>();
         }
 
         private void PlaySaund()
