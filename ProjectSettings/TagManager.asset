@@ -21,9 +21,9 @@ TagManager:
   - Character
   - HitCollider
   - HurtCollider
-  - 
-  - 
-  - 
+  - Wall
+  - Barrier
+  - Player
   - 
   - 
   - 

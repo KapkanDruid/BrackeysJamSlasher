@@ -43,6 +43,7 @@ namespace Assets.Scripts.Content.BasicAI
             _popupTextController = popupTextController;
             _audioController = audioController;
             _enemyDeadHandler = enemyDeadHandler;
+            _enemyDeadHandler.Initialize(_character.transform);
         }
 
         public void TakeDamage(float damage, Action callback)
@@ -133,7 +134,7 @@ namespace Assets.Scripts.Content.BasicAI
             await AwaitDelay(_data.TimeKnockback);
             ResetVelocity();
 
-            _stateMachine.SetState<CharacterPatrolState>();
+            _stateMachine.SetState<CharacterAttackState>();
         }
 
         private async UniTask Knockdown(float forsePush)
@@ -157,7 +158,7 @@ namespace Assets.Scripts.Content.BasicAI
             _character.IsKnocked = _isKnockedDown;
             _hitCount = 0;
 
-            _stateMachine.SetState<CharacterPatrolState>();
+            _stateMachine.SetState<CharacterAttackState>();
         }
 
         private void SetAnimatorTrigger(int name)
