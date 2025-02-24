@@ -17,15 +17,15 @@ MonoBehaviour:
     _progressValues:
     - _successRate: 0
       _increaseValue: 25
-      _cardText: +25
+      _cardText: +25 Max HP
       _rateSprite: {fileID: 3157075028041788105, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 1
       _increaseValue: 15
-      _cardText: +15
+      _cardText: +15 Max HP
       _rateSprite: {fileID: 1189195474183918636, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 2
       _increaseValue: 5
-      _cardText: +5
+      _cardText: +5 Max HP
       _rateSprite: {fileID: -2675041909866985410, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     _valueIcon: {fileID: -9035897473069529807, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
   _centralCardData:
@@ -33,15 +33,15 @@ MonoBehaviour:
     _progressValues:
     - _successRate: 0
       _increaseValue: 15
-      _cardText: +15%
+      _cardText: +15% Regen
       _rateSprite: {fileID: 3157075028041788105, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 1
       _increaseValue: 10
-      _cardText: +10%
+      _cardText: +10% Regen
       _rateSprite: {fileID: 1189195474183918636, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 2
       _increaseValue: 5
-      _cardText: +5%
+      _cardText: +5% Regen
       _rateSprite: {fileID: -2675041909866985410, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     _valueIcon: {fileID: 7263185661845264403, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
   _rightCardData:
@@ -49,14 +49,14 @@ MonoBehaviour:
     _progressValues:
     - _successRate: 0
       _increaseValue: 8
-      _cardText: +8
+      _cardText: +8 Damage
       _rateSprite: {fileID: 3157075028041788105, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 1
       _increaseValue: 4
-      _cardText: +4
+      _cardText: +4 Damage
       _rateSprite: {fileID: 1189195474183918636, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     - _successRate: 2
       _increaseValue: 2
-      _cardText: +2
+      _cardText: +2 Damage
       _rateSprite: {fileID: -2675041909866985410, guid: b5d152f9725b96b4ca9c105eafcc6b48, type: 3}
     _valueIcon: {fileID: 5084253637217129110, guid: 5a9df3372fd1d1d4498c1d6d4c99a017, type: 3}
