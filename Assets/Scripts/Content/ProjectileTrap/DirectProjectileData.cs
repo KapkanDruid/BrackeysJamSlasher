@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Content.CoreProgression;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Content
@@ -12,7 +13,7 @@ namespace Assets.Scripts.Content
         [SerializeField] private float _lifeTime;
 
         public EntityFlags EnemyFlag => _enemyFlag;
-        public float Damage => _damage;
+        public float Damage => StaticData.DamageRangeSausage;
         public float Speed => _speed;
         public float LifeTime => _lifeTime;
     }

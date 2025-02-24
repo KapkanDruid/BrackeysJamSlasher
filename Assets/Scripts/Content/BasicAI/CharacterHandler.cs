@@ -114,6 +114,11 @@ namespace Assets.Scripts.Content.BasicAI
             
         }
 
+        private void Start() 
+        {
+            _healthHandler.Initialize();
+        }
+
         private async UniTaskVoid RechargeRangeAttack()
         {
             try
