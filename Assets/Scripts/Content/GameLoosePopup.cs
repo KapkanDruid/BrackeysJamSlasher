@@ -1,5 +1,7 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.Content.CoreProgression;
+using DG.Tweening;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ namespace Assets.Scripts.Content
         [SerializeField] private Button _tryAgainButton;
         [SerializeField] private Button _exitButton;
         [SerializeField] private float _showSpeed = 0.5f;
+        [SerializeField] private TextMeshProUGUI _scoreText;
 
         private RectTransform _rectTransform;
 
@@ -35,7 +38,7 @@ namespace Assets.Scripts.Content
         public void Show()
         {
             gameObject.SetActive(true);
-
+            _scoreText.text = StaticData.Score.ToString();
             _rectTransform.DOAnchorPos(_targetPosition, _showSpeed)
                 .SetEase(Ease.OutExpo);
         }

@@ -15499,9 +15499,10 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 19.105436, y: 3.2772455}
       - {x: 40.441605, y: 3.3289638}
-      - {x: 54.28613, y: 3.3063455}
+      - {x: 55.38978, y: 3.359748}
       - {x: 57.932106, y: 1.7152245}
-      - {x: 123.3327, y: 1.5766083}
+      - {x: 123.28758, y: 1.7837218}
+      - {x: 123.82257, y: 2.7409835}
       - {x: 126.9407, y: 3.4038475}
       - {x: 188.9774, y: 3.442918}
       - {x: 188.86946, y: -1.2914562}
@@ -15518,10 +15519,10 @@ PolygonCollider2D:
       - {x: 18.88112, y: -1.4209666}
       - {x: 14.621651, y: -1.293812}
       - {x: 10.967878, y: -1.409339}
-      - {x: -6.677476, y: -1.2187338}
-      - {x: -6.796276, y: 4.0907025}
-      - {x: -7.4422226, y: 4.156025}
-      - {x: -7.4111004, y: -2.5400753}
+      - {x: -9.374666, y: -1.3464117}
+      - {x: -9.477508, y: 3.6438305}
+      - {x: -12.0705385, y: 4.890172}
+      - {x: -15.40767, y: -4.531977}
       - {x: 12.8073, y: -1.9821978}
       - {x: 17.767422, y: -5.2054696}
       - {x: 20.403435, y: -6.015892}
@@ -15548,8 +15549,9 @@ PolygonCollider2D:
       - {x: 63.954224, y: 4.2130804}
       - {x: 27.986834, y: 5.8059435}
       - {x: 23.87756, y: 5.7690997}
-      - {x: -6.6698465, y: 5.657074}
-      - {x: -6.717334, y: 3.4136717}
+      - {x: -5.647571, y: 5.91331}
+      - {x: -9.542595, y: 3.9972634}
+      - {x: -9.223009, y: 3.4136717}
       - {x: 15.526692, y: 3.3596704}
   m_UseDelaunayMesh: 0
 --- !u!1 &1028173279
@@ -31541,6 +31543,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 610875401429256307, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 803413953690644475, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.45
+      objectReference: {fileID: 0}
     - target: {fileID: 1084583610769123643, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: _enemyWaves.Array.size
       value: 3
@@ -31688,6 +31698,10 @@ PrefabInstance:
     - target: {fileID: 8176486472826660592, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176253209592469724, guid: d23ef43bdf386584e9b746d81fa4d552, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

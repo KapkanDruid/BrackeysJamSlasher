@@ -51,24 +51,38 @@ namespace Assets.Scripts.Content.CoreProgression
             _icon.sprite = _data.ValueIcon;
             _currentProgressValue = new ProgressValue(_data.ProgressType, _currentIncreaseValue);
 
+            DisableArray(_enableObjectsA);
+            DisableArray(_enableObjectsB);
+            DisableArray(_enableObjectsC);
+
             switch (_currentSuccessRate)
             {
                 case SuccessRate.A:
-                    foreach (var reactTransform in _enableObjectsA)
-                        reactTransform.gameObject.SetActive(true);
+                    EnableArray(_enableObjectsA);
                     break;
 
                 case SuccessRate.B:
-                    foreach (var reactTransform in _enableObjectsB)
-                        reactTransform.gameObject.SetActive(true);
+                    EnableArray(_enableObjectsB);
                     break;
 
                 case SuccessRate.C:
-                    foreach (var reactTransform in _enableObjectsC)
-                        reactTransform.gameObject.SetActive(true);
+                    EnableArray(_enableObjectsC);
                     break;
             }
         }
+
+        private void EnableArray(RectTransform[] rectTransforms)
+        {
+            foreach (var reactTransform in rectTransforms)
+                reactTransform.gameObject.SetActive(true);
+        }
+
+        private void DisableArray(RectTransform[] rectTransforms)
+        {
+            foreach (var reactTransform in rectTransforms)
+                reactTransform.gameObject.SetActive(false);
+        }
+
         public void Disable()
         {
             _button.interactable = false;

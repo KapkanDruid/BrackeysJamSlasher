@@ -47,6 +47,7 @@ namespace Assets.Scripts.Content.CoreProgression
         private static float _increase10 = 1.1f;
         private static float _increase25 = 1.25f;
         private static float _increase50 = 1.5f;
+        private static int _score;
 
         public static PlayerWeapon Weapon => _weapon;
         public static float MaxPlayerHealth => _playerMaxHealth;
@@ -78,6 +79,7 @@ namespace Assets.Scripts.Content.CoreProgression
         public static float DamageSplashMeat => _damageSplashMeat;
         public static float DamageRangeMeat => _damageRangeMeat;
 
+        public static int Score { get => _score; set => _score = value; }
 
         public static event Action OnMaxHealthChanged;
 
@@ -92,6 +94,8 @@ namespace Assets.Scripts.Content.CoreProgression
             _sausageConfig = sausageConfig;
             _breadConfig = breadConfig;
             _meatConfig = meatConfig;
+
+            _score = 0;
 
             _weapon = _playerConfig.Weapon;
             _damage = _weapon.Damage;
@@ -121,6 +125,10 @@ namespace Assets.Scripts.Content.CoreProgression
             _playerCriticalChance = _playerConfig.CriticalChance;
             _playerDodgeChance = _playerConfig.DodgeChancePercent;
             _criticalMultiplier = _playerConfig.CriticalMultiplier;
+
+            _currentPlayerHP = _playerMaxHealth;
+
+            OnMaxHealthChanged?.Invoke();
         }
 
         public static void ExecuteProgress(ProgressValue progressValue, SuccessRate successRate)
