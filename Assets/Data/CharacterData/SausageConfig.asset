@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de99fba8f8e95f4e87f86827bf2fc15, type: 3}
   m_Name: SausageConfig
   m_EditorClassIdentifier: 
-  _health: 45
+  _health: 70
   _forcePushKnockback: 6
   _forcePushKnockdown: 9
   _timeKnockback: 0.8

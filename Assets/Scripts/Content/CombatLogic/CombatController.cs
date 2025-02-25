@@ -163,8 +163,11 @@ namespace Assets.Scripts.Content
             {
                 return;
             }
+            float endTime = _timer.ResetTimer();
 
-            _playerProgressController.ShowProgressCards(_progressCardsConfig, _timer.ResetTimer());
+            StaticData.Score += Mathf.RoundToInt(200 + (60 - endTime) * 50);
+
+            _playerProgressController.ShowProgressCards(_progressCardsConfig, endTime);
         }
     }
 }
