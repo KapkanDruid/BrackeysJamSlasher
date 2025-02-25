@@ -29,7 +29,7 @@ namespace Assets.Scripts.Content.CoreProgression
 
             _targetPosition = _rectTransform.anchoredPosition;
 
-            _startPosition = _targetPosition - new Vector2(0, Screen.height);
+            _startPosition = _targetPosition - new Vector2(0, _rectTransform.rect.height);
 
             _rectTransform.anchoredPosition = _startPosition;
 
@@ -71,7 +71,7 @@ namespace Assets.Scripts.Content.CoreProgression
         private void Hide()
         {
             _rectTransform.DOAnchorPos(_startPosition, _showSpeed)
-                .SetEase(Ease.OutExpo);
+                .SetEase(Ease.OutExpo).OnComplete(() => _rectTransform.gameObject.SetActive(false));
 
             _leftCard.Disable();
             _centralCard.Disable();

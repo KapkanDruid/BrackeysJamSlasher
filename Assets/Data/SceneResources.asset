@@ -48,5 +48,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 305f0ec518caa1f48a02e15ee5fde897, type: 3}
   _mainMenu: MainMenu
   _firstLevel: Level1_relise
-  _maxATime: 60
-  _maxBTime: 70
+  _maxATime: 45
+  _maxBTime: 60

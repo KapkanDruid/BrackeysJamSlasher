@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de99fba8f8e95f4e87f86827bf2fc15, type: 3}
   m_Name: SausageConfig
   m_EditorClassIdentifier: 
-  _health: 45
+  _health: 70
   _forcePushKnockback: 6
   _forcePushKnockdown: 9
   _timeKnockback: 0.8
@@ -29,11 +29,10 @@ MonoBehaviour:
   _hitColliderSize: {x: 0, y: 0}
   _hitColliderOffset: {x: 0, y: 0}
   _hasRangeAttack: 1
-  _rangeDamage: 0
-  _rangeAttackCooldown: 0
-  _attackRange: 0
+  _rangeDamage: 6
+  _rangeAttackCooldown: 1
+  _attackRange: 10
   _boss: 0
-  _meatBoss: 0
   _splashDamage: 0
   _hitSplashColliderSize: {x: 0, y: 0}
   _hitSplashColliderOffset: {x: 0, y: 0}

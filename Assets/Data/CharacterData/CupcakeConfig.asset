@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de99fba8f8e95f4e87f86827bf2fc15, type: 3}
   m_Name: CupcakeConfig
   m_EditorClassIdentifier: 
-  _health: 60
+  _health: 100
   _forcePushKnockback: 4
   _forcePushKnockdown: 9
   _timeKnockback: 0.6
@@ -37,5 +37,5 @@ MonoBehaviour:
   _hitSplashColliderSize: {x: 0, y: 0}
   _hitSplashColliderOffset: {x: 0, y: 0}
   _sensorRadius: 20
-  _waveMovementStrength: 1.87
-  _waveMovementFrequency: 0.87
+  _waveMovementStrength: 1.17
+  _waveMovementFrequency: 2.34
